@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+D:\LAFproject\source\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2261031121.index
+378532884.index
+3676054486.index
+897715785.index
+3581163120.index
+2934279024.index
