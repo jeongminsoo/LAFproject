@@ -134,7 +134,8 @@ public class LostDao {
 		
 		String 					sql 	= "SELECT *" + 
 											" FROM (SELECT ROWNUM RN,  A.*" + 
-													" FROM (SELECT L.*, MNAME FROM LOST L, LAF_MEMBER M WHERE L.MID = M.MID ORDER BY LRDATE DESC) A)" + 
+													" FROM (SELECT L.*, MNAME, CODENAME LCC FROM LOST L, LAF_MEMBER M, LST_CODE LC" + 
+															" WHERE L.MID = M.MID AND L.LSTCODE = LC.LSTCODE AND L.LSTCODE = 'LST00' ORDER BY LRDATE DESC) A)" + 
 											" WHERE RN BETWEEN ? AND ?";
 		
 		try {
@@ -160,8 +161,10 @@ public class LostDao {
 				String 	lTel		=	rs.getString("ltel");
 				String 	lIp			=	rs.getString("lip");
 				String	mName		=	rs.getString("mname");
+				String 	lstCode		=	rs.getString("lstcode");
+				String 	lcc			=	rs.getString("lcc");
 			
-				dtos.add(new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, mName));
+				dtos.add(new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, mName, lstCode, lcc));
 			}
 			
 		} catch (SQLException e) {
@@ -181,7 +184,315 @@ public class LostDao {
 				System.out.println(e.getMessage());
 			}
 		}
-		
 		return dtos;
 	}
+	// 분실물 접수 취소
+	public int cancelLost(String lNo) {
+		int result = FAIL;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		
+		String 				sql 	= "UPDATE LOST SET LSTCODE = 'LST02' WHERE LNO = ?";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			pstmt.setString(1, lNo);
+			
+			result 	= 	pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
+	
+	// 분실물 처리완료
+		public int complete(String lNo) {
+			int result = FAIL;
+			
+			Connection 			conn 	= null;
+			PreparedStatement 	pstmt 	= null;
+			
+			String 				sql 	= "UPDATE LOST SET LSTCODE = 'LST01' WHERE LNO = ?";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, lNo);
+				
+				result 	= 	pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return result;
+		}
+	
+	// 분실물 게시글 삭제
+	public int deleteLost(String lNo) {
+		int result = FAIL;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		
+		String 				sql 	= "DELETE FROM LOST WHERE LNO = ?";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			pstmt.setString(1, lNo);
+			
+			result 	= 	pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
+	
+	// 분실물관리
+	public ArrayList<LostDto> myLostList(String mId, int start, int end) {
+		ArrayList<LostDto> dtos = new ArrayList<LostDto>();
+		
+		Connection 				conn 	= null;
+		PreparedStatement 		pstmt 	= null;
+		ResultSet 				rs 		= null;
+		
+		String 					sql 	= "SELECT *" + 
+											" FROM (SELECT ROWNUM RN,  A.*" + 
+													" FROM (SELECT L.*, CODENAME LCC FROM LOST L, LST_CODE LC" + 
+															" WHERE L.LSTCODE = LC.LSTCODE AND MID = ? ORDER BY L.LSTCODE, LRDATE DESC) A)" + 
+											" WHERE RN BETWEEN ? AND ?";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs 		= 	pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String 	lNo			=	rs.getString("lno");
+				String 	lTitle		=	rs.getString("ltitle");
+				String 	lContent	=	rs.getString("lcontent");
+				Date 	lRdate		=	rs.getDate("lrdate");
+				String 	lOb			=	rs.getString("lob");
+				String 	lLocal		=	rs.getString("llocal");
+				String 	lLocation	=	rs.getString("llocation");
+				Date 	lDate		=	rs.getDate("ldate");
+				String 	lPhoto		=	rs.getString("lphoto");
+				int 	lHit		=	rs.getInt("lhit");
+				String 	lTel		=	rs.getString("ltel");
+				String 	lIp			=	rs.getString("lip");
+				String	mName		=	rs.getString("mname");
+				String 	lstCode		=	rs.getString("lstcode");
+				String 	lcc			=	rs.getString("lcc");
+			
+				dtos.add(new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, mName, lstCode, lcc));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return dtos;
+	}
+	
+	// 분실물 보기
+		public LostDto contentQna(String lNo) {
+			LostDto dto = null;
+			lHitUp(lNo);
+			
+			Connection 			conn 	= null;
+			PreparedStatement 	pstmt 	= null;
+			ResultSet			rs		= null;
+			
+			String 				sql 	= "SELECT Q.*, MNAME FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID AND QNO = ?";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, lNo);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					String 	lTitle		=	rs.getString("ltitle");
+					String 	lContent	=	rs.getString("lcontent");
+					String 	mId			=	rs.getString("mid");
+					Date 	lRdate		=	rs.getDate("lrdate");
+					String 	lOb			=	rs.getString("lob");
+					String 	lLocal		=	rs.getString("llocal");
+					String 	lLocation	=	rs.getString("llocation");
+					Date 	lDate		=	rs.getDate("ldate");
+					String 	lPhoto		=	rs.getString("lphoto");
+					int 	lHit		=	rs.getInt("lhit");
+					String 	lTel		=	rs.getString("ltel");
+					String 	lIp			=	rs.getString("lip");
+					String	mName		=	rs.getString("mname");
+					String 	lstCode		=	rs.getString("lstcode");
+					String 	lcc			=	rs.getString("lcc");
+					
+					dto = new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, mName, lstCode, lcc);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return dto;
+		}
+		
+		// 조회수 올리기
+		private void lHitUp(String lNo) {
+			Connection 			conn 	= null;
+			PreparedStatement 	pstmt 	= null;
+			
+			String 				sql 	= "UPDATE LOST SET LHIT = LHIT + 1 WHERE LNO = ?";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, lNo);
+				pstmt.executeQuery();
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+		
+		// dto 가져오기
+		public LostDto getLost(String lNo) {
+			LostDto dto = null;
+			
+			Connection 			conn 	= null;
+			PreparedStatement 	pstmt 	= null;
+			ResultSet			rs		= null;
+			
+			String 				sql 	= "SELECT L.*, MNAME FROM LOST L, LAF_MEMBER M WHERE L.MID = M.MID AND LNO = ?";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, lNo);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					String 	lTitle		=	rs.getString("ltitle");
+					String 	lContent	=	rs.getString("lcontent");
+					String 	mId			=	rs.getString("mid");
+					Date 	lRdate		=	rs.getDate("lrdate");
+					String 	lOb			=	rs.getString("lob");
+					String 	lLocal		=	rs.getString("llocal");
+					String 	lLocation	=	rs.getString("llocation");
+					Date 	lDate		=	rs.getDate("ldate");
+					String 	lPhoto		=	rs.getString("lphoto");
+					int 	lHit		=	rs.getInt("lhit");
+					String 	lTel		=	rs.getString("ltel");
+					String 	lIp			=	rs.getString("lip");
+					String	mName		=	rs.getString("mname");
+					String 	lstCode		=	rs.getString("lstcode");
+					String 	lcc			=	rs.getString("lcc");
+					
+					dto = new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, mName, lstCode, lcc);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return dto;
+		}
 }

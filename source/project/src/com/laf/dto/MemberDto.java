@@ -7,35 +7,45 @@ public class MemberDto {
 	private String 	mId;
 	private String 	mPw;
 	private String 	mName;
-	private String 	mEmail;
+	private String 	mEmailId;
+	private String  mEmailDomain;
 	private String	mAddress;
-	private String 	mTel;
+	private String 	mTel1;
+	private String 	mTel2;
+	private String 	mTel3;
 	private Date 	mBirth;
 	private String 	mQuiz;
 	private String 	mAnswer;
 	private Date 	mRdate;
-	private String 	pcCode;
-	private int 	scCode;
+	private String 	pwCode;
+	private String  pcc;
+	private String 	mstCode;
+	private String	mcc;
 	
 	public MemberDto() {
 		
 	}
 
-	public MemberDto(String mId, String mPw, String mName, String mEmail, String mAddress, String mTel, Date mBirth,
-			String mQuiz, String mAnswer, Date mRdate, String pcCode, int scCode) {
-		super();
+	public MemberDto(String mId, String mPw, String mName, String mEmailId, String mEmailDomain, String mAddress,
+			String mTel1, String mTel2, String mTel3, Date mBirth, String mQuiz, String mAnswer, Date mRdate,
+			String pwCode, String pcc, String mstCode, String mcc) {
 		this.mId = mId;
 		this.mPw = mPw;
 		this.mName = mName;
-		this.mEmail = mEmail;
+		this.mEmailId = mEmailId;
+		this.mEmailDomain = mEmailDomain;
 		this.mAddress = mAddress;
-		this.mTel = mTel;
+		this.mTel1 = mTel1;
+		this.mTel2 = mTel2;
+		this.mTel3 = mTel3;
 		this.mBirth = mBirth;
 		this.mQuiz = mQuiz;
 		this.mAnswer = mAnswer;
 		this.mRdate = mRdate;
-		this.pcCode = pcCode;
-		this.scCode = scCode;
+		this.pwCode = pwCode;
+		this.pcc = pcc;
+		this.mstCode = mstCode;
+		this.mcc = mcc;
 	}
 
 	public String getmId() {
@@ -62,12 +72,20 @@ public class MemberDto {
 		this.mName = mName;
 	}
 
-	public String getmEmail() {
-		return mEmail;
+	public String getmEmailId() {
+		return mEmailId;
 	}
 
-	public void setmEmail(String mEmail) {
-		this.mEmail = mEmail;
+	public void setmEmailId(String mEmailId) {
+		this.mEmailId = mEmailId;
+	}
+
+	public String getmEmailDomain() {
+		return mEmailDomain;
+	}
+
+	public void setmEmailDomain(String mEmailDomain) {
+		this.mEmailDomain = mEmailDomain;
 	}
 
 	public String getmAddress() {
@@ -78,12 +96,28 @@ public class MemberDto {
 		this.mAddress = mAddress;
 	}
 
-	public String getmTel() {
-		return mTel;
+	public String getmTel1() {
+		return mTel1;
 	}
 
-	public void setmTel(String mTel) {
-		this.mTel = mTel;
+	public void setmTel1(String mTel1) {
+		this.mTel1 = mTel1;
+	}
+
+	public String getmTel2() {
+		return mTel2;
+	}
+
+	public void setmTel2(String mTel2) {
+		this.mTel2 = mTel2;
+	}
+
+	public String getmTel3() {
+		return mTel3;
+	}
+
+	public void setmTel3(String mTel3) {
+		this.mTel3 = mTel3;
 	}
 
 	public Date getmBirth() {
@@ -118,21 +152,37 @@ public class MemberDto {
 		this.mRdate = mRdate;
 	}
 
-	public String getPcCode() {
-		return pcCode;
+	public String getPwCode() {
+		return pwCode;
 	}
 
-	public void setPcCode(String pcCode) {
-		this.pcCode = pcCode;
+	public void setPwCode(String pwCode) {
+		this.pwCode = pwCode;
 	}
 
-	public int getScCode() {
-		return scCode;
+	public String getPcc() {
+		return pcc;
 	}
 
-	public void setScCode(int scCode) {
-		this.scCode = scCode;
+	public void setPcc(String pcc) {
+		this.pcc = pcc;
 	}
 
+	public String getMstCode() {
+		return mstCode;
+	}
 
+	public void setMstCode(String mstCode) {
+		this.mstCode = mstCode;
+	}
+
+	public String getMcc() {
+		return mcc;
+	}
+
+	public void setMcc(String mcc) {
+		this.mcc = mcc;
+	}
+
+	
 }
