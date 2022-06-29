@@ -16,10 +16,21 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="../main/header.jsp"/>
 	<div>
-		<h2>하이</h2>
+		<div>
+			<ul>
+				<li><a href="">로그아웃</a></li>
+			</ul>
+		</div>
+		<div><h1>LOGO</h1></div>
+		<div>
+			<ul>
+				<li><a href="">습득물</a></li>
+				<li><a href="">분실물</a></li>
+				<li><a href="">마이페이지</a></li>
+				<li><a href="">고객센터</a></li>
+			</ul>
+		</div>
 	</div>
-	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

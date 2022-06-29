@@ -6,22 +6,23 @@ import javax.servlet.http.HttpSession;
 
 import com.laf.dao.MemberDao;
 
-public class LoginService implements Service {
+public class SearchPwService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String mId = request.getParameter("mId");
-		String mPw = request.getParameter("mPw");
+		String mName = request.getParameter("mName");
 		
 		MemberDao dao = MemberDao.getInstance();
 		
-		int result = dao.loginChk(mId, mPw);
+		int result = dao.searchPw(mId, mName);
 		
 		if (result == MemberDao.SUCCESS) {
 			HttpSession session = request.getSession();
-			session.setAttribute("member", dao.getMember(mId));
+			session.setAttribute("mId", mId);
+			request.setAttribute("quiz", dao.getMember(mId).getmQuiz());
 		} else {
-			request.setAttribute("loginMsg", "아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.");
+			request.setAttribute("searchPwResult", "입력한 정보와 일치한 아이디 또는 이름이 없습니다. 확인 후 다시 시도해주세요.");
 		}
 	}
 

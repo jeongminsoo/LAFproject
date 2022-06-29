@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.laf.service.IdChkService;
 import com.laf.service.JoinService;
 import com.laf.service.LoginService;
+import com.laf.service.PwChangeService;
+import com.laf.service.QuizChkService;
+import com.laf.service.SearchIdService;
+import com.laf.service.SearchPwService;
 import com.laf.service.Service;
 
 
@@ -37,15 +41,19 @@ public class LAFController extends HttpServlet {
 		String viewPage = null;
 		Service service = null;
 		
+		// 메인 페이지
+		if (com.equals("/main.laf")) {
+			viewPage="main/main.jsp";
+			
 		// 로그인 view
-		if (com.equals("/login_view.laf")) {
+		}else if (com.equals("/login_view.laf")) {
 			viewPage = "member/login.jsp";
 		
 		// 로그인 laf
 		} else if (com.equals("/login.laf")) {
 			service = new LoginService();
 			service.execute(request, response);
-			viewPage = "";
+			viewPage = "/main.laf";
 		
 		// 회원가입 view
 		} else if (com.equals("/join_view.laf")) {
@@ -66,8 +74,46 @@ public class LAFController extends HttpServlet {
 			service = new IdChkService();
 			service.execute(request, response);
 			viewPage = "";
-		} else if (com.equals("/idChk.laf")) {
 			
+		// 아이디 찾기 view
+		} else if (com.equals("/searchId_view.laf")) {
+			viewPage="member/searchId.jsp";
+			
+		// 아이디 찾기 laf
+		} else if (com.equals("/searchId.laf")) {
+			service = new SearchIdService();
+			service.execute(request, response);
+			viewPage = "member/searchId_result.jsp";
+			
+		// 비밀번호 찾기 view
+		} else if (com.equals("/searchPw_view.laf")) {
+			viewPage="member/searchPw.jsp";
+			
+		// 비밀번호 찾기 laf
+		} else if (com.equals("/searchPw.laf")) {
+			service = new SearchPwService();
+			service.execute(request, response);
+			viewPage="/quiz_view.laf";
+			
+		// 비밀번호 찾기 질문/답변 view
+		} else if (com.equals("/quiz_view.laf")) {
+			viewPage = "member/quiz.jsp";
+			
+		// 비밀번호 찾기 질문/답변 laf	
+		} else if (com.equals("/quizChk.laf")) {
+			service = new QuizChkService();
+			service.execute(request, response);
+			viewPage="/pw_change_view.laf";
+			
+		// 비밀번호 변경 view
+		} else if (com.equals("/pw_change_view.laf")) {
+			viewPage = "member/pw_change.jsp";
+			
+		// 비밀번호 변경 laf
+		} else if (com.equals("/pw_change.laf")) {
+			service = new PwChangeService();
+			service.execute(request, response);
+			viewPage="/pw_change_view.laf";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

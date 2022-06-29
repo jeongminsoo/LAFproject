@@ -10,16 +10,31 @@
 	<title>Insert title here</title>
 	<link href="${conPath}/css/style.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-			$(document).ready(function(){
-			});
-	</script>
 </head>
 <body>
-	<jsp:include page="../main/header.jsp"/>
+	<c:if test="${searchPwResult != null }">
+		<script>
+			alert('${searchPwResult}');
+			history.back();
+		</script>
+	</c:if>
 	<div>
-		<h2>하이</h2>
+		<form action="${conPath }/quizChk.laf" method="post">
+			<table>
+				<caption>비밀번호 찾기 질문/답변</caption>
+				<tr>
+					<td>질문</td>
+					<td>${quiz }</td>
+				</tr>
+				<tr>
+					<td>답변</td>
+					<td><input type="text" name="mAnswer" class="mAnswer"></td>
+				</tr>
+			</table>
+			<div>
+				<input type="submit" value="확인">
+			</div>
+		</form>
 	</div>
-	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

@@ -264,21 +264,22 @@ public class MemberDao {
 	}
 	
 	// 아이디 찾기
-	public String findmId(String mName, String mEmail) {
+	public String searchId(String mName, String mEmailId, String mEmailDomain) {
 		String 				mId 	= null;
 		
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		ResultSet 			rs 		= null;
 		
-		String 				sql 	= "SELECT * FROM LAF_MEMBER WHERE MNAME = ? AND MEMAIL = ?";
+		String 				sql 	= "SELECT * FROM LAF_MEMBER WHERE MNAME = ? AND MEMAILID = ? AND MEMAILDOMAIN = ?";
 		
 		try {
 			
 			conn 	= 	ds.getConnection();
 			pstmt 	= 	conn.prepareStatement(sql);
-			pstmt.setString(1, mId);
-			pstmt.setString(2, mEmail);
+			pstmt.setString(1, mName);
+			pstmt.setString(2, mEmailId);
+			pstmt.setString(3, mEmailDomain);
 			rs 		= 	pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -306,7 +307,7 @@ public class MemberDao {
 	}
 	
 	// 비밀번호 찾기
-	public int findmPw(String mId, String mName) {
+	public int searchPw(String mId, String mName) {
 		int result = FAIL;
 		
 		Connection conn = null;

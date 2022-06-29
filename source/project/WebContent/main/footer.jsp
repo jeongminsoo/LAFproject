@@ -16,10 +16,6 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="../main/header.jsp"/>
-	<div>
-		<h2>하이</h2>
-	</div>
-	<jsp:include page="../main/footer.jsp"/>
+	
 </body>
 </html>

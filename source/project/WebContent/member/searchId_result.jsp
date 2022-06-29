@@ -10,16 +10,19 @@
 	<title>Insert title here</title>
 	<link href="${conPath}/css/style.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-			$(document).ready(function(){
-			});
-	</script>
 </head>
 <body>
-	<jsp:include page="../main/header.jsp"/>
+	<c:if test="${searchIdResult != null }">
+		<script>
+			alert('${searchIdResult}');
+			history.back();
+		</script>
+	</c:if>
+	<h2>검색결과</h2>
+	<span>${mId }</span>
 	<div>
-		<h2>하이</h2>
+		<button onclick="location.href='${conPath}/searchPw_view.laf'">비밀번호 찾기</button>
+		<button onclick="window.close()">닫기</button>
 	</div>
-	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

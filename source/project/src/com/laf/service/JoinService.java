@@ -35,8 +35,6 @@ public class JoinService implements Service {
 		int result = dao.joinMember(new MemberDto(mId, mPw, mName, mEmailId, mEmailDomain, mAddress, mTel1, mTel2, mTel3, mBirth, mQuiz, mAnswer, null, null, null, null, null));
 		
 		if (result == MemberDao.SUCCESS) {
-			HttpSession session = request.getSession();
-			session.setAttribute("mId", mId);
 			request.setAttribute("joinResult", "회원가입을 축하합니다. 로그인 페이지로 이동합니다.");
 		} else {
 			request.setAttribute("joinResult", "회원가입에 실패하였습니다. 입력하신 정보를 다시 확인해 주시기 바랍니다.");
