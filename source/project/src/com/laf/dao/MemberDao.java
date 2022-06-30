@@ -392,7 +392,6 @@ public class MemberDao {
 	//정보수정
 	public int modifyMember(MemberDto dto) {
 		int result = FAIL;
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -414,7 +413,6 @@ public class MemberDao {
 			pstmt.setString(9, dto.getmQuiz());
 			pstmt.setString(10, dto.getmAnswer());
 			pstmt.setString(11, dto.getmId());
-			
 			result 	= 	pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -627,5 +625,79 @@ public class MemberDao {
 			}
 		}
 		return result;
+	}
+	
+	// 사용자 수
+	public int countMember() {
+		int cnt = 0;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		
+		String 				sql 	= "SELECT COUNT(*) CNT FROM LAF_MEMBER WHERE PWCODE = 'PW00'";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			rs 		= 	pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt("cnt");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return cnt;
+	}
+	public int countAdmin() {
+		int cnt = 0;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		
+		String 				sql 	= "SELECT COUNT(*) CNT FROM LAF_MEMBER WHERE PWCODE = 'PW01'";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			rs 		= 	pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt("cnt");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return cnt;
 	}
 }

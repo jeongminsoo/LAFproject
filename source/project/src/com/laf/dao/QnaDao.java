@@ -417,4 +417,42 @@ public class QnaDao {
 		}
 		return dto;
 	}
+	
+	//Q&A 게시글 수
+	public int countQna() {
+		int cnt = 0;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		
+		String 				sql 	= "SELECT COUNT(*) CNT FROM QNA";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			rs 		= 	pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt("cnt");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return cnt;
+	}
 }

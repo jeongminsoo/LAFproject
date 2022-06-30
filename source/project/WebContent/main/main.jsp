@@ -16,6 +16,12 @@
 	</script>
 </head>
 <body>
+<c:if test="${loginMsg != null}">
+	<script>
+		alert('${loginMsg}');
+		history.back();
+	</script>
+</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div>
 		<h2>하이</h2>

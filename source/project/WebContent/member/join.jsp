@@ -11,26 +11,48 @@
 	<link href="${conPath}/css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	
+	<!-- 비밀번호 유효성검사 확인하기 -->
+	
 	<script>
 		$(document).ready(function(){
+			// 이메일 도메인 선택 이벤트
 			$('#domainVal').on('click', function() {
-				var domain = $('#domainVal')[0].value;
+				var domain = $('#domainVal').val();
 				if (domain == '직접입력') {
 					$('#mEmailDomain').val('');
 					$('#mEmailDomain').attr('disabled', false);
-					$('#mEmailDomain').focus();
 				} else {
 					$('#mEmailDomain').val(domain);
 				}
+			});
+			
+			// 비밀번호 일치 여부 이벤트
+			$('form').submit(function(){
+				var newmPw = $('#mPw').val().trim();
+				var newmPwChk = $('#mPwChk').val().trim();
+				var mPw = '${mPw}';
+				
+				if (newmPw != newmPwChk) {
+					alert('새비밀번호와 새비밀번호 확인이 다릅니다. 다시 시도해주세요.');
+					$('#mPw').val('');
+					$('#mPwChk').val('');
+					$('#mPw').focus();
+					return false;
+				}
+				$('#mEmailDomain').attr('disabled', false);
 			});
 		});
 	</script>
 	
 </head>
+
+<!-- 필수값 설정 확인 -->
 <body>
 	<jsp:include page="../main/header.jsp"/>
 	<div>
-		<form action="${coonPath }/login.laf" method="post">
+		<form action="${conPath }/join.laf" method="post">
 			<table>
 				<tr>
 					<td><label for="mId">아이디</label></td>
@@ -82,6 +104,30 @@
 						<input type="text" name="mTel2" class="mTel2" maxlength="4">
 						-
 						<input type="text" name="mTel3" class="mTel3" maxlength="4">
+					</td>
+				</tr>
+				<tr>
+					<td>거주지</td>
+					<td>
+						<select name="mAddress" class="mAddress" size="1">
+							<option>서울특별시</option>
+							<option>경기도</option>
+							<option>인천광역시</option>
+							<option>강원도</option>
+							<option>충청북도</option>
+							<option>충청남도</option>
+							<option>대전광역시</option>
+							<option>세종특별자치시</option>
+							<option>전라북도</option>
+							<option>전라남도</option>
+							<option>광주광역시</option>
+							<option>경상북도</option>
+							<option>경산남도</option>
+							<option>울산광역시</option>
+							<option>대구광역시</option>
+							<option>부산광역시</option>
+							<option>제주특별자치도</option>
+						</select>
 					</td>
 				</tr>
 				<tr>

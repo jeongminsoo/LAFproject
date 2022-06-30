@@ -26,6 +26,17 @@
 	</script>
 </head>
 <body>
+<c:if test="${joinResult eq 0 }">
+	<script>
+		alert('회원가입에 실패하였습니다. 입력하신 정보를 다시 확인해 주시기 바랍니다.');
+		history.back();
+	</script>
+</c:if>
+<c:if test="${joinResult eq 1 }">
+	<script>
+		alert('회원가입을 축하합니다. 로그인 페이지로 이동합니다.');
+	</script>
+</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div>
 		<form action="${conPath }/login.laf" method="post">

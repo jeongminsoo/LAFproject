@@ -16,22 +16,6 @@
 	</script>
 </head>
 <body>
-	<div>
-		<div>
-			<ul>
-				<li><a href="${conPath }/login_view.laf">로그인</a></li>
-				<li><a href="">로그아웃</a></li>
-			</ul>
-		</div>
-		<div><h1>LOGO</h1></div>
-		<div>
-			<ul>
-				<li><a href="${conPath }/findList.laf?pageNum=1">습득물</a></li>
-				<li><a href="${conPath }/lostList.laf">분실물</a></li>
-				<li><a href="${conPath }/my_info.laf">마이페이지</a></li>
-				<li><a href="${conPath }/qnaList.laf">고객센터</a></li>
-			</ul>
-		</div>
-	</div>
+	
 </body>
 </html>
