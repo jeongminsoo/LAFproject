@@ -11,8 +11,13 @@
 <link href="${conPath}/css/style.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$(document).ready(function() {
-	});
+	var member = '${member}';
+		
+	if (member == "") {
+		<% session.setAttribute("writeFind", 1); %>
+		alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
+		location.href='${conPath}/login_view.laf';
+	}
 </script>
 </head>
 <body>

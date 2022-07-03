@@ -21,7 +21,7 @@
 			enctype="multipart/form-data">
 			<div>
 				<input type="hidden" name="pageNum" value="${param.pageNum }">
-				<input type="hidden" name="fNo" value="${find.fNo }">
+				<input type="hidden" name="fNo" value="${param.fNo }">
 				<table>
 					<caption>습득물 정보 수정</caption>
 					<tr>
@@ -88,7 +88,7 @@
 					<tr>
 						<td>발견장소</td>
 						<td><input type="text" name="fLocation" class="fLocation"
-							placeholder="ex) 강남 강남역1번출구, 서초 ○○식당" value="${find.fLocation }" }></td>
+							placeholder="ex) 강남 강남역1번출구, 서초 ○○식당" value="${find.fLocation }"></td>
 					</tr>
 					<tr>
 						<td>보관장소</td>

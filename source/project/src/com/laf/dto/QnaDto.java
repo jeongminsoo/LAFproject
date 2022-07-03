@@ -9,7 +9,6 @@ public class QnaDto {
 	private String	qContent;
 	private String	mId;
 	private	Date	qRdate;
-	private String	qFilename;
 	private int		qHit;
 	private int 	qGroup;
 	private int		qStep;
@@ -21,14 +20,13 @@ public class QnaDto {
 		
 	}
 
-	public QnaDto(int qNo, String qTitle, String qContent, String mId, Date qRdate, String qFilename, int qHit,
+	public QnaDto(int qNo, String qTitle, String qContent, String mId, Date qRdate, int qHit,
 			int qGroup, int qStep, int qIndent, String qIp, String mName) {
 		this.qNo = qNo;
 		this.qTitle = qTitle;
 		this.qContent = qContent;
 		this.mId = mId;
 		this.qRdate = qRdate;
-		this.qFilename = qFilename;
 		this.qHit = qHit;
 		this.qGroup = qGroup;
 		this.qStep = qStep;
@@ -75,14 +73,6 @@ public class QnaDto {
 
 	public void setqRdate(Date qRdate) {
 		this.qRdate = qRdate;
-	}
-
-	public String getqFilename() {
-		return qFilename;
-	}
-
-	public void setqFilename(String qFilename) {
-		this.qFilename = qFilename;
 	}
 
 	public int getqHit() {

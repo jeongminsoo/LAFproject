@@ -13,7 +13,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.laf.dto.NoticeDto;
-import com.laf.dto.QnaDto;
 
 public class NoticeDao {
 
@@ -147,19 +146,24 @@ public class NoticeDao {
 	}
 	
 	// 공지사항 목록
-	public ArrayList<NoticeDto> noticeList() {
+	public ArrayList<NoticeDto> noticeList(int start, int end) {
 		ArrayList<NoticeDto> dtos = new ArrayList<NoticeDto>();
 		
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		ResultSet			rs		= null;
 		
-		String 				sql 	= "SELECT * FROM NOTICE ORDER BY NDATE DESC";
+		String 				sql 	= "SELECT *" + 
+										" FROM (SELECT ROWNUM RN, A.*" + 
+												" FROM (SELECT * FROM NOTICE ORDER BY NDATE DESC) A)" + 
+										" WHERE RN BETWEEN ? AND ?";
 		
 		try {
 			
 			conn 	= 	ds.getConnection();
 			pstmt 	= 	conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			rs		=	pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -316,5 +320,42 @@ public class NoticeDao {
 			}
 		}
 		return dto;
+	}
+	
+	// 공지사항 수
+	public int countNotice() {
+		int cnt = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT COUNT(*) CNT FROM NOTICE";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt("cnt");
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return cnt;
 	}
 }

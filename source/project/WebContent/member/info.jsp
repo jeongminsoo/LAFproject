@@ -28,6 +28,7 @@
 			alert('정보수정이 완료되었습니다.');
 		</script>
 	</c:if>
+	<jsp:include page="../main/header.jsp"/>
 	<div>
 		<table>
 			<caption>회원정보</caption>
@@ -56,5 +57,6 @@
 			<button onclick="location.href='${conPath}/modify_view.laf'">정보수정</button>
 		</div>
 	</div>
+	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

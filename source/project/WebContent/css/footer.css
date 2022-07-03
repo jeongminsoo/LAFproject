@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+* {
+	margin : 0;
+	padding : 0;
+}
+
+li {
+	list-style : none;
+}
+
+footer {
+	width : 100%;
+	minwidth : 1000px;
+	border-top : 1px solid black;
+}
+
+footer #wrap {
+	width : 600px;
+	margin : 0 auto;
+	overflow : hidden;
+	margin-top : 20px;
+}
+
+footer #wrap #logo {
+	float : left;
+	margin-right : 30px;
+	line-height : 70px;
+}

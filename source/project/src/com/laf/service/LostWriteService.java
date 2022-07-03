@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.laf.dao.FindDao;
-import com.laf.dto.FindDto;
+import com.laf.dao.LostDao;
+import com.laf.dto.LostDto;
 import com.laf.dto.MemberDto;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class FindWriteService implements Service {
+public class LostWriteService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -40,25 +40,24 @@ public class FindWriteService implements Service {
 			
 			String mId = dto.getmId();
 			
-			String fOb = mr.getParameter("fOb");
-			String fLocal = mr.getParameter("fLocal");
-			String fLocation = mr.getParameter("fLocation");
-			String fStorage = mr.getParameter("fStorage");
-			String fTel = mr.getParameter("fTel");
-			String fTitle = mr.getParameter("fTitle");
-			String fContent = mr.getParameter("fContent");
+			String lOb = mr.getParameter("lOb");
+			String lLocal = mr.getParameter("lLocal");
+			String lLocation = mr.getParameter("lLocation");
+			String lTel = mr.getParameter("lTel");
+			String lTitle = mr.getParameter("lTitle");
+			String lContent = mr.getParameter("lContent");
 			String tempDate = mr.getParameter("tempDate");
-			Date fDate = null;
+			Date lDate = null;
 			if (!tempDate.equals("")) {
-				fDate = Date.valueOf(tempDate);
+				lDate = Date.valueOf(tempDate);
 			}
-			String fPhoto = (img == null) ? "noimg.gif" : img;
-			String fIp = request.getRemoteAddr();
+			String lPhoto = (img == null) ? "noimg.gif" : img;
+			String lIp = request.getRemoteAddr();
 			
-			FindDao dao = FindDao.getInstance();
-			FindDto find = new FindDto(null, fTitle, fContent, mId, null, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, 0, fTel, fIp, null, null, null);
-			int result = dao.writeFind(find);
-			request.setAttribute("findWriteResult", result);
+			LostDao dao = LostDao.getInstance();
+			LostDto lost = new LostDto(null, lTitle, lContent, mId, null, lOb, lLocal, lLocation, lDate, lPhoto, 0, lTel, lIp, null, null, null);
+			int result = dao.writeLost(lost);
+			request.setAttribute("lostWriteResult", result);
 			
 			
 		} catch (IOException e) {
@@ -96,6 +95,7 @@ public class FindWriteService implements Service {
 				}
 			}
 		}
+
 	}
 
 }

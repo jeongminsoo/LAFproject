@@ -43,8 +43,8 @@ public class QnaDao {
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		
-		String 				sql 	= "INSERT INTO QNA (QNO, QTITLE, QCONTENT, MID, QFILENAME, QGROUP, QSTEP, QINDENT, QIP)" + 
-										" VALUES (QNA_SEQ.NEXTVAL, ?, ?, ?, ?, QNA_SEQ.CURRVAL, 0, 0, ?)";
+		String 				sql 	= "INSERT INTO QNA (QNO, QTITLE, QCONTENT, MID, QGROUP, QSTEP, QINDENT, QIP)" + 
+										" VALUES (QNA_SEQ.NEXTVAL, ?, ?, ?, QNA_SEQ.CURRVAL, 0, 0, ?)";
 		
 		try {
 			
@@ -53,8 +53,7 @@ public class QnaDao {
 			pstmt.setString(1, dto.getqTitle());
 			pstmt.setString(2, dto.getqContent());
 			pstmt.setString(3, dto.getmId());
-			pstmt.setString(4, dto.getqFilename());
-			pstmt.setString(5, dto.getqIp());
+			pstmt.setString(4, dto.getqIp());
 			
 			result = pstmt.executeUpdate();
 			
@@ -82,7 +81,7 @@ public class QnaDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "UPDATE QNA SET QTITLE = ?, QCONTENT = ?, QFILENAME = ? WHERE QNO = ?";
+		String sql = "UPDATE QNA SET QTITLE = ?, QCONTENT = ? WHERE QNO = ?";
 		
 		try {
 			
@@ -90,8 +89,7 @@ public class QnaDao {
 			pstmt 	= 	conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getqTitle());
 			pstmt.setString(2, dto.getqContent());
-			pstmt.setString(3, dto.getqFilename());
-			pstmt.setInt(4, dto.getqNo());
+			pstmt.setInt(3, dto.getqNo());
 
 			
 			result 	= 	pstmt.executeUpdate();
@@ -140,7 +138,6 @@ public class QnaDao {
 				String 	qContent	=	rs.getString("qcontent");
 				String 	mId			=	rs.getString("mid");
 				Date 	qRdate		=	rs.getDate("qrdate");
-				String 	qFilename	=	rs.getString("qfilename");
 				int 	qHit		=	rs.getInt("qhit");
 				int 	qGroup		=	rs.getInt("qgroup");
 				int 	qStep		=	rs.getInt("qstep");
@@ -148,7 +145,7 @@ public class QnaDao {
 				String 	qIp			=	rs.getString("qip");
 				String 	mName		=	rs.getString("mname");
 			
-				dtos.add(new QnaDto(qNo, qTitle, qContent, mId, qRdate, qFilename, qHit, qGroup, qStep, qIndent, qIp, mName));
+				dtos.add(new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName));
 			}
 			
 		} catch (SQLException e) {
@@ -237,7 +234,7 @@ public class QnaDao {
 	}
 	
 	// QNA답변
-	public int replyQna(String qTitle, String qContent, String mId, String qFilename, int qGroup, int qStep, int qIndent, String qIp) {
+	public int replyQna(String qTitle, String qContent, String mId, int qGroup, int qStep, int qIndent, String qIp) {
 		int result = FAIL;
 		
 		stepA(qGroup, qStep);
@@ -245,8 +242,8 @@ public class QnaDao {
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		
-		String 				sql 	= "INSERT INTO QNA (QNO, QTITLE, QCONTENT, MID, QFILENAME, QGROUP, QSTEP, QINDENT, QIP)" + 
-										" VALUES (QNA_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String 				sql 	= "INSERT INTO QNA (QNO, QTITLE, QCONTENT, MID, QGROUP, QSTEP, QINDENT, QIP)" + 
+										" VALUES (QNA_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			
@@ -255,11 +252,10 @@ public class QnaDao {
 			pstmt.setString(1, qTitle);
 			pstmt.setString(2, qContent);
 			pstmt.setString(3, mId);
-			pstmt.setString(4, qFilename);
-			pstmt.setInt(5, qGroup);
-			pstmt.setInt(6, qStep);
-			pstmt.setInt(7, qIndent);
-			pstmt.setString(8, qIp);
+			pstmt.setInt(4, qGroup);
+			pstmt.setInt(5, qStep+1);
+			pstmt.setInt(6, qIndent+1);
+			pstmt.setString(7, qIp);
 			
 			result = pstmt.executeUpdate();
 			
@@ -304,7 +300,6 @@ public class QnaDao {
 				String 	qContent	=	rs.getString("qcontent");
 				String 	mId			=	rs.getString("mid");
 				Date 	qRdate		=	rs.getDate("qrdate");
-				String 	qFilename	=	rs.getString("qfilename");
 				int 	qHit		=	rs.getInt("qhit");
 				int 	qGroup		=	rs.getInt("qgroup");
 				int 	qStep		=	rs.getInt("qstep");
@@ -312,7 +307,7 @@ public class QnaDao {
 				String 	qIp			=	rs.getString("qip");
 				String 	mName		=	rs.getString("mname");
 				
-				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qFilename, qHit, qGroup, qStep, qIndent, qIp, mName);
+				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName);
 			}
 			
 		} catch (SQLException e) {
@@ -387,7 +382,6 @@ public class QnaDao {
 				String 	qContent	=	rs.getString("qcontent");
 				String 	mId			=	rs.getString("mid");
 				Date 	qRdate		=	rs.getDate("qrdate");
-				String 	qFilename	=	rs.getString("qfilename");
 				int 	qHit		=	rs.getInt("qhit");
 				int 	qGroup		=	rs.getInt("qgroup");
 				int 	qStep		=	rs.getInt("qstep");
@@ -395,7 +389,7 @@ public class QnaDao {
 				String 	qIp			=	rs.getString("qip");
 				String 	mName		=	rs.getString("mname");
 				
-				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qFilename, qHit, qGroup, qStep, qIndent, qIp, mName);
+				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName);
 			}
 			
 		} catch (SQLException e) {

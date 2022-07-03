@@ -19,49 +19,45 @@
 	<div>
 		<div>
 			<table>
-				<caption>습득물 정보</caption>
+				<caption>분실물 정보</caption>
 				<tr>
-					<td rowspan="8"><img src='board/imgcopy/${find.fPhoto eq null ? "noimg.gif" : find.fPhoto}'></td>
+					<td rowspan="7"><img src='board/imgcopy/${lost.lPhoto eq null ? "noimg.gif" : lost.lPhoto}'></td>
 					<th>제목</th>
-					<td>${find.fTitle }</td>
+					<td>${lost.lTitle }</td>
 				</tr>
 				<tr>
 					<th>관리번호</th>
-					<td>${find.fNo }</td>
+					<td>${lost.lNo }</td>
 				</tr>
 				<tr>
-					<th>습득일</th>
-					<td>${find.fDate }</td>
+					<th>분실일</th>
+					<td>${lost.lDate }</td>
 				</tr>
 				<tr>
-					<th>습득장소</th>
-					<td>${find.fLocation }</td>
+					<th>분실장소</th>
+					<td>${lost.lLocation }</td>
 				</tr>
 				<tr>
 					<th>물품구분</th>
-					<td>${find.fOb }</td>
-				</tr>
-				<tr>
-					<th>보관장소</th>
-					<td>${find.fStorage }</td>
+					<td>${lost.lOb }</td>
 				</tr>
 				<tr>
 					<th>처리상태</th>
-					<td>${find.fcc }</td>
+					<td>${lost.lcc }</td>
 				</tr>
 				<tr>
 					<th>연락처</th>
-					<td>${find.fTel }</td>
+					<td>${lost.lTel }</td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td colspan="2"><pre>${find.fContent }</pre></td>
+					<td colspan="2"><pre>${lost.lContent }</pre></td>
 				</tr>
 			</table>
 			<div>
-				<button onclick="location.href='${conPath}/findUpdate_view.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">수정</button>
-				<button onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">등록취소</button>
-				<button onclick="location.href='${conPath}/findList.laf?pageNum=${param.pageNum}'">목록</button>
+				<button onclick="location.href='${conPath}/lostUpdate_view.laf?lNo=${param.lNo }&pageNum=${param.pageNum}'">수정</button>
+				<button onclick="location.href='${conPath}/lostCancel.laf?lNo=${param.lNo }&pageNum=${param.pageNum}'">등록취소</button>
+				<button onclick="location.href='${conPath}/lostList.laf?pageNum=${param.pageNum}'">목록</button>
 			</div>
 		</div>
 	</div>

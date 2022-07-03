@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+* {
+	margin : 0;
+	padding : 0;
+}
+
+li {
+	list-style : none;
+}
+
+a {
+	text-decoration : none;
+}
+
+header {
+	width : 100%;
+	minwidth : 1000px;
+	
+}
+
+header #laf_gnb {
+	width : 100%;
+	height : 40px;
+	line-height : 40px;
+	background-color : #d6e8f8;
+}
+
+header #laf_gnb ul {
+	width : 1000px;
+	margin : 0 auto;
+	overflow : hidden;
+}
+
+header #laf_gnb ul li {
+	float : right;
+	margin : 0 20px;
+	text-align : center;
+}
+
+header #laf_gnb ul li a {
+	font-size : 0.9em;
+	font-weight : bold;
+	color : black;
+}
+
+header #logo {
+	height : 160px;
+	line-height : 160px;
+	text-align : center;
+}
+
+header #laf_lnb {
+	width : 100%;
+	height : 50px;
+	line-height : 50px;
+	background-color : #2e8fe3;
+}
+
+header #laf_lnb ul {
+	width : 1000px;
+	margin : 0 auto;
+	overflow : hidden;
+}
+
+header #laf_lnb ul li {
+	float : left;
+	margin : 0 90px;
+	text-align : center;
+}
+
+header #laf_lnb ul li a {
+	font-weight : bold;
+	color : white;
+}
+
+
+
+

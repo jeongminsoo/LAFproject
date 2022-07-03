@@ -8,22 +8,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
+	<link href="${conPath}/css/main.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-			$(document).ready(function(){
-			});
+		$(document).ready(function(){
+			var loginMsg = '${loginMag}';
+			var writeFind = '${writeFind}';
+			
+			if (loginMsg != "") {
+				alert('${loginMsg}');
+				history.back();
+			} else if (writeFind != "") {
+				<% session.removeAttribute("writeFind"); %>
+				location.href='${conPath}/findWrite_view.laf';
+			}
+		});
 	</script>
 </head>
 <body>
-<c:if test="${loginMsg != null}">
-	<script>
-		alert('${loginMsg}');
-		history.back();
-	</script>
-</c:if>
 	<jsp:include page="../main/header.jsp"/>
-	<div>
+	<div id="main_wrap">
 		<h2>하이</h2>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>

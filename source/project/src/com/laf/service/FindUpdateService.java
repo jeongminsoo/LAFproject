@@ -44,7 +44,6 @@ public class FindUpdateService implements Service {
 			String fLocal = mr.getParameter("fLocal");
 			String fLocation = mr.getParameter("fLocation");
 			String fStorage = mr.getParameter("fStorage");
-			String mName = mr.getParameter("mName");
 			String fTel = mr.getParameter("fTel");
 			String fTitle = mr.getParameter("fTitle");
 			String fContent = mr.getParameter("fContent");
@@ -53,12 +52,15 @@ public class FindUpdateService implements Service {
 			if (!tempDate.equals("")) {
 				fDate = Date.valueOf(tempDate);
 			}
-			String fPhoto = (img == null) ? "noimg.gif" : img;
+			
 			String fIp = request.getRemoteAddr();
 			String fNo = mr.getParameter("fNo");
 			
 			FindDao dao = FindDao.getInstance();
-			FindDto find = new FindDto(fNo, fTitle, fContent, mId, null, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, 0, fTel, fIp, mName, null, null);
+			FindDto bfFind = dao.getFind(fNo);
+			String fPhoto = (img == null) ? bfFind.getfPhoto() : img;
+		
+			FindDto find = new FindDto(fNo, fTitle, fContent, mId, null, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, 0, fTel, fIp, null, null, null);
 			int result = dao.updateFind(find);
 			request.setAttribute("findUpdateResult", result);
 			

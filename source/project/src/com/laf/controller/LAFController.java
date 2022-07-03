@@ -14,11 +14,32 @@ import com.laf.service.FindContentService;
 import com.laf.service.FindListService;
 import com.laf.service.FindUpdateService;
 import com.laf.service.FindWriteService;
+import com.laf.service.GetFindService;
+import com.laf.service.GetLostService;
+import com.laf.service.GetNoticeService;
+import com.laf.service.GetQnaService;
 import com.laf.service.IdChkService;
 import com.laf.service.JoinService;
 import com.laf.service.LoginService;
+import com.laf.service.LostCancelService;
+import com.laf.service.LostContentService;
+import com.laf.service.LostDeleteService;
+import com.laf.service.LostListService;
+import com.laf.service.LostUpdateService;
+import com.laf.service.LostWriteService;
 import com.laf.service.ModifyService;
+import com.laf.service.NoticeContentService;
+import com.laf.service.NoticeDeleteService;
+import com.laf.service.NoticeListService;
+import com.laf.service.NoticeUpdateService;
+import com.laf.service.NoticeWriteService;
 import com.laf.service.PwChangeService;
+import com.laf.service.QnaContentService;
+import com.laf.service.QnaDeleteService;
+import com.laf.service.QnaListService;
+import com.laf.service.QnaReplyService;
+import com.laf.service.QnaUpdateService;
+import com.laf.service.QnaWriteService;
 import com.laf.service.QuizChkService;
 import com.laf.service.SearchIdService;
 import com.laf.service.SearchPwService;
@@ -29,7 +50,7 @@ import com.laf.service.Service;
 public class LAFController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	private boolean join_view = false;
+	private boolean write_view = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		actionDo(request, response);
@@ -64,26 +85,25 @@ public class LAFController extends HttpServlet {
 		// 회원가입 view
 		} else if (com.equals("/join_view.laf")) {
 			viewPage = "member/join.jsp";
-			join_view = true;
+			write_view = true;
 			
 		// 회원가입 laf
 		} else if (com.equals("/join.laf")) {
-			if (join_view) {
+			if (write_view) {
 				service = new JoinService();
 				service.execute(request, response);
-				join_view = false;
+				write_view = false;
 			}
 			viewPage = "/login_view.laf";
 			
 		// 아이디 중복체크 laf
-		} /*
-		 * else if (com.equals("/idChk.laf")) { service = new IdChkService();
-		 * service.execute(request, response); viewPage = "";
-		 * 
-		 * // 아이디 찾기 view }
-		 */else if (com.equals("/searchId_view.laf")) {
+		} else if (com.equals("/idChk.laf")) { service = new IdChkService();
+			service.execute(request, response); viewPage = "";
+		
+		// 아이디 찾기 view
+		} else if (com.equals("/searchId_view.laf")) {
 			viewPage="member/searchId.jsp";
-			
+
 		// 아이디 찾기 laf
 		} else if (com.equals("/searchId.laf")) {
 			service = new SearchIdService();
@@ -149,16 +169,20 @@ public class LAFController extends HttpServlet {
 		// 습득물 등록 view
 		} else if (com.equals("/findWrite_view.laf")) {
 			viewPage = "board/findboard/find_write.jsp";
+			write_view = true;
 			
 		// 습득물 등록 laf
 		} else if (com.equals("/findWrite.laf")) {
-			service = new FindWriteService();
-			service.execute(request, response);
+			if (write_view) {
+				service = new FindWriteService();
+				service.execute(request, response);
+				write_view = false;
+			}
 			viewPage = "/findList.laf";
 			
 		// 습득물 수정 view
 		} else if (com.equals("/findUpdate_view.laf")) {
-			service = new FindContentService();
+			service = new GetFindService();
 			service.execute(request, response);
 			viewPage = "board/findboard/find_update.jsp";
 			
@@ -175,7 +199,7 @@ public class LAFController extends HttpServlet {
 			viewPage = "/findList.laf";
 			
 		// 분실물 리스트
-		}/* else if (com.equals("/lostList.laf")) {
+		} else if (com.equals("/lostList.laf")) {
 			service = new LostListService();
 			service.execute(request, response);
 			viewPage = "board/lostboard/lost_list.jsp";
@@ -189,15 +213,19 @@ public class LAFController extends HttpServlet {
 		// 분실물 등록 view	
 		} else if (com.equals("/lostWrite_view.laf")) {
 			viewPage = "board/lostboard/lost_write.jsp";
-		
+			write_view = true;
+			
 		// 분실물 등록 laf
 		} else if (com.equals("/lostWrite.laf")) {
-			service = new LostWriteService();
-			service.execute(request, response);
+			if (write_view) {
+				service = new LostWriteService();
+				service.execute(request, response);
+			}
 			viewPage = "/lostList.laf";
 			
 		// 분실물 수정 view
 		} else if (com.equals("/lostUpdate_view.laf")) {
+			service = new GetLostService();
 			viewPage = "board/lostboard/lost_update.jsp";
 			
 		// 분실물 수정 laf
@@ -210,7 +238,118 @@ public class LAFController extends HttpServlet {
 			service = new LostDeleteService();
 			service.execute(request, response);
 			viewPage = "/lostList.laf";
-		}*/
+			
+		// 분실물 등록 취소
+		} else if (com.equals("/lostCancel.laf")) {
+			service = new LostCancelService();
+			service.execute(request, response);
+			viewPage = "/lostList.laf";
+			
+		// Q&A 리스트
+		} else if (com.equals("/qnaList.laf")) {
+			service = new QnaListService();
+			service.execute(request, response);
+			viewPage = "board/qnaboard/qna_list.jsp";
+		
+		// Q&A 작성 view
+		} else if (com.equals("/qnaWrite_view.laf")) {
+			viewPage = "board/qnaboard/qna_write.jsp";
+			write_view = true;
+			
+		// Q&A 작성 laf	
+		} else if (com.equals("/qnaWrite.laf")) {
+			if (write_view) {
+				service = new QnaWriteService();
+				service.execute(request, response);
+			}
+			viewPage = "/qnaList.laf";
+			
+		// Q&A 상세보기
+		} else if (com.equals("/qnaContent.laf")) {
+			service = new QnaContentService();
+			service.execute(request, response);
+			viewPage = "board/qnaboard/qna_content.jsp";
+			
+		// Q&A 수정 view
+		} else if (com.equals("/qnaUpdate_view.laf")) {
+			service = new GetQnaService();
+			service.execute(request, response);
+			viewPage = "board/qnaboard/qna_update.jsp";
+			
+		// Q&A 수정 laf
+		} else if (com.equals("/qnaUpdate.laf")) {
+			service = new QnaUpdateService();
+			service.execute(request, response);
+			viewPage = "/qnaList.laf";
+			
+		// Q&A 삭제
+		} else if (com.equals("/qnaDelete.laf")) {
+			service = new QnaDeleteService();
+			service.execute(request, response);
+			viewPage = "/qnaList.laf";
+			
+		//Q&A 답변 view
+		} else if (com.equals("/qnaReply_view.laf")) {
+			service = new GetQnaService();
+			service.execute(request, response);
+			viewPage = "board/qnaboard/qna_reply.jsp";
+			write_view = true;
+		// Q&A 답변 laf
+		} else if (com.equals("/qnaReply.laf")) {
+			if (write_view) {
+				service = new QnaReplyService();
+				service.execute(request, response);
+				write_view = false;
+			}
+			viewPage = "/qnaList.laf";
+		
+		// 공지사항 리스트
+		} else if (com.equals("/noticeList.laf")) {
+			service = new NoticeListService();
+			service.execute(request, response);
+			viewPage = "board/noticeboard/notice_list.jsp";
+			
+		// 공지사항 상세보기
+		} else if (com.equals("/noticeContent.laf")) {
+			service = new NoticeContentService();
+			service.execute(request, response);
+			viewPage = "board/noticeboard/notice_content.jsp";
+	
+		// 공지사항 작성 view
+		} else if (com.equals("/noticeWrite_view.laf")) {
+			viewPage = "board/noticeboard/notice_write.jsp";
+			write_view = true;
+			
+		// 공지사항 작성 laf
+		} else if (com.equals("/noticeWrite.laf")) {
+			if (write_view) {
+				service = new NoticeWriteService();
+				service.execute(request, response);
+			}
+			viewPage = "/noticeList.laf";
+			
+		// 공지사항 수정	view
+		} else if (com.equals("/noticeUpdate_view.laf")) {
+			service = new GetNoticeService();
+			service.execute(request, response);
+			viewPage = "board/noticeboard/notice_update.jsp";
+			
+		// 공지사항 수정 laf	
+		} else if (com.equals("/noticeUpdate.laf")) {
+			service = new NoticeUpdateService();
+			service.execute(request, response);
+			viewPage = "/noticeList.laf";
+			
+		// 공지사항 삭제
+		} else if (com.equals("/noticeDelete.laf")) {
+			service = new NoticeDeleteService();
+			service.execute(request, response);
+			viewPage = "/noticeList.laf";
+			
+		// 로그아웃
+		} else if (com.equals("/logout.laf")) {
+			viewPage = "member/logout.jsp";
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);

@@ -352,7 +352,7 @@ public class LostDao {
 	}
 	
 	// 분실물 보기
-		public LostDto contentQna(String lNo) {
+		public LostDto contentLost(String lNo) {
 			LostDto dto = null;
 			lHitUp(lNo);
 			
