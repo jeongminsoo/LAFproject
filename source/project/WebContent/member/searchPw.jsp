@@ -8,26 +8,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
+	<link href="${conPath}/css/searchIdPw.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<div>
+	<div id="search">
 		<form action="${conPath }/searchPw.laf" method="post">
 			<table>
 				<caption>비밀번호 찾기</caption>
+				<col style="width : 200px;">
 				<tr>
-					<td>아이디</td>
+					<th>아이디</th>
 					<td><input type="text" name="mId" class="mId"></td>
 				</tr>
 				<tr>
-					<td>이름</td>
+					<th>이름</th>
 					<td>
 						<input type="text" name="mName" class="mName">
 					</td>
 				</tr>
 			</table>
-			<div>
+			<div class="btn_wrap">
 				<input type="submit" value="비밀번호 찾기" class="btn">
 				<input type="button" value="취소" class="btn" onclick="window.close()">
 			</div>

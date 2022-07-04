@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
+	<link href="${conPath}/css/searchIdPw.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 	
@@ -60,24 +60,25 @@
 			alert('${pwChangeFail}');
 		</script>
 	</c:if>
-	<div>
+	<div id="search">
 		<form action="${conPath }/pw_change.laf" method="post">
 			<table>
 				<caption>비밀번호 변경</caption>
+				<col style="width : 200px;">
 				<tr>
-					<td>현재비밀번호</td>
+					<th>현재비밀번호</th>
 					<td><input type="password" name="oldPw" id="oldPw"></td>
 				</tr>
 				<tr>
-					<td>새비밀번호</td>
+					<th>새비밀번호</th>
 					<td><input type="password" name="mPw" id="mPw"></td>
 				</tr>
 				<tr>
-					<td>새비밀번호 확인</td>
+					<th>새비밀번호확인</th>
 					<td><input type="password" name="mPwChk" id="mPwChk"></td>
 				</tr>
 			</table>
-			<div>
+			<div class="btn_wrap">
 				<input type="submit" value="비밀번호 변경" class="btn">
 			</div>
 		</form>

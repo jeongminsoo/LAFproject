@@ -28,6 +28,8 @@ import com.laf.service.LostListService;
 import com.laf.service.LostUpdateService;
 import com.laf.service.LostWriteService;
 import com.laf.service.ModifyService;
+import com.laf.service.MyFindListService;
+import com.laf.service.MyLostListService;
 import com.laf.service.NoticeContentService;
 import com.laf.service.NoticeDeleteService;
 import com.laf.service.NoticeListService;
@@ -128,7 +130,11 @@ public class LAFController extends HttpServlet {
 		} else if (com.equals("/quizChk.laf")) {
 			service = new QuizChkService();
 			service.execute(request, response);
-			viewPage="/pw_change_view.laf";
+			viewPage="/pw_change_view2.laf";
+			
+		// 팝업창 비밀번호 변경
+		} else if (com.equals("/pw_change_view2.laf")) {
+			viewPage="member/pw_change2.jsp";
 			
 		// 비밀번호 변경 view
 		} else if (com.equals("/pw_change_view.laf")) {
@@ -141,7 +147,7 @@ public class LAFController extends HttpServlet {
 			viewPage="/pw_change_view.laf";
 			
 		// 마이페이지(회원정보)
-		} else if (com.equals("/my_info.laf")) {
+		} else if (com.equals("/myInfo.laf")) {
 			viewPage = "member/info.jsp";
 			
 		// 정보수정 view
@@ -349,6 +355,18 @@ public class LAFController extends HttpServlet {
 		// 로그아웃
 		} else if (com.equals("/logout.laf")) {
 			viewPage = "member/logout.jsp";
+			
+		// 습득물 관리
+		} else if (com.equals("/myFindList.laf")) {
+			service = new MyFindListService();
+			service.execute(request, response);
+			viewPage = "board/findboard/my_find_list.jsp";
+			
+		// 분실물 관리
+		} else if (com.equals("/myLostList.laf")) {
+			service = new MyLostListService();
+			service.execute(request, response);
+			viewPage = "board/lostboard/my_lost_list.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

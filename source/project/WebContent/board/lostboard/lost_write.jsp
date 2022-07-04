@@ -1,28 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath}"/>
+<c:set var="conPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
-	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-			$(document).ready(function(){
-			});
-	</script>
-</head>
-	<div>
-		<form action="${conPath }/lostWrite.laf" method="post" enctype="multipart/form-data">
-			<div>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="${conPath}/css/find_write.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	var member = '${member}';
 
+	if (member == "") {
+		alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
+		location.href = '${conPath}/login_view.laf?msg=lost';
+	}
+</script>
+</head>
+<jsp:include page="/main/header.jsp"/>
+<div id="write_wrap">
+	<div class="snb">
+		<ul>
+			<li>분실물</li>
+			<li><a href="${conPath }/lostList.laf?pageNum=1">분실물 목록</a></li>
+			<li><a href="${conPath }/lostWrite_view.laf">분실물 등록</a></li>
+		</ul>
+	</div>
+	<div class="content_title">
+		<h1>분실물 등록</h1>
+		<p>
+			(<span>＊</span>) 표시는 필수입력 항목입니다.
+		</p>
+	</div>
+	<div id="sub_wrap">
+		<form action="${conPath }/lostWrite.laf" method="post"
+			enctype="multipart/form-data">
+			<div class="write">
 				<table>
-					<caption>분실물 등록</caption>
+					<col style="width : 200px;">
+					<col style="width : 500px;">
 					<tr>
-						<td>물품구분</td>
+						<th><span>＊</span>물품구분</th>
 						<td><select name="lOb" class="lOb" size="1">
 								<option>분류</option>
 								<option>지갑</option>
@@ -39,7 +61,7 @@
 						</select></td>
 					</tr>
 					<tr>
-						<td>지역구분</td>
+						<th><span>＊</span>지역구분</th>
 						<td><select name="lLocal" class="lLocal" size="1">
 								<option
 									${member.mAddress == "서울특별시" ? "selected=\"selected\"" : ""}>서울특별시</option>
@@ -78,63 +100,68 @@
 						</select></td>
 					</tr>
 					<tr>
-						<td>분실일</td>
-						<td>
-							<input type="text" name="tempDate" class="tempDate" id="datepicker">
-						</td>
+						<th><span>＊</span>분실일</th>
+						<td><input type="text" name="tempDate" class="tempDate"
+							id="datepicker"></td>
 					</tr>
 					<tr>
-						<td>발견장소</td>
+						<th><span>＊</span>분실장소</th>
 						<td><input type="text" name="lLocation" class="lLocation"
 							placeholder="ex) 강남 강남역1번출구, 서초 ○○식당"></td>
 					</tr>
 					<tr>
-						<td>작성자</td>
+						<th><span>＊</span>작성자</th>
 						<td><input type="text" name="mName" class="mName"
 							value="${member.mName }" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td>연락처</td>
-						<td><input type="Tel" name="lTel" class="lTel" value="${member.mTel1 }-${member.mTel2 }-${member.mTel3 }"></td>
+						<th><span>＊</span>연락처</th>
+						<td><input type="Tel" name="lTel" class="lTel"
+							value="${member.mTel1 }-${member.mTel2 }-${member.mTel3 }"></td>
 					</tr>
 					<tr>
-						<td>제목</td>
+						<th><span>＊</span>제목</th>
 						<td><input type="text" name="lTitle" class="lTitle"></td>
 					</tr>
 					<tr>
-						<td>내용</td>
-						<td><textarea name="lContent" class="lContent"></textarea></td>
+						<th class="t_a"><span>＊</span>내용</th>
+						<td><textarea name="lContent" class="lContent" rows="5" cols="10"></textarea></td>
 					</tr>
 					<tr>
-						<td>이미치 첨부</td>
+						<th>이미치 첨부</th>
 						<td><input type="file" name="lPhoto" class="lPhoto"></td>
 					</tr>
 				</table>
 			</div>
-			<div>
-				<input type="submit" value="등록" class="btn">
-				<input type="reset" value="초기화" class="btn">
-				<input type="button" value="목록" class="btn" onclick="location.href='${conPath}/lostList.laf?pageNum=1'">
+			<div class="btn_wrap">
+				<input type="submit" value="등록" class="btn"> <input
+					type="reset" value="초기화" class="btn"> <input type="button"
+					value="목록" class="btn"
+					onclick="location.href='${conPath}/lostList.laf?pageNum=1'">
 			</div>
 		</form>
 	</div>
+</div>
+<jsp:include page="/main/footer.jsp"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script>
- 		 $( function() {
-   			 $( "#datepicker" ).datepicker({
-   				dateFormat : 'yy-mm-dd',
-   	    		changeMonth : true,
-   	    		monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-   	    		showMonthAfterYear : true,
-   	        	yearSuffix : '년',
-   	        	showOtherMonths : true,
-   	        	dayNamesMin:['일','월','화','수','목','금','토'],
-   				changeYear : true,
-   				minDate : '-100y',
-   				yearRange : 'c-100:c+',
-   			 });
-  		});
+	$(function() {
+		$("#datepicker").datepicker(
+				{
+					dateFormat : 'yy-mm-dd',
+					changeMonth : true,
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ],
+					showMonthAfterYear : true,
+					yearSuffix : '년',
+					showOtherMonths : true,
+					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+					changeYear : true,
+					minDate : '-100y',
+					yearRange : 'c-100:c+',
+				});
+	});
 </script>
 </html>

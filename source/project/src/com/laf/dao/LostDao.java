@@ -324,11 +324,10 @@ public class LostDao {
 				int 	lHit		=	rs.getInt("lhit");
 				String 	lTel		=	rs.getString("ltel");
 				String 	lIp			=	rs.getString("lip");
-				String	mName		=	rs.getString("mname");
 				String 	lstCode		=	rs.getString("lstcode");
 				String 	lcc			=	rs.getString("lcc");
 			
-				dtos.add(new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, mName, lstCode, lcc));
+				dtos.add(new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, null, lstCode, lcc));
 			}
 			
 		} catch (SQLException e) {
@@ -360,7 +359,7 @@ public class LostDao {
 			PreparedStatement 	pstmt 	= null;
 			ResultSet			rs		= null;
 			
-			String 				sql 	= "SELECT Q.*, MNAME FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID AND QNO = ?";
+			String 				sql 	= "SELECT L.*, MNAME, CODENAME LCC FROM LOST L, LAF_MEMBER M, LST_CODE LC WHERE L.MID = M.MID AND L.LSTCODE = LC.LSTCODE AND LNO = ?";
 			
 			try {
 				

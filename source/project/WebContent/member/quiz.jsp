@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
+	<link href="${conPath}/css/searchIdPw.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -18,21 +18,22 @@
 			history.back();
 		</script>
 	</c:if>
-	<div>
+	<div id="search">
 		<form action="${conPath }/quizChk.laf" method="post">
 			<table>
 				<caption>비밀번호 찾기 질문/답변</caption>
+				<col style="width : 200px;">
 				<tr>
-					<td>질문</td>
-					<td>${quiz }</td>
+					<th>질문</th>
+					<td class="mQuiz">${quiz }</td>
 				</tr>
 				<tr>
-					<td>답변</td>
+					<th>답변</th>
 					<td><input type="text" name="mAnswer" class="mAnswer"></td>
 				</tr>
 			</table>
-			<div>
-				<input type="submit" value="확인">
+			<div class="btn_wrap">
+				<input type="submit" value="확인" class="btn">
 			</div>
 		</form>
 	</div>

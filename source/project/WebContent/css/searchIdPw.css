@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+#search {
+	width : 700px;
+	height : 300px;
+	margin : 50px auto;
+}
+
+#search table caption {
+	font-size : 2em;
+	font-weight : bold;
+	margin-bottom : 50px;
+}
+
+#search table {
+	width : 600px;
+	margin : 0 auto;
+	border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#search table tr th {
+	background : #f3f3f3;
+	font-size : 1.5em;
+}
+
+#search table tr {
+	border-top : 1px solid #c6c6c6;
+	border-bottom : 1px solid #c6c6c6;
+	height : 50px;
+	text-align : center;
+}
+
+.btn_wrap {
+	width : 600px;
+	margin : 50px auto;
+	text-align : center;
+}
+
+.btn {
+	width : 180px;
+	height : 55px;
+	background : #2e8fe3;
+	color : white;
+	border : none;
+	font-size : 1.3em;
+	margin : 30px 0;
+}
+
+.mQuiz {
+	text-align : left;
+	padding-left : 10px;
+}
+
+.mAnswer, #oldPw, #mPw, #mPwChk {
+	width : 95%;
+}
+
+.mName, .mId {
+	width : 95%;
+	height : 100%;
+}
+
+.mEmailId, .mEmailDomain, .domainVal  {
+	width : 29%;
+}
+
+.mEmailId, .mEmailDomain, .domainVal, .mId, .mName, .mAnswer, .mQuiz, #oldPw, #mPw, #mPwChk {
+	font-size : 1.5em;
+}

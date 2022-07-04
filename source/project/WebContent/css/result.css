@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+#search_id {
+	width : 700px;
+	height : 300px;
+	margin : 50px auto;
+}
+
+#search_id table {
+	width : 500px;
+	margin : 0 auto;
+	border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#search_id table tr th {
+	background : #f3f3f3;
+	font-size : 1.5em;
+}
+
+#search_id table tr td {
+	font-size : 1.5em;
+}
+
+#search_id table tr {
+	border-top : 1px solid #c6c6c6;
+	border-bottom : 1px solid #c6c6c6;
+	height : 50px;
+	text-align : center;
+}
+
+.btn_wrap {
+	width : 600px;
+	margin : 50px auto;
+	text-align : center;
+}
+
+.two_first {
+	border-right : 1px solid #c6c6c6;
+}
+
+button {
+	width : 180px;
+	height : 55px;
+	background : #2e8fe3;
+	color : white;
+	border : none;
+	font-size : 1.3em;
+	margin : 30px 0;
+}
+
+#search_id table caption {
+	font-size : 2em;
+	font-weight : bold;
+	margin-bottom : 50px;
+}

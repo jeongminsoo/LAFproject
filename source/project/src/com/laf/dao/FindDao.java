@@ -326,11 +326,10 @@ public class FindDao {
 					int 	fHit		=	rs.getInt("fhit");
 					String 	fTel		=	rs.getString("ftel");
 					String 	fIp			=	rs.getString("fip");
-					String	mName		=	rs.getString("mname");
 					String 	fstCode		=	rs.getString("fstcode");
 					String 	fcc			=	rs.getString("fcc");
 				
-					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, fstCode, fcc));
+					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, null, fstCode, fcc));
 				}
 				
 			} catch (SQLException e) {

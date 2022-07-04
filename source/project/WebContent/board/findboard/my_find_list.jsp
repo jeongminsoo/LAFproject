@@ -1,64 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath}" />
+<c:set var="conPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${conPath}/css/find_list.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(document).ready(function() {
-	});
-</script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="${conPath}/css/find_list.css" rel="stylesheet">
+	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+			$(document).ready(function(){
+			});
+	</script>
 </head>
 <body>
-	<c:if test="${findWriteResult eq 0 }">
-		<script>
-			alert('습득물 등록에 실패하였습니다. 입력한 정보를 확인 후 다시 시도하세요.');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${findWriteResult eq 1 }">
-		<script>
-			alert('등록되었습니다.');
-		</script>
-	</c:if>
-	<c:if test="${findUpdateResult eq 0 }">
-		<script>
-			alert('내용수정에 실패하였습니다. 입력한 정보를 확인 후 다시 시도하세요.');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${findUpdateResult eq 1 }">
-		<script>
-			alert('수정되었습니다.');
-		</script>
-	</c:if>
-	<c:if test="${findCancelResult eq 0 }">
-		<script>
-			alert('등록취소에 실패하였습니다.해당 글이 이미 삭제 또는 등록취소되었거나 잘못된 경로입니다.');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${findCancelResult eq 1 }">
-		<script>
-			alert('등록이 취소되었습니다.');
-		</script>
-	</c:if>
 	<jsp:include page="/main/header.jsp" />
 	<div id="list_wrap">
 		<div class="snb">
 			<ul>
-				<li>습득물</li>
-				<li><a href="${conPath }/findList.laf?pageNum=1">습득물 목록</a></li>
-				<li><a href="${conPath }/findWrite_view.laf">습득물 등록</a></li>
+				<li>마이페이지</li>
+				<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+				<li><a href="${conPath }/myFindList.laf">습득물 관리</a></li>
+				<li><a href="${conPath }/myLostList.laf">분실물 관리</a></li>
+				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
 			</ul>
 		</div>
-		<div class="search"></div>
 		<div id="sub_wrap">
 			<div class="content">
 				<table>
@@ -67,7 +35,6 @@
 					<col style="width: 100px;">
 					<col style="width: 200px;">
 					<col style="width: 150px;">
-					<col style="width: 80px;">
 					<col style="width: 120px;">
 					<col style="width: 90px;">
 					<col style="width: 50px;">
@@ -77,7 +44,6 @@
 						<th>물품구분</th>
 						<th>제목</th>
 						<th>습득장소(보관장소)</th>
-						<th>작성자</th>
 						<th>연락처</th>
 						<th>습득일</th>
 						<th>조회수</th>
@@ -100,7 +66,6 @@
 											src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
 									</c:if></td>
 								<td>${f.fLocation }(${f.fStorage })</td>
-								<td>${f.mName }</td>
 								<td>${f.fTel }</td>
 								<td>${f.fDate }</td>
 								<td>

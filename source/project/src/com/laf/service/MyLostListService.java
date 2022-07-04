@@ -4,14 +4,22 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.laf.dao.LostDao;
 import com.laf.dto.LostDto;
+import com.laf.dto.MemberDto;
 
-public class LostListService implements Service {
+public class MyLostListService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		
+		MemberDto member = (MemberDto) session.getAttribute("member");
+		
+		String mId = member.getmId();
+		
 		final int PAGESIZE = 10;
 		final int BLOCKSIZE = 10;
 		
@@ -24,7 +32,7 @@ public class LostListService implements Service {
 		int end = start + PAGESIZE - 1;
 
 		LostDao dao = LostDao.getInstance();
-		ArrayList<LostDto> losts = dao.lostList(start, end);
+		ArrayList<LostDto> losts = dao.myLostList(mId, start, end);
 		
 		int total = dao.countLost();
 		int pageCnt = (int)Math.ceil((double)total / PAGESIZE);
@@ -40,7 +48,6 @@ public class LostListService implements Service {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("BLOCKSIZE", BLOCKSIZE);
-
 	}
 
 }

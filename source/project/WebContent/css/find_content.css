@@ -14,7 +14,7 @@ a {
 }
 
 #content_wrap {
-	width : 1400px;
+	width : 1100px;
 	margin : 50px auto;
 	overflow : hidden;
 }
@@ -57,17 +57,16 @@ a {
 	border-top : 3px solid #2e8fe3;
 	border-spacing: 0;
     border-collapse: collapse;
-    font-size : 0.8em;
 }
 
 #content_wrap .content table tr {
 	border-bottom : 1px solid #c6c6c6;
+	height : 50px;
 }
 
-#content_wrap .content table tr:first-child {
-	background : #d6e8f8;
-	height : 50px;
-	font-size : 0.9em;
+#content_wrap .content #up_table tr:first-child {
+	font-size : 1.1em;
+	border-top : 3px solid #c6c6c6;
 }
 
 .title {
@@ -90,4 +89,33 @@ a {
 .content_title {
 	width : 300px;
 	margin-left : 250px;
+}
+
+.btn_wrap {
+	margin-top : 30px;
+	text-align : center;
+}
+
+button {
+	width : 180px;
+	height : 55px;
+	background : #2e8fe3;
+	color : white;
+	border : none;
+	font-size : 1.3em;
+	margin : 30px 0;
+}
+
+#s_table table tr td{
+	text-align : left;
+	padding-left : 10px;
+}
+
+#s_table table tr:nth-child(1) {
+	font-weight : bold;
+}
+
+#s_table table tr:nth-child(2) {
+	height : 200px;
+	font-weight : normal;
 }

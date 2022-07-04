@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
+	<link href="${conPath}/css/searchIdPw.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 			$(document).ready(function(){
@@ -29,10 +29,11 @@
 	</script>
 </head>
 <body>
-	<div>
+	<div id="search">
 		<form action="${conPath }/searchId.laf" method="post">
 			<table>
 				<caption>아이디 찾기</caption>
+				<col style="width : 200px;">
 				<tr>
 					<th>이름</th>
 					<td><input type="text" name="mName" class="mName"></td>
@@ -56,7 +57,7 @@
 					</td>
 				</tr>
 			</table>
-			<div>
+			<div class="btn_wrap">
 				<input type="submit" value="아이디 찾기" class="btn">
 				<input type="button" value="취소" class="btn" onclick="window.close()">
 			</div>

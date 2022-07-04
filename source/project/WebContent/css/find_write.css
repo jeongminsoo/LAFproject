@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+* {
+	margin : 0;
+	padding : 0;
+}
+
+li {
+	list-style : none;
+}
+
+a {
+	text-decoration : none;
+}
+
+#write_wrap {
+	width : 1200px;
+	margin : 50px auto;
+	overflow : hidden;
+}
+
+#write_wrap .snb {
+	float : left;
+	margin-right : 50px;
+}
+
+#write_wrap .snb ul li {
+	width : 250px;
+	height : 50px;
+	line-height : 50px;
+	padding-left : 30px;
+	border-bottom : 1px solid #d8d8d8;
+}
+
+#write_wrap .snb ul li:first-child {
+	height : 80px;
+	line-height : 80px;
+	color : white;
+	font-weight : bold;
+	font-size : 20px;
+	background-color : #2e8fe3;
+	border : none;
+}
+
+#write_wrap .snb ul li a {
+	color : black;
+}
+
+#sub_wrap {
+	float : left;
+}
+
+#sub_wrap .write {
+	width : 800px;
+	margin : 0 auto;
+	overflow : hidden;
+	padding-top : 30px;
+}
+
+#sub_wrap .write table {
+	text-align : left;
+	border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#sub_wrap .write table tr {
+	height : 50px;
+	border-top : 1px solid #c6c6c6;
+	border-bottom : 1px solid #c6c6c6;
+	border-left : 1px solid #c6c6c6;
+}
+
+#sub_wrap .write table tr th {
+	background : #f3f3f3;
+	padding : 0 10px;
+}
+
+#sub_wrap .write table tr td {
+	border-right : 1px solid #c6c6c6;
+	padding : 0 10px;
+}
+
+.btn {
+	width : 180px;
+	height : 55px;
+	background : #2e8fe3;
+	color : white;
+	border : none;
+	font-size : 1.3em;
+	margin : 30px 0;
+}
+
+.btn_wrap {
+	text-align : center;
+}
+
+input:not(.btn), textarea, select {
+	font-size : 1.5em;
+	width : 100%;
+}
+
+#sub_wrap .write table tr th span {
+	color : red;
+}
+
+.t_a {
+	height : 100px;
+}
+
+.content_title p span{
+	color : red;
+}

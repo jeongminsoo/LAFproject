@@ -1,20 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath}"/>
+<c:set var="conPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
-	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(document).ready(function(){
-				
-		});
-	</script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="${conPath}/css/info.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	var member = '${member}';
+
+	if (member == "") {
+		alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
+		location.href = '${conPath}/login_view.laf?msg=info';
+	}
+</script>
 </head>
 <body>
 	<c:if test="${modifyResult eq 0 }">
@@ -28,35 +31,51 @@
 			alert('정보수정이 완료되었습니다.');
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
-	<div>
+	<jsp:include page="../main/header.jsp" />
+	<div id="info_wrap">
+		<div class="snb">
+			<ul>
+				<li>마이페이지</li>
+				<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+				<li><a href="${conPath }/myFindList.laf">습득물 관리</a></li>
+				<li><a href="${conPath }/myLostList.laf">분실물 관리</a></li>
+				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+			</ul>
+		</div>
+		<div class="content_title">
+			<h1>회원정보</h1>
+		</div>
+		<div class="info">
 		<table>
-			<caption>회원정보</caption>
+			<col style="width: 200px;">
+			<col style="width: 400px;">
 			<tr>
-				<td>아이디</td>
+				<th>아이디</th>
 				<td>${member.mId }</td>
 			</tr>
 			<tr>
-				<td>이름</td>
+				<th>이름</th>
 				<td>${member.mName }</td>
 			</tr>
 			<tr>
-				<td>이메일</td>
+				<th>이메일</th>
 				<td>${member.mEmailId }@${member.mEmailDomain }</td>
 			</tr>
 			<tr>
-				<td>연락처</td>
+				<th>연락처</th>
 				<td>${member.mTel1 }-${member.mTel2 }-${member.mTel3 }</td>
 			</tr>
 			<tr>
-				<td>거주지</td>
+				<th>거주지</th>
 				<td>${member.mAddress }</td>
 			</tr>
 		</table>
-		<div>
+		</div>
+		<div class="btn_wrap">
 			<button onclick="location.href='${conPath}/modify_view.laf'">정보수정</button>
+			<button onclick="location.href='${conPath}/leaveMember_view.laf'">회원탈퇴</button>
 		</div>
 	</div>
-	<jsp:include page="../main/footer.jsp"/>
+	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

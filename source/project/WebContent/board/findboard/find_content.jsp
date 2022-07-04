@@ -1,27 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath}"/>
+<c:set var="conPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
-	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="${conPath}/css/find_content.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-			$(document).ready(function(){
-			});
+		$(document).ready(function() {
+		});
 	</script>
 </head>
 <body>
-	<div>
-		<div>
-			<table>
-				<caption>습득물 정보</caption>
+	<jsp:include page="/main/header.jsp" />
+	<div id="content_wrap">
+		<div class="snb">
+			<ul>
+				<li>습득물</li>
+				<li><a href="${conPath }/findList.laf?pageNum=1">습득물 목록</a></li>
+				<li><a href="${conPath }/findWrite_view.laf">습득물 등록</a></li>
+			</ul>
+		</div>
+		<div class="content_title">
+			<h1>습득물 상세보기</h1>
+		</div>
+		<hr color="#2e8fe3">
+		<div class="content">
+			<div class="img">
+				<img
+					src='board/imgcopy/${find.fPhoto eq null ? "noimg.gif" : find.fPhoto}'
+					width="400" height="410">
+			</div>
+			<table id="up_table">
+				<col style="width: 150px;">
+				<col style="width: 200px;">
 				<tr>
-					<td rowspan="8"><img src='board/imgcopy/${find.fPhoto eq null ? "noimg.gif" : find.fPhoto}'></td>
 					<th>제목</th>
 					<td>${find.fTitle }</td>
 				</tr>
@@ -53,17 +70,29 @@
 					<th>연락처</th>
 					<td>${find.fTel }</td>
 				</tr>
-				<tr>
-					<td>내용</td>
-					<td colspan="2"><pre>${find.fContent }</pre></td>
-				</tr>
 			</table>
-			<div>
-				<button onclick="location.href='${conPath}/findUpdate_view.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">수정</button>
-				<button onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">등록취소</button>
-				<button onclick="location.href='${conPath}/findList.laf?pageNum=${param.pageNum}'">목록</button>
+			<div id="s_table">
+				<table id="down_table">
+					<col style="width: 800px;">
+					<tr>
+						<td>내용</td>
+					</tr>
+					<tr>
+						<td><pre>${find.fContent }</pre></td>
+					</tr>
+				</table>
+			</div>
+			<div class="btn_wrap">
+				<button
+					onclick="location.href='${conPath}/findUpdate_view.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">수정</button>
+				<button
+					onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">등록취소</button>
+				<button
+					onclick="location.href='${conPath}/findList.laf?pageNum=${param.pageNum}'">목록</button>
 			</div>
 		</div>
+
 	</div>
+	<jsp:include page="/main/footer.jsp" />
 </body>
 </html>

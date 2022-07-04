@@ -11,18 +11,20 @@
 	<link href="${conPath}/css/main.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-		$(document).ready(function(){
 			var loginMsg = '${loginMag}';
-			var writeFind = '${writeFind}';
+			var msg = '${param.msg}';
+			
 			
 			if (loginMsg != "") {
 				alert('${loginMsg}');
 				history.back();
-			} else if (writeFind != "") {
-				<% session.removeAttribute("writeFind"); %>
+			} else if (msg == "find") {
 				location.href='${conPath}/findWrite_view.laf';
+			} else if (msg == "lost") {
+				location.href='${conPath}/lostWrite_view.laf';
+			} else if (msg == "info") {
+				location.href='${conPath}/myInfo.laf';
 			}
-		});
 	</script>
 </head>
 <body>
