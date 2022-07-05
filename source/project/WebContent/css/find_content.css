@@ -22,6 +22,7 @@ a {
 #content_wrap .snb {
 	float : left;
 	margin-right : 50px;
+	height : 700px;
 }
 
 #content_wrap .snb ul li {
@@ -64,6 +65,10 @@ a {
 	height : 50px;
 }
 
+#content_wrap .content #up_table tr:last-child {
+	border-bottom : none;
+}
+
 #content_wrap .content #up_table tr:first-child {
 	font-size : 1.1em;
 	border-top : 3px solid #c6c6c6;
@@ -104,6 +109,8 @@ button {
 	border : none;
 	font-size : 1.3em;
 	margin : 30px 0;
+	cursor : pointer;
+	border-radius : 4px;
 }
 
 #s_table table tr td{

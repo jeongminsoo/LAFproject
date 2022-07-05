@@ -33,13 +33,13 @@
 			<div class="img">
 				<img
 					src='board/imgcopy/${find.fPhoto eq null ? "noimg.gif" : find.fPhoto}'
-					width="400" height="410">
+					width="400" height="390">
 			</div>
 			<table id="up_table">
 				<col style="width: 150px;">
 				<col style="width: 200px;">
 				<tr>
-					<th>제목</th>
+					<th>습득물명</th>
 					<td>${find.fTitle }</td>
 				</tr>
 				<tr>
@@ -83,10 +83,12 @@
 				</table>
 			</div>
 			<div class="btn_wrap">
-				<button
+				<c:if test="${member != null && member.mId eq find.mId }">
+					<button
 					onclick="location.href='${conPath}/findUpdate_view.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">수정</button>
 				<button
 					onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">등록취소</button>
+				</c:if>
 				<button
 					onclick="location.href='${conPath}/findList.laf?pageNum=${param.pageNum}'">목록</button>
 			</div>

@@ -58,8 +58,7 @@
 					<tr>
 						<td><a href="" onclick="searchId()">아이디 찾기</a></td>
 						<td><a href="" onclick="searchPw()">비밀번호 찾기</a></td>
-						<td><a href=""
-							onclick="location.href='${conPath}/join_view.laf'">회원가입</a></td>
+						<td><a href="${conPath}/join_view.laf">회원가입</a></td>
 					</tr>
 				</table>
 			</div>

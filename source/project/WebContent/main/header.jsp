@@ -25,7 +25,7 @@
 				</c:if>
 				<c:if test="${member != null }">
 					<li><a href="${conPath }/logout.laf">로그아웃</a></li>
-					<li><a href="${conPath }/my_info.laf">내정보</a></li>
+					<li><a href="${conPath }/myInfo.laf">내정보</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -40,7 +40,7 @@
 					<li><a href="${conPath }/myInfo.laf">마이페이지</a></li>
 					<li><a href="${conPath }/qnaList.laf">고객센터</a></li>
 				</c:if>
-				<c:if test="${member.pwCode eq \"PW01\" }">
+				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
 					<li><a href="${conPath }/findList.laf?pageNum=1">습득물</a></li>
 					<li><a href="${conPath }/lostList.laf?pageNum=1">분실물</a></li>
 					<li><a href="${conPath }/myInfo.laf">관리자</a></li>

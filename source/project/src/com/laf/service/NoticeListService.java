@@ -29,6 +29,10 @@ public class NoticeListService implements Service {
 		int pageCnt = (int)Math.ceil((double)total / PAGESIZE);
 		int startPage = ((currentPage - 1) / BLOCKSIZE)*BLOCKSIZE + 1;
 		int endPage = startPage + BLOCKSIZE - 1;
+
+		if (endPage > pageCnt) {
+			endPage = pageCnt;
+		}
 		
 		ArrayList<NoticeDto> notices = dao.noticeList(start, end);
 		

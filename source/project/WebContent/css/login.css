@@ -79,6 +79,8 @@ a {
 	color : white;
 	border : none;
 	font-size : 1.5em;
+	cursor : pointer;
+	border-radius : 4px;
 }
 
 input:not(.btn) {

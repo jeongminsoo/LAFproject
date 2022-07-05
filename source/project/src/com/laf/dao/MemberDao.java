@@ -533,8 +533,9 @@ public class MemberDao {
 		PreparedStatement 	pstmt 	= null;
 		ResultSet 			rs 		= null;
 		
-		String 				sql 	= "SELECT M.*, PC.CODENAME PCC, MC.CODENAME MCC FROM LAF_MEMBER M, PW_CODE PC, MST_CODE MC" + 
-										" WHERE M.PWCODE = PC.PWCODE AND M.MSTCODE = MC.MSTCODE AND M.PWCODE = 'PW01' ORDER BY M.MSTCODE, MRDATE DESC, MID";
+		String 				sql 	= "SELECT A.*, PC.CODENAME PCC, MC.CODENAME MCC" +
+										" FROM (SELECT * FROM LAF_MEMBER WHERE PWCODE = 'PW10' OR PWCODE = 'PW01') A, PW_CODE PC, MST_CODE MC" + 
+										" WHERE A.PWCODE = PC.PWCODE AND A.MSTCODE = MC.MSTCODE ORDER BY A.MSTCODE, MRDATE DESC, MID";
 		
 		try {
 			

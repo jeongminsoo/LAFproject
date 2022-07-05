@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/style.css" rel="stylesheet">
+	<link href="${conPath}/css/qna_list.css" rel="stylesheet">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 			$(document).ready(function(){
@@ -63,18 +63,26 @@
 		alert('답변이 등록되었습니다.');
 	</script>
 </c:if>
-
-	<div>
-		<div>
+	<jsp:include page="/main/header.jsp"/>
+	<div id="list_wrap">
+		<div class="snb">
 			<ul>
+				<li>고객센터</li>
 				<li><a href="${conPath }/qnaList.laf?pageNum=1">Q&amp;A 목록</a></li>
 				<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
 				<li><a href="${conPath }/noticeList.laf?pageNum=1">공지사항</a></li>
-				<li><a href="${conPath }/noticeWrite_view.laf?pageNum=${param.pageNum}">공지사항 등록</a></li>
+				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
+					<li><a href="${conPath }/noticeWrite_view.laf?pageNum=${param.pageNum}">공지사항 등록</a></li>
+				</c:if>
 			</ul>
 		</div>
-		<div>
+		<div class="content">
 			<table>
+					<col style="width : 100px;">
+					<col style="width : 200px;">
+					<col style="width : 120px;">
+					<col style="width : 120px;">
+					<col style="width : 100px;">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -84,14 +92,14 @@
 				</tr>
 				<c:if test="${qnas.size() eq 0 }">
 					<tr>
-						<td colspan="5">등록된 습득물이 없습니다</td>
+						<td colspan="5">등록된 게시물이 없습니다</td>
 					</tr>
 				</c:if>
 				<c:if test="${qnas.size() != 0 }">
 					<c:forEach items="${qnas}" var="q">
 						<tr>
 							<td>${q.qNo }</td>
-							<td>
+							<td class="title">
 								<c:forEach var="i" begin="1" end="${q.qIndent }">
 									<c:if test="${i eq q.qIndent }">
 										└
@@ -111,6 +119,23 @@
 				</c:if>
 			</table>
 		</div>
+		<div class="paging">
+				<a
+					href="${conPath }/qnaList.laf?pageNum=${startPage - 1 eq 0 ? 1 : startPage-1}"><img
+					src="${conPath }/img/btn01.gif"></a>
+				<c:forEach var="j" begin="${startPage }" end="${endPage }">
+					<c:if test="${j eq currentPage }">
+						<b> ${j } </b>
+					</c:if>
+					<c:if test="${j != currentPage }">
+						<a href="${conPath }/qnaList.laf?pageNum=${j}"> ${j } </a>
+					</c:if>
+				</c:forEach>
+				<a
+					href="${conPath }/qnaList.laf?pageNum=${endPage == pageCnt ? endPage : endPage + 1 }"><img
+					src="${conPath }/img/btn0010.gif"></a>
+			</div>
 	</div>
+	<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

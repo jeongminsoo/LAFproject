@@ -16,11 +16,11 @@ public class IdChkService implements Service {
 		int result = dao.idChk(mId);
 		
 		if (result == MemberDao.ID_NONEXISTENT) {
-			request.setAttribute("idChkResult", "사용가능한 아이디입니다.");
+			request.setAttribute("idChkResult", "사용가능한 아이디입니다");
 		} else {
-			request.setAttribute("idChkResult", "중복된 아이디입니다.");
+			request.setAttribute("idChkResult", "중복된 아이디입니다");
 		}
-
+		request.setAttribute("mId", mId);
 	}
 
 }

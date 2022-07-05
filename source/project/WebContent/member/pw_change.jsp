@@ -25,7 +25,7 @@
 			var oldPw = $('#oldPw').val().trim();
 			var newmPw = $('#mPw').val().trim();
 			var newmPwChk = $('#mPwChk').val().trim();
-			var mPw = '${mPw}';
+			var mPw = '${member.mPw}';
 
 			if (mPw != oldPw) {
 				alert('현재 비밀번호가 다릅니다. 다시 시도해주세요.');
@@ -43,16 +43,10 @@
 </script>
 </head>
 <body>
-	<c:if test="${quizChkResult != null }">
-		<script>
-			alert('${quizChkResult}');
-			history.back();
-		</script>
-	</c:if>
 	<c:if test="${pwChangeSuccess != null }">
 		<script>
 			alert('${pwChangeSuccess}');
-			close();
+			location.href='${conPath}/login_view.laf';
 		</script>
 	</c:if>
 	<c:if test="${pwChangeFail != null }">

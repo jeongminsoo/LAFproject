@@ -120,12 +120,12 @@
 							value="${member.mTel1 }-${member.mTel2 }-${member.mTel3 }"></td>
 					</tr>
 					<tr>
-						<th><span>＊</span>제목</th>
+						<th><span>＊</span>분실물명</th>
 						<td><input type="text" name="lTitle" class="lTitle"></td>
 					</tr>
 					<tr>
 						<th class="t_a"><span>＊</span>내용</th>
-						<td><textarea name="lContent" class="lContent" rows="5" cols="10"></textarea></td>
+						<td><textarea name="lContent" class="lContent" rows="10" cols="10"></textarea></td>
 					</tr>
 					<tr>
 						<th>이미치 첨부</th>

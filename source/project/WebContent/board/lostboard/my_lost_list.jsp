@@ -42,7 +42,7 @@
 						<th>관리번호</th>
 						<th>지역구분</th>
 						<th>물품구분</th>
-						<th>제목</th>
+						<th>분실물명</th>
 						<th>분실장소</th>
 						<th>연락처</th>
 						<th>분실일</th>
@@ -50,7 +50,7 @@
 					</tr>
 					<c:if test="${losts.size() eq 0 }">
 						<tr>
-							<td colspan="9">등록된 습득물이 없습니다</td>
+							<td colspan="9">등록된 분실물이 없습니다</td>
 						</tr>
 					</c:if>
 					<c:if test="${losts.size() != 0 }">

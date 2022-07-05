@@ -47,6 +47,8 @@ button {
 	border : none;
 	font-size : 1.3em;
 	margin : 30px 0;
+	cursor : pointer;
+	border-radius : 4px;
 }
 
 #search_id table caption {

@@ -35,11 +35,23 @@
 	<div id="info_wrap">
 		<div class="snb">
 			<ul>
-				<li>마이페이지</li>
-				<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
-				<li><a href="${conPath }/myFindList.laf">습득물 관리</a></li>
-				<li><a href="${conPath }/myLostList.laf">분실물 관리</a></li>
-				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+				<c:if test="${member.pwCode eq \"PW00\" }">
+					<li>마이페이지</li>
+					<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+					<li><a href="${conPath }/myFindList.laf">습득물 관리</a></li>
+					<li><a href="${conPath }/myLostList.laf">분실물 관리</a></li>
+					<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+				</c:if>
+				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
+					<li>관리자</li>
+					<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+					<li><a href="${conPath }/memberList.laf">회원관리</a></li>
+					<li><a href="${conPath }/adminList.laf">관리자관리</a></li>
+					<c:if test="${member.pwCode eq \"PW10\" }">
+						<li><a href="${conPath }/add_view.laf">관리자추가</a></li>
+					</c:if>
+					<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+				</c:if>
 			</ul>
 		</div>
 		<div class="content_title">

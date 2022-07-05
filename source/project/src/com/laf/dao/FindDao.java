@@ -450,7 +450,8 @@ public class FindDao {
 			PreparedStatement 	pstmt 	= null;
 			ResultSet			rs		= null;
 			
-			String 				sql 	= "SELECT F.*, MNAME FROM FIND F, LAF_MEMBER M WHERE F.MID = M.MID AND FNO = ?";
+			String 				sql 	= "SELECT F.*, MNAME, CODENAME FCC FROM FIND F, LAF_MEMBER M, FST_CODE FC"
+					+ 						" WHERE F.MID = M.MID AND F.FSTCODE = FC.FSTCODE AND FNO = ?";
 			
 			try {
 				
@@ -460,17 +461,17 @@ public class FindDao {
 				rs = pstmt.executeQuery();
 				
 				if (rs.next()) {
-					String 	fTitle		=	rs.getString("qtitle");
-					String 	fContent	=	rs.getString("qcontent");
+					String 	fTitle		=	rs.getString("ftitle");
+					String 	fContent	=	rs.getString("fcontent");
 					String 	mId			=	rs.getString("mid");
-					Date 	fRdate		=	rs.getDate("qrdate");
+					Date 	fRdate		=	rs.getDate("frdate");
 					String  fOb			=	rs.getString("fob");
 					String	fLocal		=	rs.getString("flocal");
 					String	fLocation	=	rs.getString("flocation");
 					Date	fDate		=	rs.getDate("fdate");
 					String	fStorage	=	rs.getString("fstorage");
 					String	fPhoto		=	rs.getString("fphoto");
-					int 	fHit		=	rs.getInt("qhit");
+					int 	fHit		=	rs.getInt("fhit");
 					String	fTel		=	rs.getString("ftel");
 					String	fIp			=	rs.getString("fip");
 					String 	mName		=	rs.getString("mname");
@@ -535,5 +536,74 @@ public class FindDao {
 				}
 			}
 			return cnt;
+		}
+		
+		// 습득물 상세검색
+		public ArrayList<FindDto> detailSearch(String fOb, String fTitle, Date fDate1, Date fDate2, String fLocal, int start, int end) {
+			ArrayList<FindDto> dtos = new ArrayList<FindDto>();
+			
+			Connection 				conn 	= null;
+			PreparedStatement 		pstmt 	= null;
+			ResultSet 				rs 		= null;
+			
+			String 					sql 	= "SELECT *" + 
+												" FROM (SELECT ROWNUM RN, A.*" + 
+														" FROM (SELECT F.*, MNAME, CODENAME FCC" + 
+																" FROM FIND F, LAF_MEMBER M, FST_CODE FC" + 
+																" WHERE F.FOB LIKE '%'||?||'%' AND F.FTITLE LIKE '%'||?||'%'" + 
+																	" AND F.FDATE BETWEEN ? AND ?" + 
+																	" AND F.FLOCAL = ? AND NOT F.FSTCODE = 'FST02'" + 
+																	" AND F.MID = M.MID AND F.FSTCODE = FC.FSTCODE ORDER BY FDATE) A)" + 
+												" WHERE RN BETWEEN ? AND ?";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, fOb);
+				pstmt.setString(2, fTitle);
+				pstmt.setDate(3, fDate1);
+				pstmt.setDate(4, fDate2);
+				pstmt.setString(5, fLocal);
+				pstmt.setInt(6, start);
+				pstmt.setInt(7, end);
+				rs 		= 	pstmt.executeQuery();
+				
+				while (rs.next()) {
+					String  mId			=	rs.getString("mid");
+					String 	fNo			=	rs.getString("fno");
+					String 	fContent	=	rs.getString("fcontent");
+					Date 	fRdate		=	rs.getDate("frdate");
+					String 	fLocation	=	rs.getString("flocation");
+					Date 	fDate		=	rs.getDate("fdate");
+					String	fStorage	= 	rs.getString("fstorage");
+					String 	fPhoto		=	rs.getString("fphoto");
+					int 	fHit		=	rs.getInt("fhit");
+					String 	fTel		=	rs.getString("ftel");
+					String 	fIp			=	rs.getString("fip");
+					String 	fstCode		=	rs.getString("fstcode");
+					String 	fcc			=	rs.getString("fcc");
+				
+					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, null, fstCode, fcc));
+				}
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return dtos;
 		}
 }

@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 * {
 	margin : 0;
 	padding : 0;
@@ -14,18 +13,19 @@ a {
 	text-decoration : none;
 }
 
-#change_wrap {
+#content_wrap {
 	width : 1100px;
 	margin : 50px auto;
 	overflow : hidden;
 }
 
-#change_wrap .snb {
+#content_wrap .snb {
 	float : left;
 	margin-right : 50px;
+	height : 700px;
 }
 
-#change_wrap .snb ul li {
+#content_wrap .snb ul li {
 	width : 200px;
 	height : 50px;
 	line-height : 50px;
@@ -33,7 +33,7 @@ a {
 	border-bottom : 1px solid #d8d8d8;
 }
 
-#change_wrap .snb ul li:first-child {
+#content_wrap .snb ul li:first-child {
 	height : 80px;
 	line-height : 80px;
 	color : white;
@@ -43,34 +43,35 @@ a {
 	border : none;
 }
 
-.snb ul li a {
+#content_wrap .snb ul li a {
 	color : black;
 }
 
-.change {
+#content_wrap .content {
 	width : 800px;
 	overflow : hidden;
 	padding-top : 30px;
 }
 
-.change table {
-	text-align : center;
-	border-top : 1px solid #2e8fe3;
+#content_wrap .content table {
+	text-align : left;
 	border-spacing: 0;
     border-collapse: collapse;
+    font-size : 1.1em;
 }
 
-.change table th {
-	background : #f3f3f3;
-}
-
-.change table tr {
+#content_wrap .content table tr {
 	border-bottom : 1px solid #c6c6c6;
 	height : 50px;
 }
 
-.change table tr:first-child {
+#content_wrap .content table tr:first-child {
 	border-top : 1px solid #c6c6c6;
+}
+
+#content_wrap .content table tr th {
+	background : #f3f3f3;
+	text-align : center;
 }
 
 .content_title {
@@ -78,12 +79,12 @@ a {
 	margin-left : 250px;
 }
 
-.btn_wrap2 {
+.btn_wrap {
 	margin-top : 30px;
-	padding-left : 240px;
+	text-align : center;
 }
 
-.btn {
+button {
 	width : 180px;
 	height : 55px;
 	background : #2e8fe3;
@@ -93,10 +94,4 @@ a {
 	margin : 30px 0;
 	cursor : pointer;
 	border-radius : 4px;
-}
-
-#oldPw, #mPw, #mPwChk {
-	width : 90%;
-	height : 100%;
-	font-size : 1.4em;
 }

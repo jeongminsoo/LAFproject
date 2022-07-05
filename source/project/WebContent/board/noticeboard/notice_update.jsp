@@ -16,13 +16,30 @@
 	</script>
 </head>
 <body>
-	<div>
+	<jsp:include page="/main/header.jsp"/>
+	<div id="write_wrap">
 		<form action="${conPath }/noticeUpdate.laf" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="pageNum" value="${param.pageNum }">
 			<input type="hidden" name="nNo" value="${notice.nNo }">
-			<div>
+			<div class="snb">
+			<ul>
+				<li>고객센터</li>
+				<li><a href="${conPath }/qnaList.laf?pageNum=1">Q&amp;A 목록</a></li>
+				<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				<li><a href="${conPath }/noticeList.laf?pageNum=1">공지사항</a></li>
+				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
+					<li><a href="${conPath }/noticeWrite_view.laf?pageNum=${param.pageNum}">공지사항 등록</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<div class="content_title">
+			<h1>공지사항 등록</h1>
+		</div>
+		<hr color="#2e8fe3">
+			<div id="write">
 				<table>
-					<caption>공지사항</caption>
+					<col style="width : 200px;">
+					<col style="width : 500px;">
 					<tr>
 						<td>제목</td>
 						<td><input type="text" name="nTitle" class="nTitle" value="${notice.nTitle }"></td>
@@ -37,12 +54,13 @@
 					</tr>
 				</table>
 			</div>
-			<div>
+			<div class="btn_wrap">
 				<input type="submit" value="수정" class="btn">
 				<input type="reset" value="초기화" class="btn">
 				<input type="button" value="목록" class="btn" onclick="location.href='${conPath}/noticeList.laf?pageNum=${param.pageNum }'">
 			</div>
 		</form>
 	</div>
+	<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

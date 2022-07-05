@@ -22,6 +22,7 @@ a {
 #write_wrap .snb {
 	float : left;
 	margin-right : 50px;
+	height : 700px;
 }
 
 #write_wrap .snb ul li {
@@ -88,6 +89,8 @@ a {
 	border : none;
 	font-size : 1.3em;
 	margin : 30px 0;
+	cursor : pointer;
+	border-radius : 4px;
 }
 
 .btn_wrap {
@@ -95,7 +98,7 @@ a {
 }
 
 input:not(.btn), textarea, select {
-	font-size : 1.5em;
+	font-size : 1.1em;
 	width : 100%;
 }
 

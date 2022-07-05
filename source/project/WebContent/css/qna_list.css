@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+* {
+	margin : 0;
+	padding : 0;
+}
+
+li {
+	list-style : none;
+}
+
+a {
+	text-decoration : none;
+}
+
+#list_wrap {
+	width : 1200px;
+	margin : 50px auto;
+	overflow : hidden;
+}
+
+#list_wrap .snb {
+	float : left;
+	margin-right : 50px;
+	height : 700px;
+}
+
+#list_wrap .snb ul li {
+	width : 250px;
+	height : 50px;
+	line-height : 50px;
+	padding-left : 30px;
+	border-bottom : 1px solid #d8d8d8;
+}
+
+#list_wrap .snb ul li:first-child {
+	height : 80px;
+	line-height : 80px;
+	color : white;
+	font-weight : bold;
+	font-size : 20px;
+	background-color : #2e8fe3;
+	border : none;
+}
+
+#list_wrap .snb ul li a {
+	color : black;
+}
+
+#list_wrap .content {
+	width : 1000px;
+	margin : 0 auto;
+	padding-top : 30px;
+}
+
+#list_wrap .content table {
+	text-align : center;
+	border-top : 3px solid #2e8fe3;
+	border-spacing: 0;
+    border-collapse: collapse;
+    font-size : 0.8em;
+}
+
+#list_wrap .content table tr {
+	border-bottom : 1px solid #c6c6c6;
+	height : 40px;
+}
+
+#list_wrap .content table tr:first-child {
+	background : #d6e8f8;
+	height : 50px;
+	font-size : 0.9em;
+}
+
+.title {
+	text-align : left;
+}
+
+.title a {
+	color : black;
+}
+
+.paging {
+	width : 500px;
+	height : 50px;
+	line-height : 50px;
+	margin : 0 auto;
+	text-align : center;
+}
+
+.paging a {
+	color : black;
+}

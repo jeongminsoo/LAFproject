@@ -27,6 +27,7 @@ import com.laf.service.LostDeleteService;
 import com.laf.service.LostListService;
 import com.laf.service.LostUpdateService;
 import com.laf.service.LostWriteService;
+import com.laf.service.MemberListService;
 import com.laf.service.ModifyService;
 import com.laf.service.MyFindListService;
 import com.laf.service.MyLostListService;
@@ -46,13 +47,16 @@ import com.laf.service.QuizChkService;
 import com.laf.service.SearchIdService;
 import com.laf.service.SearchPwService;
 import com.laf.service.Service;
+import com.laf.service.AddService;
+import com.laf.service.AdminListService;
+import com.laf.service.DetailSearchService;
 
 
 @WebServlet("*.laf")
 public class LAFController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	private boolean write_view = false;
+	private boolean view = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		actionDo(request, response);
@@ -87,20 +91,21 @@ public class LAFController extends HttpServlet {
 		// 회원가입 view
 		} else if (com.equals("/join_view.laf")) {
 			viewPage = "member/join.jsp";
-			write_view = true;
+			view = true;
 			
 		// 회원가입 laf
 		} else if (com.equals("/join.laf")) {
-			if (write_view) {
+			if (view) {
 				service = new JoinService();
 				service.execute(request, response);
-				write_view = false;
+				view = false;
 			}
 			viewPage = "/login_view.laf";
-			
 		// 아이디 중복체크 laf
-		} else if (com.equals("/idChk.laf")) { service = new IdChkService();
-			service.execute(request, response); viewPage = "";
+		} else if (com.equals("/idChk.laf")) {
+			service = new IdChkService();
+			service.execute(request, response);
+			viewPage = "member/idChk.jsp";
 		
 		// 아이디 찾기 view
 		} else if (com.equals("/searchId_view.laf")) {
@@ -175,14 +180,14 @@ public class LAFController extends HttpServlet {
 		// 습득물 등록 view
 		} else if (com.equals("/findWrite_view.laf")) {
 			viewPage = "board/findboard/find_write.jsp";
-			write_view = true;
+			view = true;
 			
 		// 습득물 등록 laf
 		} else if (com.equals("/findWrite.laf")) {
-			if (write_view) {
+			if (view) {
 				service = new FindWriteService();
 				service.execute(request, response);
-				write_view = false;
+				view = false;
 			}
 			viewPage = "/findList.laf";
 			
@@ -219,11 +224,11 @@ public class LAFController extends HttpServlet {
 		// 분실물 등록 view	
 		} else if (com.equals("/lostWrite_view.laf")) {
 			viewPage = "board/lostboard/lost_write.jsp";
-			write_view = true;
+			view = true;
 			
 		// 분실물 등록 laf
 		} else if (com.equals("/lostWrite.laf")) {
-			if (write_view) {
+			if (view) {
 				service = new LostWriteService();
 				service.execute(request, response);
 			}
@@ -232,6 +237,7 @@ public class LAFController extends HttpServlet {
 		// 분실물 수정 view
 		} else if (com.equals("/lostUpdate_view.laf")) {
 			service = new GetLostService();
+			service.execute(request, response);
 			viewPage = "board/lostboard/lost_update.jsp";
 			
 		// 분실물 수정 laf
@@ -260,11 +266,11 @@ public class LAFController extends HttpServlet {
 		// Q&A 작성 view
 		} else if (com.equals("/qnaWrite_view.laf")) {
 			viewPage = "board/qnaboard/qna_write.jsp";
-			write_view = true;
+			view = true;
 			
 		// Q&A 작성 laf	
 		} else if (com.equals("/qnaWrite.laf")) {
-			if (write_view) {
+			if (view) {
 				service = new QnaWriteService();
 				service.execute(request, response);
 			}
@@ -299,13 +305,13 @@ public class LAFController extends HttpServlet {
 			service = new GetQnaService();
 			service.execute(request, response);
 			viewPage = "board/qnaboard/qna_reply.jsp";
-			write_view = true;
+			view = true;
 		// Q&A 답변 laf
 		} else if (com.equals("/qnaReply.laf")) {
-			if (write_view) {
+			if (view) {
 				service = new QnaReplyService();
 				service.execute(request, response);
-				write_view = false;
+				view = false;
 			}
 			viewPage = "/qnaList.laf";
 		
@@ -324,11 +330,11 @@ public class LAFController extends HttpServlet {
 		// 공지사항 작성 view
 		} else if (com.equals("/noticeWrite_view.laf")) {
 			viewPage = "board/noticeboard/notice_write.jsp";
-			write_view = true;
+			view = true;
 			
 		// 공지사항 작성 laf
 		} else if (com.equals("/noticeWrite.laf")) {
-			if (write_view) {
+			if (view) {
 				service = new NoticeWriteService();
 				service.execute(request, response);
 			}
@@ -367,6 +373,34 @@ public class LAFController extends HttpServlet {
 			service = new MyLostListService();
 			service.execute(request, response);
 			viewPage = "board/lostboard/my_lost_list.jsp";
+			
+		// 회원리스트
+		} else if (com.equals("/memberList.laf")) {
+			service = new MemberListService();
+			service.execute(request, response);
+			viewPage = "admin/member_list.jsp";
+			
+		// 관리자리스트
+		} else if (com.equals("/adminList.laf")) {
+			service = new AdminListService();
+			service.execute(request, response);
+			viewPage = "admin/admin_list.jsp";
+			
+		// 관리자 추가 view
+		} else if (com.equals("/add_view.laf")) {
+			viewPage = "admin/add.jsp";
+			view = true;
+		} else if (com.equals("/add.laf")) {
+			if (view) {
+				service = new AddService();
+				service.execute(request, response);
+				view = false;
+			}
+			viewPage = "/adminList.laf";
+		} else if (com.equals("/detailSearch.laf")) {
+			service = new DetailSearchService();
+			service.execute(request, response);
+			viewPage = "board/findboard/find_detail.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

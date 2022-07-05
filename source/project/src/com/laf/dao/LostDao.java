@@ -446,7 +446,8 @@ public class LostDao {
 			PreparedStatement 	pstmt 	= null;
 			ResultSet			rs		= null;
 			
-			String 				sql 	= "SELECT L.*, MNAME FROM LOST L, LAF_MEMBER M WHERE L.MID = M.MID AND LNO = ?";
+			String 				sql 	= "SELECT L.*, MNAME, CODENAME LCC FROM LOST L, LAF_MEMBER M, LST_CODE LC"
+											+ " WHERE L.MID = M.MID AND L.LSTCODE = LC.LSTCODE AND LNO = ?";
 			
 			try {
 				

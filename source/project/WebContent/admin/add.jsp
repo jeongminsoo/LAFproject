@@ -1,87 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath}" />
+<c:set var="conPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${conPath}/css/join.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<!-- 비밀번호 유효성검사 확인하기 -->
-
-<script>
-		$(document).ready(function(){
-			// 이메일 도메인 선택 이벤트
-			$('#domainVal').on('click', function() {
-				var domain = $('#domainVal').val();
-				if (domain == '직접입력') {
-					$('#mEmailDomain').val('');
-					$('#mEmailDomain').attr('disabled', false);
-				} else {
-					$('#mEmailDomain').val(domain);
-				}
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="${conPath}/css/join.css" rel="stylesheet">
+	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+			$(document).ready(function(){
 			});
-			
-			// 비밀번호 일치 여부 이벤트
-			$('form').submit(function(){
-				var newmPw = $('#mPw').val().trim();
-				var newmPwChk = $('#mPwChk').val().trim();
-				var mPw = '${mPw}';
-				
-				if (newmPw != newmPwChk) {
-					alert('새비밀번호와 새비밀번호 확인이 다릅니다. 다시 시도해주세요.');
-					$('#mPw').val('');
-					$('#mPwChk').val('');
-					$('#mPw').focus();
-					return false;
-				}
-				$('#mEmailDomain').attr('disabled', false);
-			});
-			
-			$('.id_btn').click(function(){
-				var mId = $('input[name="mId"]').val();
-				$.ajax({
-					url : '${conPath}/idChk.laf',
-					data : 'mId=' + mId,
-					type : 'get',
-					dataType : 'html',
-					success : function(data){
-						$('#idChkResult').html(data);
-					}
-				});
-			});
-		});
 	</script>
-
 </head>
-
-<!-- 필수값 설정 확인 -->
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<div id="join_wrap">
 		<div class="join_title">
-			<h1>회원가입</h1>
+			<h1>관리자 추가</h1>
 			<p>
 				(<span>＊</span>) 표시는 필수입력 항목입니다.
 			</p>
 		</div>
 		<div id="sub_wrap">
-			<form action="${conPath }/join.laf" method="post">
+			<form action="${conPath }/add.laf" method="post">
 				<table id="up_table">
 					<col style="width : 160px;">
 					<col style="width : 400px;">
 					<tr>
 						<th><label for="mId"><span>＊</span>아이디</label></th>
 						<td><input type="text" name="mId" id="mId" class="mId">
-							<input type="button" value="중복확인" class="id_btn">
-							<div id="idChkResult"></div></td>
+							<input type="button" value="중복확인" class="id_btn"
+							onclick="${conPath}/idChk.laf"></td>
 					</tr>
 					<tr>
 						<th><label for="mPw"><span>＊</span>비밀번호</label></th>
@@ -129,23 +81,7 @@
 					<tr>
 						<th><span>＊</span>거주지</th>
 						<td><select name="mAddress" class="mAddress" size="1">
-								<option>서울특별시</option>
-								<option>경기도</option>
-								<option>인천광역시</option>
-								<option>강원도</option>
-								<option>충청북도</option>
-								<option>충청남도</option>
-								<option>대전광역시</option>
-								<option>세종특별자치시</option>
-								<option>전라북도</option>
-								<option>전라남도</option>
-								<option>광주광역시</option>
-								<option>경상북도</option>
-								<option>경산남도</option>
-								<option>울산광역시</option>
-								<option>대구광역시</option>
-								<option>부산광역시</option>
-								<option>제주특별자치도</option>
+								<option selected="selected">서울특별시</option>
 						</select></td>
 					</tr>
 					<tr>
@@ -171,23 +107,18 @@
 					<col style="width : 400px;">
 					<tr>
 						<th><span>＊</span>질문</th>
-						<td><input type="text" name="mQuiz" class="mQuiz" list="quiz"
-							placeholder="직접 입력 가능"> <datalist id="quiz">
-								<option>나의 어머니의 성함은?</option>
-								<option>가장 좋아하는 음식은?</option>
-								<option>가장 좋아하는 색깔은?</option>
-								<option>내가 다녔던 고등학교의 이름은?</option>
-							</datalist></td>
+						<td><input type="text" name="mQuiz" class="mQuiz" list="quiz" value="괸리자입니다" readonly="readonly">
+						</td>
 					</tr>
 					<tr>
 						<th><span>＊</span>답변</th>
-						<td><input type="text" name="mAnswer" class="mAnswer"></td>
+						<td><input type="text" name="mAnswer" class="mAnswer" value="괸리자입니다" readonly="readonly"></td>
 					</tr>
 				</table>
 				<div class="btn_wrap">
-					<input type="submit" value="회원가입" class="btn"> <input
+					<input type="submit" value="등록" class="btn"> <input
 						type="button" value="취소" class="btn"
-						onclick="location.href='${conPath}/main.laf'">
+						onclick="history.back()">
 				</div>
 			</form>
 		</div>

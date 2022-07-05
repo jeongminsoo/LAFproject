@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+* {
+	margin : 0;
+	padding : 0;
+}
+
+li {
+	list-style : none;
+}
+
+a {
+	text-decoration : none;
+}
+
+#join_wrap {
+	width : 1200px;
+	margin : 50px auto;
+}
+
+#join_wrap .sub_wrap {
+	width : 1000px;
+	margin : 0 auto;
+}
+
+#up_table {
+	width : 800px;
+	margin : 0 auto;
+	margin-top : 30px;
+}
+
+#down_table {
+	width : 800px;
+	margin : 0 auto;
+	margin-top : 30px;
+}
+
+#up_table, #down_table {
+	border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#up_table tr, #down_table tr {
+	height : 50px;
+	border-top : 1px solid #c6c6c6;
+	border-bottom : 1px solid #c6c6c6;
+	border-left : 1px solid #c6c6c6;
+}
+
+#up_table tr th, #down_table tr th {
+	background : #f3f3f3;
+	padding : 0 10px;
+	text-align : left;
+	font-size : 1.2em;
+}
+
+#up_table tr td {
+	font-size : 1.2em;
+}
+
+#up_table tr td, #down_table tr td {
+	border-right : 1px solid #c6c6c6;
+	padding : 0 10px;
+}
+
+.btn {
+	width : 180px;
+	height : 55px;
+	background : #2e8fe3;
+	color : white;
+	border : none;
+	font-size : 1.3em;
+	margin : 30px 0;
+	border-radius : 4px;
+	cursor : pointer;
+}
+
+.btn_wrap {
+	width : 1200px;
+	margin : 0 auto;
+	text-align : center;
+}
+
+input:not(.btn), select {
+	font-size : 1.1em;
+	width : 100%;
+}
+
+#up_table tr th span, #down_table tr th span  {
+	color : red;
+}
+
+.join_title {
+	width : 600px;
+	margin : 20px auto;
+	text-align : center;
+}
+
+.join_title p span{
+	color : red;
+}
+
+#down_table caption {
+	text-align : left;
+	padding-bottom : 15px;
+	font-weight : bold;
+}
+
+#up_table .mTel1 {
+	width : 28%;
+}
+
+#up_table .mTel2 {
+	width : 31%;
+}
+
+#up_table .mTel3 {
+	width : 31%;
+}
+
+#up_table .id_btn {
+	width : 100px;
+	height : 30px;
+	background : #2e8fe3;
+	color : white;
+	border : none;
+	font-size : 14px;
+	cursor : pointer;
+	border-radius : 4px;
+}
+
+#up_table .mId {
+	width : 60%;
+}
+
+#up_table .mEmailId, .domainVal {
+	width : 30%;
+}
+
+#up_table .mEmailDomain {
+	width : 30%;
+}
+
+#join_wrap .snb {
+	float : left;
+	height : 700px;
+	margin-right : 50px;
+}
+
+#join_wrap .snb ul li {
+	width : 200px;
+	height : 50px;
+	line-height : 50px;
+	padding-left : 30px;
+	border-bottom : 1px solid #d8d8d8;
+}
+
+#join_wrap .snb ul li:first-child {
+	height : 80px;
+	line-height : 80px;
+	color : white;
+	font-weight : bold;
+	font-size : 20px;
+	background-color : #2e8fe3;
+	border : none;
+}
+
+.snb ul li a {
+	color : black;
+}

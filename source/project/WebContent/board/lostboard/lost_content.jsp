@@ -26,20 +26,20 @@
 			</ul>
 		</div>
 		<div class="content_title">
-			<h1>습득물 상세보기</h1>
+			<h1>분실물 상세보기</h1>
 		</div>
 		<hr color="#2e8fe3">
 		<div class="content">
 			<div class="img">
 				<img
 					src='board/imgcopy/${lost.lPhoto eq null ? "noimg.gif" : lost.lPhoto}'
-					width="400" height="410">
+					width="400" height="345">
 			</div>
 			<table id="up_table">
 				<col style="width: 150px;">
 				<col style="width: 200px;">
 				<tr>
-					<th>제목</th>
+					<th>분실물명</th>
 					<td>${lost.lTitle }</td>
 				</tr>
 				<tr>
@@ -79,8 +79,10 @@
 				</table>
 			</div>
 			<div class="btn_wrap">
-				<button onclick="location.href='${conPath}/lostUpdate_view.laf?lNo=${param.lNo }&pageNum=${param.pageNum}'">수정</button>
-				<button onclick="location.href='${conPath}/lostCancel.laf?lNo=${param.lNo }&pageNum=${param.pageNum}'">등록취소</button>
+				<c:if test="${member != null && member.mId eq lost.mId }">
+					<button onclick="location.href='${conPath}/lostUpdate_view.laf?lNo=${param.lNo }&pageNum=${param.pageNum}'">수정</button>
+					<button onclick="location.href='${conPath}/lostCancel.laf?lNo=${param.lNo }&pageNum=${param.pageNum}'">등록취소</button>
+				</c:if>
 				<button onclick="location.href='${conPath}/lostList.laf?pageNum=${param.pageNum}'">목록</button>
 			</div>
 		</div>
