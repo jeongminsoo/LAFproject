@@ -2,6 +2,68 @@
 
 #main_wrap {
 	height : 400px;
-	line-height : 400px;
 	text-align : center;
+}
+
+#main_wrap .search {
+	margin-top : 100px;
+}
+
+#main_wrap .search table {
+	border-spacing: 0;
+    border-collapse: collapse;
+	font-size : 1.1em;
+	border : 2px solid #2e8fe3;
+	width : 1000px;
+	margin : 0 auto;
+}
+
+#main_wrap .search table caption {
+	text-align : left;
+	font-weight : bold;
+	font-size : 1.3em;
+	margin-bottom : 10px;
+	color : #0e0e5b;
+}
+
+#main_wrap .search table tr {
+	height : 60px;
+}
+
+#main_wrap .search table tr:last-child {
+	height : 40px;
+	text-align : center;
+}
+
+#main_wrap .search table tr th {
+	text-align : left;
+	padding-left : 10px;
+	width : 120px;
+}
+
+.fLocal, .fOb {
+	width : 200px;
+	font-size : 1em;
+}
+
+.fTitle {
+	width : 400px;
+	font-size : 1em;
+}
+
+.btn {
+	background : #0e0e5b;
+	color : white;
+	font-weight : bold;
+	font-size : 1.2em;
+	width : 80px;
+	height : 100%;
+	margin-bottom : 10px;
+	cursor : pointer;
+	border-radius : 4px;
+}
+
+.tempDate1, .tempDate2 {
+	width : 200px;
+	font-size : 1em;
 }

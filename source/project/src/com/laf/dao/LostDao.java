@@ -534,4 +534,75 @@ public class LostDao {
 			return cnt;
 		}
 		
+		// 분실물 상세검색
+		public ArrayList<LostDto> detailSearch(String lOb, String lTitle, Date lDate1, Date lDate2, String lLocal, int start, int end) {
+			ArrayList<LostDto> dtos = new ArrayList<LostDto>();
+			
+			Connection 				conn 	= null;
+			PreparedStatement 		pstmt 	= null;
+			ResultSet 				rs 		= null;
+			
+			String 					sql 	= "SELECT *" + 
+												" FROM (SELECT ROWNUM RN, A.*" + 
+														" FROM (SELECT L.*, MNAME, CODENAME LCC" + 
+																" FROM LOST L, LAF_MEMBER M, LST_CODE LC" + 
+																" WHERE L.LOB LIKE '%'||?||'%' AND L.LTITLE LIKE '%'||?||'%'" + 
+																	" AND L.LDATE BETWEEN ? AND ?" + 
+																	" AND L.LLOCAL = ? AND NOT L.LSTCODE = 'LST02'" + 
+																	" AND L.MID = L.MID AND L.LSTCODE = LC.LSTCODE ORDER BY LDATE DESC) A)" + 
+												" WHERE RN BETWEEN ? AND ?";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, lOb);
+				pstmt.setString(2, lTitle);
+				pstmt.setDate(3, lDate1);
+				pstmt.setDate(4, lDate2);
+				pstmt.setString(5, lLocal);
+				pstmt.setInt(6, start);
+				pstmt.setInt(7, end);
+				rs 		= 	pstmt.executeQuery();
+				
+				while (rs.next()) {
+					String  mId			=	rs.getString("mid");
+					String 	lNo			=	rs.getString("lno");
+					lTitle				=	rs.getString("ltitle");
+					String 	lContent	=	rs.getString("lcontent");
+					Date 	lRdate		=	rs.getDate("lrdate");
+					lOb					=	rs.getString("lob");
+					lLocal				=	rs.getString("llocal");
+					String	lLocation	=	rs.getString("llocation");
+					Date 	lDate		=	rs.getDate("ldate");
+					String 	lPhoto		=	rs.getString("lphoto");
+					int 	lHit		=	rs.getInt("lhit");
+					String 	lTel		=	rs.getString("ltel");
+					String 	lIp			=	rs.getString("lip");
+					String 	mName		=	rs.getNString("mname");
+					String 	lstCode		=	rs.getString("lstcode");
+					String 	lcc			=	rs.getString("lcc");
+				
+					dtos.add(new LostDto(lNo, lTitle, lContent, mId, lRdate, lOb, lLocal, lLocation, lDate, lPhoto, lHit, lTel, lIp, mName, lstCode, lcc));
+				}
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return dtos;
+		}
 }

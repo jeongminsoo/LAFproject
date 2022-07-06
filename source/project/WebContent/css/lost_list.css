@@ -14,14 +14,14 @@ a {
 }
 
 #list_wrap {
-	width : 1500px;
+	width : 1400px;
 	margin : 50px auto;
 	overflow : hidden;
 }
 
 #list_wrap .snb {
 	float : left;
-	margin-right : 50px;
+	height : 800px;
 }
 
 #list_wrap .snb ul li {
@@ -46,8 +46,63 @@ a {
 	color : black;
 }
 
-#sub_wrap {
-	float : left;
+#list_wrap .search table {
+	border-spacing: 0;
+    border-collapse: collapse;
+	font-size : 1.1em;
+	border : 2px solid #2e8fe3;
+	width : 1000px;
+	margin : 0 auto;
+}
+
+#list_wrap .search table caption {
+	text-align : left;
+	font-weight : bold;
+	font-size : 1.3em;
+	margin-bottom : 10px;
+	color : #0e0e5b;
+}
+
+#list_wrap .search table tr {
+	height : 60px;
+}
+
+#list_wrap .search table tr:last-child {
+	height : 40px;
+	text-align : center;
+}
+
+#list_wrap .search table tr th {
+	text-align : left;
+	padding-left : 10px;
+	width : 120px;
+}
+
+.lLocal, .lOb {
+	width : 200px;
+	font-size : 1em;
+}
+
+.lTitle {
+	width : 400px;
+	font-size : 1em;
+}
+
+.btn {
+	background : #0e0e5b;
+	color : white;
+	font-weight : bold;
+	font-size : 1.2em;
+	width : 80px;
+	height : 100%;
+	margin-bottom : 10px;
+	cursor : pointer;
+	border-radius : 4px;
+}
+
+.tempDate1, .tempDate2 {
+	width : 200px;
+	font-size : 1em;
 }
 
 #sub_wrap .content {
@@ -62,17 +117,18 @@ a {
 	border-top : 3px solid #2e8fe3;
 	border-spacing: 0;
     border-collapse: collapse;
-    font-size : 0.8em;
+    font-size : 0.9em;
 }
 
 #sub_wrap .content table tr {
 	border-bottom : 1px solid #c6c6c6;
+	height : 40px;
 }
 
 #sub_wrap .content table tr:first-child {
 	background : #d6e8f8;
 	height : 50px;
-	font-size : 0.9em;
+	font-size : 1em;
 }
 
 .title {
@@ -84,10 +140,8 @@ a {
 }
 
 .paging {
-	width : 500px;
-	height : 50px;
-	line-height : 50px;
-	margin : 0 auto;
+	height : 60px;
+	line-height : 60px;
 	text-align : center;
 }
 

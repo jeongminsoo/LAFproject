@@ -45,9 +45,8 @@
 				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
 					<li>관리자</li>
 					<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
-					<li><a href="${conPath }/memberList.laf">회원관리</a></li>
-					<li><a href="${conPath }/adminList.laf">관리자관리</a></li>
 					<c:if test="${member.pwCode eq \"PW10\" }">
+						<li><a href="${conPath }/memberList.laf">회원관리</a></li>
 						<li><a href="${conPath }/add_view.laf">관리자추가</a></li>
 					</c:if>
 					<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
@@ -80,6 +79,10 @@
 			<tr>
 				<th>거주지</th>
 				<td>${member.mAddress }</td>
+			</tr>
+			<tr>
+				<th>가입일</th>
+				<td>${member.mRdate }</td>
 			</tr>
 		</table>
 		</div>

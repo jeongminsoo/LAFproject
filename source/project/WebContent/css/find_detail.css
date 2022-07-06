@@ -13,19 +13,18 @@ a {
 	text-decoration : none;
 }
 
-#list_wrap {
+#search_wrap {
 	width : 1400px;
 	margin : 50px auto;
 	overflow : hidden;
 }
 
-#list_wrap .snb {
+#search_wrap .snb {
 	float : left;
-	margin-right : 50px;
-	height : 800px;
+	height : 800px; 
 }
 
-#list_wrap .snb ul li {
+#search_wrap .snb ul li {
 	width : 250px;
 	height : 50px;
 	line-height : 50px;
@@ -33,7 +32,7 @@ a {
 	border-bottom : 1px solid #d8d8d8;
 }
 
-#list_wrap .snb ul li:first-child {
+#search_wrap .snb ul li:first-child {
 	height : 80px;
 	line-height : 80px;
 	color : white;
@@ -43,46 +42,49 @@ a {
 	border : none;
 }
 
-#list_wrap .snb ul li a {
+#search_wrap .snb ul li a {
 	color : black;
 }
 
-#list_wrap .search table {
+#search_wrap .search table {
 	border-spacing: 0;
     border-collapse: collapse;
 	font-size : 1.1em;
 	border : 2px solid #2e8fe3;
 	width : 1000px;
-	margin : 50px auto;
+	margin : 0 auto;
 }
 
-#list_wrap .search table tr {
+#search_wrap .search table caption {
+	text-align : left;
+	font-weight : bold;
+	font-size : 1.3em;
+	margin-bottom : 10px;
+	color : #0e0e5b;
+}
+
+#search_wrap .search table tr {
 	height : 60px;
 }
 
-#list_wrap .search table tr:last-child {
+#search_wrap .search table tr:last-child {
 	height : 40px;
 	text-align : center;
 }
 
-
-
-#list_wrap .search table tr th {
+#search_wrap .search table tr th {
 	text-align : left;
 	padding-left : 10px;
 	width : 120px;
 }
 
-.mId, .mName {
+.fLocal, .fOb {
 	width : 200px;
 	font-size : 1em;
 }
 
-.mstCode, .pwCode {
-	font-size : 1em;
-}
-
-.mAddress {
+.fTitle {
+	width : 400px;
 	font-size : 1em;
 }
 
@@ -103,33 +105,46 @@ a {
 	font-size : 1em;
 }
 
-.content {
+#list_wrap .list {
 	width : 1000px;
 	margin : 0 auto;
 	overflow : hidden;
 	padding-top : 30px;
 }
 
-.content table {
+#list_wrap .list table {
 	text-align : center;
 	border-top : 3px solid #2e8fe3;
 	border-spacing: 0;
     border-collapse: collapse;
     font-size : 0.9em;
-    text-align : center;
 }
 
-.content table tr {
+#list_wrap .list table tr {
 	border-bottom : 1px solid #c6c6c6;
 	height : 40px;
 }
 
-.content table tr:first-child {
+#list_wrap .list table tr:first-child {
 	background : #d6e8f8;
 	height : 50px;
 	font-size : 1em;
 }
 
-.content_title {
+.title {
 	text-align : left;
+}
+
+.title a {
+	color : black;
+}
+
+.paging {
+	height : 60px;
+	line-height : 60px;
+	text-align : center;
+}
+
+.paging a {
+	color : black;
 }

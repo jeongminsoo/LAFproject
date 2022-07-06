@@ -701,4 +701,141 @@ public class MemberDao {
 		}
 		return cnt;
 	}
+	
+	// 회원 상세검색
+	public ArrayList<MemberDto> memberDetailSearch(String mId, String mName, String mAddress, String mstCode, String pwCode, Date mRdate1, Date mRdate2) {
+		ArrayList<MemberDto> dtos = new ArrayList<MemberDto>();
+		
+		Connection 				conn 	= null;
+		PreparedStatement 		pstmt 	= null;
+		ResultSet 				rs 		= null;
+		
+		String 					sql 	= "SELECT * FROM (SELECT M.*, PC.CODENAME PCC, MC.CODENAME MCC FROM LAF_MEMBER M, PW_CODE PC, MST_CODE MC" + 
+															" WHERE M.PWCODE = PC.PWCODE AND M.MSTCODE = MC.MSTCODE ORDER BY M.MSTCODE, MRDATE DESC, MID)" + 
+											" WHERE MID LIKE '%'||?||'%' AND MNAME LIKE '%'||?||'%' AND MADDRESS LIKE '%'||?||'%'" + 
+												" AND MSTCODE LIKE '%'||?||'%' AND PWCODE LIKE '%'||?||'%' AND MRDATE BETWEEN ? AND ?";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			pstmt.setString(2, mName);
+			pstmt.setString(3, mAddress);
+			pstmt.setString(4, mstCode);
+			pstmt.setString(5, pwCode);
+			pstmt.setDate(6, mRdate1);
+			pstmt.setDate(7, mRdate2);
+			rs 		= 	pstmt.executeQuery();
+			
+			while (rs.next()) {
+				mId						=	rs.getString("mid");
+				String	mPw				=	rs.getString("mpw");
+				mName					=	rs.getString("mname");
+				String 	mEmailId		=	rs.getString("memailId");
+				String  mEmailDomain	=	rs.getString("memaildomain");
+				mAddress				=	rs.getString("maddress");
+				String 	mTel1			=	rs.getString("mtel1");
+				String 	mTel2			=	rs.getString("mtel2");
+				String 	mTel3			=	rs.getString("mtel3");
+				Date 	mBirth			=	rs.getDate("mbirth");
+				Date 	mRdate			=	rs.getDate("mrdate");
+				String	mQuiz			=	rs.getString("mquiz");
+				String	mAnswer			=	rs.getString("manswer");
+				pwCode					=	rs.getString("pwcode");
+				String  pcc				=	rs.getString("pcc");
+				mstCode					=	rs.getString("mstcode");
+				String	mcc				=	rs.getString("mcc");
+				
+				dtos.add(new MemberDto(mId, mPw, mName, mEmailId, mEmailDomain, mAddress, mTel1, mTel2, mTel3, mBirth, mQuiz, mAnswer, mRdate, pwCode, pcc, mstCode, mcc));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return dtos;
+	}
+	
+	// 권한변경
+	public int powerChange(String mId, String pwCode) {
+		int result = FAIL;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		
+		String 				sql 	= "UPDATE LAF_MEMBER SET PWCODE = ? WHERE MID = ?";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			pstmt.setString(1, pwCode);
+			pstmt.setString(2, mId);
+			result 	= 	pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		return result;
+	}
+	
+	// 사용중단 처리
+	public int stopMember(String mId, String mstCode) {
+		int result = FAIL;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		
+		String 				sql 	= "UPDATE LAF_MEMBER SET MSTCODE = ? WHERE MID = ?";
+		
+		try {
+			
+			conn 	= 	ds.getConnection();
+			pstmt 	= 	conn.prepareStatement(sql);
+			pstmt.setString(1, mstCode);
+			pstmt.setString(2, mId);
+			result 	= 	pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
 }

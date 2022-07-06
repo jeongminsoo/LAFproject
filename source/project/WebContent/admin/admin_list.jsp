@@ -22,10 +22,10 @@
 			<ul>
 				<li>관리자</li>
 				<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
-				<li><a href="${conPath }/memberList.laf">회원관리</a></li>
-				<li><a href="${conPath }/adminList.laf">관리자관리</a></li>
+				
 				<c:if
 					test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
+					<li><a href="${conPath }/memberList.laf">회원관리</a></li>
 					<li><a href="${conPath }/add_view.laf">관리자추가</a></li>
 				</c:if>
 			</ul>

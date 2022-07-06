@@ -553,7 +553,7 @@ public class FindDao {
 																" WHERE F.FOB LIKE '%'||?||'%' AND F.FTITLE LIKE '%'||?||'%'" + 
 																	" AND F.FDATE BETWEEN ? AND ?" + 
 																	" AND F.FLOCAL = ? AND NOT F.FSTCODE = 'FST02'" + 
-																	" AND F.MID = M.MID AND F.FSTCODE = FC.FSTCODE ORDER BY FDATE) A)" + 
+																	" AND F.MID = M.MID AND F.FSTCODE = FC.FSTCODE ORDER BY FDATE DESC) A)" + 
 												" WHERE RN BETWEEN ? AND ?";
 			
 			try {
@@ -572,8 +572,11 @@ public class FindDao {
 				while (rs.next()) {
 					String  mId			=	rs.getString("mid");
 					String 	fNo			=	rs.getString("fno");
+					fTitle				=	rs.getString("ftitle");
 					String 	fContent	=	rs.getString("fcontent");
 					Date 	fRdate		=	rs.getDate("frdate");
+					fOb					=	rs.getString("fob");
+					fLocal				=	rs.getString("flocal");
 					String 	fLocation	=	rs.getString("flocation");
 					Date 	fDate		=	rs.getDate("fdate");
 					String	fStorage	= 	rs.getString("fstorage");
@@ -581,10 +584,11 @@ public class FindDao {
 					int 	fHit		=	rs.getInt("fhit");
 					String 	fTel		=	rs.getString("ftel");
 					String 	fIp			=	rs.getString("fip");
+					String 	mName		=	rs.getNString("mname");
 					String 	fstCode		=	rs.getString("fstcode");
 					String 	fcc			=	rs.getString("fcc");
 				
-					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, null, fstCode, fcc));
+					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, fstCode, fcc));
 				}
 				
 			} catch (SQLException e) {
@@ -605,5 +609,54 @@ public class FindDao {
 				}
 			}
 			return dtos;
+		}
+		
+		public int countDetailSearch(String fOb, String fTitle, Date fDate1, Date fDate2, String fLocal) {
+			int cnt = 0;
+			
+			Connection 				conn 	= null;
+			PreparedStatement 		pstmt 	= null;
+			ResultSet 				rs 		= null;
+			
+			String 					sql 	= "SELECT COUNT(*) CNT FROM (SELECT *" + 
+																			" FROM (SELECT ROWNUM RN, A.*" + 
+																					" FROM (SELECT F.*, MNAME, CODENAME FCC" + 
+																							" FROM FIND F, LAF_MEMBER M, FST_CODE FC" + 
+																							" WHERE F.FOB LIKE '%'||?||'%' AND F.FTITLE LIKE '%'||?||'%'" + 
+																								" AND F.FDATE BETWEEN ? AND ?" + 
+																								" AND F.FLOCAL = ? AND NOT F.FSTCODE = 'FST02'" + 
+																								" AND F.MID = M.MID AND F.FSTCODE = FC.FSTCODE ORDER BY FDATE) A))";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, fOb);
+				pstmt.setString(2, fTitle);
+				pstmt.setDate(3, fDate1);
+				pstmt.setDate(4, fDate2);
+				pstmt.setString(5, fLocal);
+				rs 		= 	pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt("cnt");
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return cnt;
 		}
 }

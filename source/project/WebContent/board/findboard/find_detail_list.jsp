@@ -1,57 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath}" />
+<c:set var="conPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${conPath}/css/find_list.css" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(document).ready(function() {
-	});
-</script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="${conPath}/css/find_detail.css" rel="stylesheet">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+			$(document).ready(function(){
+			});
+	</script>
 </head>
 <body>
-	<c:if test="${findWriteResult eq 0 }">
-		<script>
-			alert('습득물 등록에 실패하였습니다. 입력한 정보를 확인 후 다시 시도하세요.');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${findWriteResult eq 1 }">
-		<script>
-			alert('등록되었습니다.');
-		</script>
-	</c:if>
-	<c:if test="${findUpdateResult eq 0 }">
-		<script>
-			alert('내용수정에 실패하였습니다. 입력한 정보를 확인 후 다시 시도하세요.');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${findUpdateResult eq 1 }">
-		<script>
-			alert('수정되었습니다.');
-		</script>
-	</c:if>
-	<c:if test="${findCancelResult eq 0 }">
-		<script>
-			alert('등록취소에 실패하였습니다.해당 글이 이미 삭제 또는 등록취소되었거나 잘못된 경로입니다.');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${findCancelResult eq 1 }">
-		<script>
-			alert('등록이 취소되었습니다.');
-		</script>
-	</c:if>
 	<jsp:include page="/main/header.jsp" />
-	<div id="list_wrap">
+	<div id="search_wrap">
 		<div class="snb">
 			<ul>
 				<li>습득물</li>
@@ -67,63 +34,63 @@
 						<th>지역구분</th>
 						<td><select name="fLocal" class="fLocal" size="1">
 								<option
-									${member.mAddress == "서울특별시" ? "selected=\"selected\"" : ""}>서울특별시</option>
+									${fLocal == "서울특별시" ? "selected=\"selected\"" : ""}>서울특별시</option>
 								<option
-									${member.mAddress == "경기도" ? "selected=\"selected\"" : ""}>경기도</option>
+									${fLocal == "경기도" ? "selected=\"selected\"" : ""}>경기도</option>
 								<option
-									${member.mAddress == "인천광역시" ? "selected=\"selected\"" : ""}>인천광역시</option>
+									${fLocal == "인천광역시" ? "selected=\"selected\"" : ""}>인천광역시</option>
 								<option
-									${member.mAddress == "강원도" ? "selected=\"selected\"" : ""}>강원도</option>
+									${fLocal == "강원도" ? "selected=\"selected\"" : ""}>강원도</option>
 								<option
-									${member.mAddress == "충청북도" ? "selected=\"selected\"" : ""}>충청북도</option>
+									${fLocal == "충청북도" ? "selected=\"selected\"" : ""}>충청북도</option>
 								<option
-									${member.mAddress == "충청남도" ? "selected=\"selected\"" : ""}>충청남도</option>
+									${fLocal == "충청남도" ? "selected=\"selected\"" : ""}>충청남도</option>
 								<option
-									${member.mAddress == "대전광역시" ? "selected=\"selected\"" : ""}>대전광역시</option>
+									${fLocal == "대전광역시" ? "selected=\"selected\"" : ""}>대전광역시</option>
 								<option
-									${member.mAddress == "세종특별자치시" ? "selected=\"selected\"" : ""}>세종특별자치시</option>
+									${fLocal == "세종특별자치시" ? "selected=\"selected\"" : ""}>세종특별자치시</option>
 								<option
-									${member.mAddress == "전라북도" ? "selected=\"selected\"" : ""}>전라북도</option>
+									${fLocal == "전라북도" ? "selected=\"selected\"" : ""}>전라북도</option>
 								<option
-									${member.mAddress == "전라남도" ? "selected=\"selected\"" : ""}>전라남도</option>
+									${fLocal == "전라남도" ? "selected=\"selected\"" : ""}>전라남도</option>
 								<option
-									${member.mAddress == "광주광역시" ? "selected=\"selected\"" : ""}>광주광역시</option>
+									${fLocal == "광주광역시" ? "selected=\"selected\"" : ""}>광주광역시</option>
 								<option
-									${member.mAddress == "경상북도" ? "selected=\"selected\"" : ""}>경상북도</option>
+									${fLocal == "경상북도" ? "selected=\"selected\"" : ""}>경상북도</option>
 								<option
-									${member.mAddress == "경산남도" ? "selected=\"selected\"" : ""}>경산남도</option>
+									${fLocal == "경산남도" ? "selected=\"selected\"" : ""}>경산남도</option>
 								<option
-									${member.mAddress == "울산광역시" ? "selected=\"selected\"" : ""}>울산광역시</option>
+									${fLocal == "울산광역시" ? "selected=\"selected\"" : ""}>울산광역시</option>
 								<option
-									${member.mAddress == "대구광역시" ? "selected=\"selected\"" : ""}>대구광역시</option>
+									${fLocal == "대구광역시" ? "selected=\"selected\"" : ""}>대구광역시</option>
 								<option
-									${member.mAddress == "부산광역시" ? "selected=\"selected\"" : ""}>부산광역시</option>
+									${fLocal == "부산광역시" ? "selected=\"selected\"" : ""}>부산광역시</option>
 								<option
-									${member.mAddress == "제주특별자치도" ? "selected=\"selected\"" : ""}>제주특별자치도</option>
+									${fLocal == "제주특별자치도" ? "selected=\"selected\"" : ""}>제주특별자치도</option>
 						</select></td>
 						<th>습득물명</th>
-						<td><input type="text" name="fTitle" class="fTitle"></td>
+						<td><input type="text" name="fTitle" class="fTitle" value="${fTitle }"></td>
 					</tr>
 					<tr>
 						<th>물품구분</th>
 						<td><select name="fOb" class="fOb" size="1">
 								<option value="">분류</option>
-								<option>지갑</option>
-								<option>서류</option>
-								<option>가방</option>
-								<option>핸드폰</option>
-								<option>옷</option>
-								<option>책</option>
-								<option>귀금속</option>
-								<option>쇼핑백</option>
-								<option>전자기기</option>
-								<option>카드</option>
-								<option>기타</option>
+								<option ${fOb == "지갑" ? "selected=\"selected\"" : "" }>지갑</option>
+								<option ${fOb == "서류" ? "selected=\"selected\"" : "" }>서류</option>
+								<option ${fOb == "가방" ? "selected=\"selected\"" : "" }>가방</option>
+								<option ${fOb == "핸드폰" ? "selected=\"selected\"" : "" }>핸드폰</option>
+								<option ${fOb == "옷" ? "selected=\"selected\"" : "" }>옷</option>
+								<option ${fOb == "책" ? "selected=\"selected\"" : "" }>책</option>
+								<option ${fOb == "귀금속" ? "selected=\"selected\"" : "" }>귀금속</option>
+								<option ${fOb == "쇼핑백" ? "selected=\"selected\"" : "" }>쇼핑백</option>
+								<option ${fOb == "전자기기" ? "selected=\"selected\"" : "" }>전자기기</option>
+								<option ${fOb == "카드" ? "selected=\"selected\"" : "" }>카드</option>
+								<option ${fOb == "기타" ? "selected=\"selected\"" : "" }>기타</option>
 						</select></td>
 						<th>습득일</th>
 						<td><input type="text" name="tempDate1" class="tempDate1"
-							id="datepicker"> ~ <input type="text" name="tempDate2"
-							class="tempDate2" id="datepicker2"></td>
+							id="datepicker" value="${tempDate1 }"> ~ <input type="text" name="tempDate2"
+							class="tempDate2" id="datepicker2" value="${tempDate2 }"></td>
 					</tr>
 					<tr>
 						<td colspan="4"><input type="submit" value="검색" class="btn"></td>
@@ -131,11 +98,11 @@
 				</table>
 			</form>
 		</div>
-		<div id="sub_wrap">
-			<div class="content">
+		<div id="list_wrap">
+			<div class="list">
 				<table>
 					<col style="width: 160px;">
-					<col style="width: 110px;">
+					<col style="width: 100px;">
 					<col style="width: 100px;">
 					<col style="width: 200px;">
 					<col style="width: 150px;">
@@ -156,7 +123,7 @@
 					</tr>
 					<c:if test="${finds.size() eq 0 }">
 						<tr>
-							<td colspan="9">등록된 습득물이 없습니다</td>
+							<td colspan="9">검색 결과가 없습니다</td>
 						</tr>
 					</c:if>
 					<c:if test="${finds.size() != 0 }">
@@ -175,7 +142,8 @@
 								<td>${f.mName }</td>
 								<td>${f.fTel }</td>
 								<td>${f.fDate }</td>
-								<td><fmt:formatNumber value="${f.fHit }" pattern="#,###" />
+								<td>
+									<fmt:formatNumber value="${f.fHit }" pattern="#,###"/>							
 								</td>
 							</tr>
 						</c:forEach>
@@ -184,18 +152,18 @@
 			</div>
 			<div class="paging">
 				<a
-					href="${conPath }/findList.laf?pageNum=${startPage - 1 eq 0 ? 1 : startPage-1}"><img
+					href="${conPath }/findDetailSearch.laf?pageNum=${startPage - 1 eq 0 ? 1 : startPage-1}"><img
 					src="${conPath }/img/btn01.gif"></a>
 				<c:forEach var="j" begin="${startPage }" end="${endPage }">
 					<c:if test="${j eq currentPage }">
 						<b> ${j } </b>
 					</c:if>
 					<c:if test="${j != currentPage }">
-						<a href="${conPath }/findList.laf?pageNum=${j}"> ${j } </a>
+						<a href="${conPath }/findDetailSearch.laf?pageNum=${j}"> ${j } </a>
 					</c:if>
 				</c:forEach>
 				<a
-					href="${conPath }/findList.laf?pageNum=${endPage == pageCnt ? endPage : endPage + 1 }"><img
+					href="${conPath }/findDetailSearch.laf?pageNum=${endPage == pageCnt ? endPage : endPage + 1 }"><img
 					src="${conPath }/img/btn0010.gif"></a>
 			</div>
 		</div>

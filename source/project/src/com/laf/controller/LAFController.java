@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.laf.service.FindCancelService;
 import com.laf.service.FindContentService;
 import com.laf.service.FindListService;
+import com.laf.service.FindSearchResultService;
 import com.laf.service.FindUpdateService;
 import com.laf.service.FindWriteService;
 import com.laf.service.GetFindService;
@@ -24,9 +25,11 @@ import com.laf.service.LoginService;
 import com.laf.service.LostCancelService;
 import com.laf.service.LostContentService;
 import com.laf.service.LostDeleteService;
+import com.laf.service.LostDetailSearchService;
 import com.laf.service.LostListService;
 import com.laf.service.LostUpdateService;
 import com.laf.service.LostWriteService;
+import com.laf.service.MemberDetailSearchService;
 import com.laf.service.MemberListService;
 import com.laf.service.ModifyService;
 import com.laf.service.MyFindListService;
@@ -47,9 +50,12 @@ import com.laf.service.QuizChkService;
 import com.laf.service.SearchIdService;
 import com.laf.service.SearchPwService;
 import com.laf.service.Service;
+import com.laf.service.StopMemberService;
 import com.laf.service.AddService;
 import com.laf.service.AdminListService;
-import com.laf.service.DetailSearchService;
+import com.laf.service.BeforeChangeService;
+import com.laf.service.ChangePowerService;
+import com.laf.service.FindDetailSearchService;
 
 
 @WebServlet("*.laf")
@@ -397,11 +403,56 @@ public class LAFController extends HttpServlet {
 				view = false;
 			}
 			viewPage = "/adminList.laf";
-		} else if (com.equals("/detailSearch.laf")) {
-			service = new DetailSearchService();
+			
+		// 습득물 상세 검색 결과 리스트
+		} else if (com.equals("/findDetailSearch.laf")) {
+			service = new FindDetailSearchService();
 			service.execute(request, response);
 			viewPage = "board/findboard/find_detail.jsp";
+			
+		// 습득물 상세검색 paging을 위한 리스트 laf
+		} else if (com.equals("/findDetailList.laf")) {
+			service = new FindSearchResultService();
+			service.execute(request, response);
+			viewPage = "board/findboard/find_detail.jsp";
+			
+		// 습득물 상세검색 상세보기
+		} else if (com.equals("/findDetailContent.laf")) {
+			service = new GetFindService();
+			service.execute(request, response);
+			viewPage = "board/findboard/find_detail_content.jsp";
+
+		// 분실물 상세 검색 결과 리시트
+		} else if (com.equals("/lostDetailSearch.laf")) {
+			service = new LostDetailSearchService();
+			service.execute(request, response);
+			viewPage = "board/lostboard/lost_detail.jsp";
+			
+			
+		} else if (com.equals("/memberDetailSearch.laf")) {
+			service = new MemberDetailSearchService();
+			service.execute(request, response);
+			viewPage = "admin/member_detail.jsp";
+			
+			
+		} else if (com.equals("/changePower.laf")) {
+			service = new ChangePowerService();
+			service.execute(request, response);
+			viewPage = "/memberDetailSearch.laf";
+			
+			
+		} else if (com.equals("/stopMember.laf")) {
+			service = new StopMemberService();
+			service.execute(request, response);
+			viewPage = "/memberDetailSearch.laf";
+			
+			
+		} else if (com.equals("/beforeChange.laf")) {
+			service = new BeforeChangeService();
+			service.execute(request, response);
+			viewPage = "admin/change_power.jsp";
 		}
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);
