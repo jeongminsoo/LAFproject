@@ -42,7 +42,7 @@
 			<div class="write">
 				<table>
 					<col style="width : 200px;">
-					<col style="width : 500px;">
+					<col style="width : 600px;">
 					<tr>
 						<th><span>＊</span>물품구분</th>
 						<td><select name="lOb" class="lOb" size="1">
@@ -124,8 +124,8 @@
 						<td><input type="text" name="lTitle" class="lTitle"></td>
 					</tr>
 					<tr>
-						<th class="t_a"><span>＊</span>내용</th>
-						<td><textarea name="lContent" class="lContent" rows="10" cols="10"></textarea></td>
+						<th><span>＊</span>내용</th>
+						<td style="height : 200px; padding : 10px"><textarea name="lContent" class="lContent" rows="15" cols="10"></textarea></td>
 					</tr>
 					<tr>
 						<th>이미치 첨부</th>

@@ -46,7 +46,7 @@
 	<c:if test="${pwChangeSuccess != null }">
 		<script>
 			alert('${pwChangeSuccess}');
-			location.href='${conPath}/login_view.laf';
+			location.href = '${conPath}/login_view.laf';
 		</script>
 	</c:if>
 	<c:if test="${pwChangeFail != null }">
@@ -54,22 +54,42 @@
 			alert('${pwChangeFail}');
 		</script>
 	</c:if>
+	<c:if test="${member == null }">
+		<script>
+			alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
+			location.href = '${conPath}/login_view.laf?msg=find';
+		</script>
+	</c:if>
+	
 	<jsp:include page="../main/header.jsp" />
 	<div id="change_wrap">
 		<div class="snb">
 			<ul>
-				<li>마이페이지</li>
-				<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
-				<li><a href="${conPath }/myFindList.laf">습득물 관리</a></li>
-				<li><a href="${conPath }/myLostList.laf">분실물 관리</a></li>
-				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+				<c:if test="${member.pwCode eq \"PW00\" }">
+					<li>마이페이지</li>
+					<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+					<li><a href="${conPath }/myFindList.laf">습득물 관리</a></li>
+					<li><a href="${conPath }/myLostList.laf">분실물 관리</a></li>
+					<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+				</c:if>
+				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\"}">
+					<li>관리자</li>
+					<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+					<c:if test="${member.pwCode eq \"PW10\" }">
+						<li><a href="${conPath }/memberList.laf">회원관리</a></li>
+						<li><a href="${conPath }/add_view.laf">관리자추가</a></li>
+					</c:if>
+					<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+				</c:if>
+				
 			</ul>
 		</div>
 		<div class="content_title">
 			<h1>비밀번호 변경</h1>
 		</div>
-		<div class="change">
-			<form action="${conPath }/pw_change.laf" method="post">
+		<hr color="#2e8fe3">
+		<form action="${conPath }/pw_change.laf" method="post">
+			<div class="change">
 				<table>
 					<col style="width: 200px;">
 					<col style="width: 400px;">
@@ -89,8 +109,8 @@
 				<div class="btn_wrap2">
 					<input type="submit" value="비밀번호 변경" class="btn">
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 	<jsp:include page="../main/footer.jsp" />
 </body>

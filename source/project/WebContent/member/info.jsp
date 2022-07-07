@@ -9,17 +9,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath}/css/info.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	var member = '${member}';
-
-	if (member == "") {
-		alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
-		location.href = '${conPath}/login_view.laf?msg=info';
+	function answerConfirm() {
+		var answer = confirm("정말 탈퇴하시겠습니까?");
+		if (answer == true) {
+			location.href = '${conPath}/leaveMember.laf';
+		} else {
+			alert('회원 탈퇴를 취소하였습니다.');
+		}
 	}
 </script>
 </head>
 <body>
+	<c:if test="${addResult == 0 }">
+		<script>
+			alert('관리자 추가에 실패하였습니다. 입력한 정보를 확인 후 다시 시도해주세요.');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${addResult == 1 }">
+		<script>
+			alert('추가되었습니다.');
+		</script>
+	</c:if>
+	<c:if test="${member == null }">
+		<script>
+			alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
+			location.href = '${conPath}/login_view.laf?msg=find';
+		</script>
+	</c:if>
 	<c:if test="${modifyResult eq 0 }">
 		<script>
 			alert('정보수정에 실패하였습니다. 입력한 정보를 확인 후 다시 시도해주세요.');
@@ -56,6 +74,7 @@
 		<div class="content_title">
 			<h1>회원정보</h1>
 		</div>
+		<hr color="#2e8fe3">
 		<div class="info">
 		<table>
 			<col style="width: 200px;">
@@ -88,7 +107,7 @@
 		</div>
 		<div class="btn_wrap">
 			<button onclick="location.href='${conPath}/modify_view.laf'">정보수정</button>
-			<button onclick="location.href='${conPath}/leaveMember_view.laf'">회원탈퇴</button>
+			<button onclick="answerConfirm()">회원탈퇴</button>
 		</div>
 	</div>
 	<jsp:include page="../main/footer.jsp" />

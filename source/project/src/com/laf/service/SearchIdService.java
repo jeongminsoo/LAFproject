@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.laf.dao.MemberDao;
+import com.laf.dto.MemberDto;
 
 public class SearchIdService implements Service {
 
@@ -15,11 +16,19 @@ public class SearchIdService implements Service {
 
 		MemberDao dao = MemberDao.getInstance();
 		
+		
+		
 		String mId = dao.searchId(mName, mEmailId, mEmailDomain);
 		if (mId == null) {
 			request.setAttribute("searchIdResult", "입력한 정보와 일치한 아이디가 없습니다. 다시 시도해주세요");
 		} else {
-			request.setAttribute("mId", mId);
+			MemberDto dto = dao.getMember(mId);
+			if (dto.getMstCode().equals("MST10")) {
+				String idMsg = "해당 아이디는 사용이 중지된 아이디입니다. 다시 시도해주세요.";
+				request.setAttribute("idMsg", idMsg);
+			} else {
+				request.setAttribute("mId", mId);
+			}
 		}
 	}
 

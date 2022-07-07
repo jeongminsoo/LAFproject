@@ -1,11 +1,11 @@
 -- 회원가입
 INSERT INTO LAF_MEMBER (MID, MPW, MNAME, MEMAILID, MEMAILDOMAIN, MADDRESS, MTEL1, MTEL2, MTEL3, MBIRTH, MQUIZ, MANSWER)
-    VALUES ('aaa01', 'a123456789!', '홍길동', 'hong', 'naver.com', '서울특별시', '010', '3333', '3333', '1999-01-01', '으', '악');
+    VALUES ('aaa02', 'a123456789!', '홍길동', 'hong', 'naver.com', '서울특별시', '010', '3333', '3333', '1999-01-01', '으', '악');
 
 -- 관리자 추가
 INSERT INTO LAF_MEMBER (MID, MPW, MNAME, MEMAILID, MEMAILDOMAIN, MADDRESS, MTEL1, MTEL2, MTEL3, MBIRTH, MQUIZ, MANSWER, PWCODE)
-    VALUES ('admin02', 'a123456789!', '관리자', 'admin', 'naver.com', '서울특별시',
-                '010', '1234', '5678', SYSDATE, '관리자입니다', '관리자입니다','PW10');
+    VALUES ('admin01', 'a123456789!', '관리자', 'admin', 'naver.com', '서울특별시',
+                '010', '1234', '5678', SYSDATE, '관리자입니다', '관리자입니다','PW01');
 
 -- 로그인 체크
 SELECT * FROM LAF_MEMBER WHERE MID = 'aaa01' AND MPW = 'a123456789!';
@@ -57,7 +57,7 @@ SELECT A.*, PC.CODENAME PCC, MC.CODENAME MCC FROM (SELECT * FROM LAF_MEMBER WHER
 SELECT * FROM (SELECT M.*, PC.CODENAME PCC, MC.CODENAME MCC FROM LAF_MEMBER M, PW_CODE PC, MST_CODE MC
     WHERE M.PWCODE = PC.PWCODE AND M.MSTCODE = MC.MSTCODE ORDER BY M.MSTCODE, MRDATE DESC, MID)
     WHERE MID LIKE '%'||''||'%' AND MNAME LIKE '%'||''||'%' AND MADDRESS LIKE '%'||''||'%'
-        AND MSTCODE LIKE '%'||''||'%' AND PWCODE LIKE '%'||''||'%' AND MRDATE BETWEEN '2022-07-05' AND '2022-07-06';
+        AND MSTCODE LIKE '%'||''||'%' AND PWCODE LIKE '%'||''||'%' AND MRDATE > '2022-07-05' AND MRDATE <= '2022-07-06';
 
 -- 관리자 수
 SELECT COUNT(*) CNT FROM LAF_MEMBER WHERE PWCODE = 'PW01';

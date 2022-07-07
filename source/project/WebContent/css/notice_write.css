@@ -14,15 +14,15 @@ a {
 }
 
 #write_wrap {
-	width : 1200px;
+	width : 1400px;
 	margin : 50px auto;
 	overflow : hidden;
 }
 
 #write_wrap .snb {
 	float : left;
-	margin-right : 50px;
-	height : 700px;
+	margin-right : 100px;
+	height : 480px;
 }
 
 #write_wrap .snb ul li {
@@ -48,8 +48,7 @@ a {
 }
 
 .write {
-	width : 800px;
-	margin : 0 auto;
+	width : 1000px;
 	overflow : hidden;
 	padding-top : 30px;
 }
@@ -78,25 +77,24 @@ a {
 }
 
 .btn {
-	width : 180px;
-	height : 55px;
+	width : 120px;
+	height : 40px;
 	background : #2e8fe3;
 	color : white;
 	border : none;
-	font-size : 1.3em;
+	font-size : 1.2em;
 	margin : 30px 0;
 	cursor : pointer;
 	border-radius : 4px;
 }
 
 .btn_wrap {
-	text-align : center;
-	width : 600px;
+	width : 1000px;
 	margin : 0 auto;
 }
 
 input:not(.btn), textarea, select {
-	font-size : 1.3em;
+	font-size : 1.1em;
 	width : 100%;
 }
 
@@ -104,6 +102,6 @@ input:not(.btn), textarea, select {
 	color : red;
 }
 
-.content_title {
-	text-align : left;
+textarea {
+	resize : none;
 }

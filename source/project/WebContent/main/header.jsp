@@ -9,11 +9,6 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/header.css" rel="stylesheet">
-	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-			$(document).ready(function(){
-			});
-	</script>
 </head>
 <body>
 	<header>
@@ -34,6 +29,52 @@
 		</div>
 		<div id="laf_lnb">
 			<ul>
+				<li>
+					<input type="checkbox" id="all_menu">
+					<label for="all_menu" class="all_list" onclick="">&ensp; &ensp; &ensp; </label>
+					<div class="all">
+						<ul>
+							<li><a href="${conPath }/findList.laf">습득물 목록</a></li>
+							<li><a href="${conPath }/findWrite_view.laf">습득물 등록</a></li>
+						</ul>
+						<ul>
+							<li><a href="${conPath }/lostList.laf">분실물 목록</a></li>
+							<li><a href="${conPath }/lostWrite_view.laf">분실물 등록</a></li>
+						</ul>
+						<ul>
+							<c:if test="${member == null }">
+								<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+								<li><a href="${conPath }/myFindList.laf">습득물관리</a></li>
+								<li><a href="${conPath }/myLostList.laf">분실물관리</a></li>
+								<li><a href="${conPath }/changePw_view.laf">비밀번호 변경</a></li>
+							</c:if>
+							<c:if test="${member != null && member.pwCode eq \"PW00\" }">
+								<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+								<li><a href="${conPath }/myFindList.laf">습득물관리</a></li>
+								<li><a href="${conPath }/myLostList.laf">분실물관리</a></li>
+								<li><a href="${conPath }/changePw_view.laf">비밀번호 변경</a></li>
+							</c:if>
+							<c:if test="${member != null && ((member.pwCode eq \"PW01\") || (member.pwCode eq \"PW10\")) }">
+								<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+								<c:if test="${member.pwCode eq \"PW10\" }">
+									<li><a href="${conPath }/memberList.laf">회원관리</a></li>
+									<li><a href="${conPath }/add_view.laf">관리자추가</a></li>
+								</c:if>
+								<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
+							</c:if>
+						</ul>
+						<ul>
+							<li><a href="${conPath }/qnaList.laf">Q&amp;A 목록</a></li>
+							<c:if test="${member == null || (member != null && member.pwCode eq \"PW00\")}">
+								<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+							</c:if>
+							<li><a href="${conPath }/noticeList.laf">공지사항</a></li>
+							<c:if test="${member != null && member.pwCode eq \"PW10\" }">
+								<li><a href="${conPath }/noticeWrite_view.laf">공지사항 등록</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</li>
 				<c:if test="${member.pwCode eq \"PW00\" }">
 					<li><a href="${conPath }/findList.laf?pageNum=1">습득물</a></li>
 					<li><a href="${conPath }/lostList.laf?pageNum=1">분실물</a></li>

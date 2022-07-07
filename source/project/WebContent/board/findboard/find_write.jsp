@@ -11,16 +11,14 @@
 	<link href="${conPath}/css/find_write.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<script>
-	var member = '${member}';
-
-	if (member == "") {
-		alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
-		location.href = '${conPath}/login_view.laf?msg=find';
-	}
-</script>
 </head>
 <body>
+	<c:if test="${member == null }">
+		<script>
+			alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
+			location.href = '${conPath}/login_view.laf?msg=find';
+		</script>
+	</c:if>
 	<jsp:include page="/main/header.jsp" />
 	<div id="write_wrap">
 		<div class="snb">
@@ -41,7 +39,7 @@
 				<div class="write">
 					<table>
 						<col style="width : 200px;">
-						<col style="width : 500px;">
+						<col style="width : 600px;">
 						<tr>
 							<th><span>＊</span>물품구분</th>
 							<td><select name="fOb" class="fOb" size="1">
@@ -128,8 +126,8 @@
 							<td><input type="text" name="fTitle" class="fTitle"></td>
 						</tr>
 						<tr>
-							<th class="t_a"><span>＊</span>내용</th>
-							<td><textarea name="fContent" class="fContent" rows="5" cols="10"></textarea></td>
+							<th><span>＊</span>내용</th>
+							<td style="height : 200px; padding : 10px"><textarea name="fContent" class="fContent" rows="15" cols="10"></textarea></td>
 						</tr>
 						<tr>
 							<th>이미치 첨부</th>

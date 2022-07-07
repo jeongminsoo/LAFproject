@@ -15,18 +15,19 @@ a {
 }
 
 #info_wrap {
-	width : 1100px;
+	width : 1400px;
 	margin : 50px auto;
 	overflow : hidden;
 }
 
 #info_wrap .snb {
 	float : left;
-	margin-right : 50px;
+	margin-right : 100px;
+	height : 480px;
 }
 
 #info_wrap .snb ul li {
-	width : 200px;
+	width : 250px;
 	height : 50px;
 	line-height : 50px;
 	padding-left : 30px;
@@ -48,7 +49,7 @@ a {
 }
 
 .info {
-	width : 800px;
+	width : 1000px;
 	overflow : hidden;
 	padding-top : 30px;
 }
@@ -73,23 +74,18 @@ a {
 	border-top : 1px solid #c6c6c6;
 }
 
-.content_title {
-	width : 300px;
-	margin-left : 250px;
-}
-
 .btn_wrap {
-	margin-top : 30px;
-	padding-left : 412px;
+	width : 1000px;
+	margin : 0 auto;
 }
 
 button {
-	width : 180px;
-	height : 55px;
+	width : 120px;
+	height : 40px;
 	background : #2e8fe3;
 	color : white;
 	border : none;
-	font-size : 1.3em;
+	font-size : 1.2em;
 	margin : 30px 0;
 	cursor : pointer;
 	border-radius : 4px;

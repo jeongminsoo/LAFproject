@@ -36,6 +36,8 @@
 				<hr color="#2e8fe3">
 				<div class="write">
 					<table>
+						<col style="width : 200px;">
+						<col style="width : 600px;">
 						<tr>
 							<th>물품구분</th>
 							<td><select name="fOb" class="fOb" size="1">
@@ -116,8 +118,8 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td class="t_a"><textarea name="fContent" class="fContent"
-									rows="10" cols="10">${find.fContent }</textarea></td>
+							<td style="height : 200px; padding : 10px"><textarea name="fContent" class="fContent"
+									rows="15" cols="10">${find.fContent }</textarea></td>
 						</tr>
 						<tr>
 							<th>이미치 첨부</th>

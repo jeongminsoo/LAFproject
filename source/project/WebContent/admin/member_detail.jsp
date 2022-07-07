@@ -54,10 +54,11 @@
 </script>
 </head>
 <body>
-	<c:if test="${msg != null }">
-		<script>
-			alert('${msg}');
-		</script>
+	<c:if test="${resultCnt != null }">
+		alert('${resultCnt }명 사용 중지 처리가 완료되었습니다.');
+	</c:if>
+	<c:if test="${changeResult != null }">
+		alert('${changeResult }명 권한 변경이 완료되었습니다.');
 	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<div id="list_wrap">
@@ -69,6 +70,7 @@
 					<li><a href="${conPath }/memberList.laf">회원관리</a></li>
 					<li><a href="${conPath }/add_view.laf">관리자추가</a></li>
 				</c:if>
+				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
 			</ul>
 		</div>
 		<div class="content_title">

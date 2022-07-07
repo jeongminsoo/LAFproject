@@ -22,7 +22,9 @@
 			<ul>
 				<li>고객센터</li>
 				<li><a href="${conPath }/qnaList.laf?pageNum=1">Q&amp;A 목록</a></li>
-				<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				<c:if test="${member.pwCode eq \"PW00\" }">
+					<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				</c:if>
 				<li><a href="${conPath }/noticeList.laf?pageNum=1">공지사항</a></li>
 				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
 					<li><a href="${conPath }/noticeWrite_view.laf?pageNum=${param.pageNum}">공지사항 등록</a></li>

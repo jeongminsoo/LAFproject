@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.laf.dao.MemberDao;
+import com.laf.dto.MemberDto;
 
 public class LoginService implements Service {
 
@@ -15,14 +16,21 @@ public class LoginService implements Service {
 		
 		MemberDao dao = MemberDao.getInstance();
 		
-		int result = dao.loginChk(mId, mPw);
+		MemberDto dto = dao.getMember(mId);
 		
-		if (result == MemberDao.SUCCESS) {
-			HttpSession session = request.getSession();
-			session.setAttribute("member", dao.getMember(mId));
+		String msg = null;
+		if (dto.getMstCode().equals("MST10")) {
+			msg = "해당 아이디는 사용이 중단된 아이디입니다.";
+			request.setAttribute("loginMsg", msg);
+		} else {
+			int result = dao.loginChk(mId, mPw);
+			
+			if (result == MemberDao.SUCCESS) {
+				HttpSession session = request.getSession();
+				session.setAttribute("member", dto);
+			}
+			request.setAttribute("loginResult", result);
 		}
-		
-		request.setAttribute("loginResult", result);
 	}
 
 }

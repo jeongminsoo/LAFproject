@@ -14,8 +14,8 @@
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#checkAll').click(function(){
-			if($(this).is(':checked')){
+		$('#checkAll').click(function() {
+			if ($(this).is(':checked')) {
 				$('.memberCheck').prop('checked', true);
 			} else {
 				$('.memberCheck').prop('checked', false);
@@ -35,15 +35,14 @@
 					<li><a href="${conPath }/memberList.laf">회원관리</a></li>
 					<li><a href="${conPath }/add_view.laf">관리자추가</a></li>
 				</c:if>
+				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
 			</ul>
 		</div>
 		<div class="content_title">
 			<h1>회원 목록</h1>
-			
 		</div>
 		<hr color="#2e8fe3">
-		
-			<form action="${conPath }/memberDetailSearch.laf" method="post">
+		<form action="${conPath }/memberDetailSearch.laf" method="post">
 			<div class="search">
 				<table>
 					<tr>
@@ -91,16 +90,17 @@
 						</select></td>
 						<th>가입일</th>
 						<td><input type="text" name="tempDate1" class="tempDate1"
-							id="datepicker"> ~ <input type="text" name="tempDate2"
-							class="tempDate2" id="datepicker2"></td>
+							id="datepicker" value="${yesterday }"> ~ <input
+							type="text" name="tempDate2" class="tempDate2" id="datepicker2"
+							value="${today }"></td>
 					</tr>
 					<tr>
 						<td colspan="4"><input type="submit" value="검색" class="btn"></td>
 					</tr>
 				</table>
-				</div>
-			</form>
-		
+			</div>
+		</form>
+
 		<div class="content">
 			<table>
 				<col style="width: 30px;">

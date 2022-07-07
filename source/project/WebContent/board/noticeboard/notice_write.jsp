@@ -22,7 +22,9 @@
 			<ul>
 				<li>고객센터</li>
 				<li><a href="${conPath }/qnaList.laf?pageNum=1">Q&amp;A 목록</a></li>
-				<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				<c:if test="${member.pwCode eq \"PW00\" }">
+					<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				</c:if>
 				<li><a href="${conPath }/noticeList.laf?pageNum=1">공지사항</a></li>
 				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
 					<li><a href="${conPath }/noticeWrite_view.laf?pageNum=${param.pageNum}">공지사항 등록</a></li>
@@ -37,14 +39,14 @@
 			<div class="write">
 				<table>
 					<col style="width : 200px;">
-					<col style="width : 500px;">
+					<col style="width : 600px;">
 					<tr>
 						<th>제목</th>
 						<td><input type="text" name="nTitle" class="nTitle"></td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td style="height : 200px;"><textarea name="nContent" class="nContent" rows="10" cols="10"></textarea></td>
+						<td style="height : 200px; padding : 10px;"><textarea name="nContent" class="nContent" rows="15" cols="10"></textarea></td>
 					</tr>
 					<tr>
 						<th>파일첨부</th>

@@ -659,4 +659,43 @@ public class FindDao {
 			}
 			return cnt;
 		}
+		
+		// 내가 쓴글 수
+		public int countMyFind(String mId) {
+			int cnt = 0;
+			
+			Connection 				conn 	= null;
+			PreparedStatement 		pstmt 	= null;
+			ResultSet 				rs 		= null;
+			
+			String 					sql 	= "SELECT COUNT(*) CNT FROM FIND WHERE MID = ?";
+			
+			try {
+				
+				conn 	= 	ds.getConnection();
+				pstmt 	= 	conn.prepareStatement(sql);
+				pstmt.setString(1, mId);
+				rs 		= 	pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt("cnt");
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return cnt;
+		}
 }

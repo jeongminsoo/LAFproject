@@ -592,7 +592,7 @@ public class MemberDao {
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		
-		String 				sql		 = "NSERT INTO LAF_MEMBER (MID, MPW, MNAME, MEMAIL, MEMAILDOMAIN, MADDRESS, MTEL1, MTEL2, MTEL3, MBIRTH, MQUIZ, MANSWER, PWCODE)" + 
+		String 				sql		 = "INSERT INTO LAF_MEMBER (MID, MPW, MNAME, MEMAIL, MEMAILDOMAIN, MADDRESS, MTEL1, MTEL2, MTEL3, MBIRTH, MQUIZ, MANSWER, PWCODE)" + 
 										" VALUES (?, ?, ?, ?, ?, '서울특별시', ?, ?, ?, ?, '관리자입니다', '관리자입니다','PW01')";
 		
 		try {
@@ -713,7 +713,7 @@ public class MemberDao {
 		String 					sql 	= "SELECT * FROM (SELECT M.*, PC.CODENAME PCC, MC.CODENAME MCC FROM LAF_MEMBER M, PW_CODE PC, MST_CODE MC" + 
 															" WHERE M.PWCODE = PC.PWCODE AND M.MSTCODE = MC.MSTCODE ORDER BY M.MSTCODE, MRDATE DESC, MID)" + 
 											" WHERE MID LIKE '%'||?||'%' AND MNAME LIKE '%'||?||'%' AND MADDRESS LIKE '%'||?||'%'" + 
-												" AND MSTCODE LIKE '%'||?||'%' AND PWCODE LIKE '%'||?||'%' AND MRDATE BETWEEN ? AND ?";
+												" AND MSTCODE LIKE '%'||?||'%' AND PWCODE LIKE '%'||?||'%' AND MRDATE > ? AND MRDATE <= ?";
 		
 		try {
 			

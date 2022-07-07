@@ -59,6 +59,10 @@
 				<li><a href="${conPath }/findWrite_view.laf">습득물 등록</a></li>
 			</ul>
 		</div>
+		<div class="content_title">
+			<h1>습득물 목록</h1>
+		</div>
+		<hr color="#2e8fe3">
 		<div class="search">
 			<form action="${conPath }/findDetailSearch.laf" method="post">
 				<table>

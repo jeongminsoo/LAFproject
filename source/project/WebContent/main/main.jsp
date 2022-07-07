@@ -16,7 +16,12 @@
 	$(document).ready(function() {
 		var result = '${loginResult}';
 		var msg = '${param.msg}';
-		if (msg == 'find') {
+		var loginMsg = '${loginMsg}';
+		
+		if (lginMsg != null ) {
+			alert(lginMsg);
+			location.href = '${conPath}/login_view.laf';
+		}else if (msg == 'find') {
 			location.href = '${conPath}/findWrite_view.laf';
 		} else if (msg == "lost") {
 			location.href = '${conPath}/lostWrite_view.laf';

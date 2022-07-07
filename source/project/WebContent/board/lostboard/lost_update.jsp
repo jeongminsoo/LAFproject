@@ -37,6 +37,8 @@
 					<input type="hidden" name="pageNum" value="${param.pageNum }">
 					<input type="hidden" name="lNo" value="${lost.lNo }">
 					<table>
+						<col style="width : 200px;">
+						<col style="width : 600px;">
 						<tr>
 							<th>물품구분</th>
 							<td><select name="lOb" class="lOb" size="1">
@@ -111,8 +113,8 @@
 								value="${lost.lTitle }"></td>
 						</tr>
 						<tr>
-							<th class="t_a">내용</th>
-							<td><textarea name="lContent" class="lContent" rows="10" cols="10">${lost.lContent }</textarea></td>
+							<th>내용</th>
+							<td style="height : 200px; padding : 10px"><textarea name="lContent" class="lContent" rows="15" cols="10">${lost.lContent }</textarea></td>
 						</tr>
 						<tr>
 							<th>이미치 첨부</th>

@@ -69,20 +69,26 @@
 			<ul>
 				<li>고객센터</li>
 				<li><a href="${conPath }/qnaList.laf?pageNum=1">Q&amp;A 목록</a></li>
-				<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				<c:if test="${member.pwCode eq \"PW00\" || member eq null}">
+					<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				</c:if>
 				<li><a href="${conPath }/noticeList.laf?pageNum=1">공지사항</a></li>
 				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
 					<li><a href="${conPath }/noticeWrite_view.laf?pageNum=${param.pageNum}">공지사항 등록</a></li>
 				</c:if>
 			</ul>
 		</div>
+		<div class="content_title">
+			<h1>Q&amp;A</h1>
+		</div>
+		<hr color="#2e8fe3">
 		<div class="content">
 			<table>
-					<col style="width : 100px;">
-					<col style="width : 200px;">
-					<col style="width : 120px;">
-					<col style="width : 120px;">
-					<col style="width : 100px;">
+					<col style="width : 190px;">
+					<col style="width : 290px;">
+					<col style="width : 210px;">
+					<col style="width : 210px;">
+					<col style="width : 190px;">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>

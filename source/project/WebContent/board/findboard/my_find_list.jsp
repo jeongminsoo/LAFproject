@@ -9,13 +9,14 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/find_list.css" rel="stylesheet">
-	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-			$(document).ready(function(){
-			});
-	</script>
 </head>
 <body>
+	<c:if test="${member == null }">
+		<script>
+			alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
+			location.href = '${conPath}/login_view.laf?msg=find';
+		</script>
+	</c:if>
 	<jsp:include page="/main/header.jsp" />
 	<div id="list_wrap">
 		<div class="snb">

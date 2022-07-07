@@ -9,9 +9,49 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/join.css" rel="stylesheet">
+	<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 			$(document).ready(function(){
+				$('#domainVal').on('click', function() {
+					var domain = $('#domainVal').val();
+					if (domain == '직접입력') {
+						$('#mEmailDomain').val('');
+						$('#mEmailDomain').attr('disabled', false);
+					} else {
+						$('#mEmailDomain').val(domain);
+					}
+				});
+				
+				// 비밀번호 일치 여부 이벤트
+				$('form').submit(function(){
+					var newmPw = $('#mPw').val().trim();
+					var newmPwChk = $('#mPwChk').val().trim();
+					var mPw = '${mPw}';
+					
+					if (newmPw != newmPwChk) {
+						alert('새비밀번호와 새비밀번호 확인이 다릅니다. 다시 시도해주세요.');
+						$('#mPw').val('');
+						$('#mPwChk').val('');
+						$('#mPw').focus();
+						return false;
+					}
+					$('#mEmailDomain').attr('disabled', false);
+				});
+				
+				$('.id_btn').click(function(){
+					var mId = $('input[name="mId"]').val();
+					$.ajax({
+						url : '${conPath}/idChk.laf',
+						data : 'mId=' + mId,
+						type : 'get',
+						dataType : 'html',
+						success : function(data){
+							$('#idChkResult').html(data);
+						}
+					});
+				});
 			});
 	</script>
 </head>
@@ -33,7 +73,7 @@
 						<th><label for="mId"><span>＊</span>아이디</label></th>
 						<td><input type="text" name="mId" id="mId" class="mId">
 							<input type="button" value="중복확인" class="id_btn"
-							onclick="${conPath}/idChk.laf"></td>
+							onclick="${conPath}/idChk.laf"><div id="idChkResult"></div></td>
 					</tr>
 					<tr>
 						<th><label for="mPw"><span>＊</span>비밀번호</label></th>

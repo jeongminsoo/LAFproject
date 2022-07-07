@@ -40,8 +40,6 @@ public class MemberDetailSearchService implements Service {
 		Date mRdate1 = null;
 		Date mRdate2 = null;
 		
-		System.out.println(mId + "/" + mName + "/" + mAddress + "/" + mstCode + "/" + pwCode + "/" + mRdate1 + "/" + mRdate2);
-		
 		if (tempDate1.equals("")) {
 			mRdate1 = new Date(System.currentTimeMillis() - (1000*60*60*24));
 		} else {

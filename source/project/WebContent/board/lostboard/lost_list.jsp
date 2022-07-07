@@ -59,6 +59,10 @@
 				<li><a href="${conPath }/lostWrite_view.laf">분실물 등록</a></li>
 			</ul>
 		</div>
+		<div class="content_title">
+			<h1>분실물 목록</h1>
+		</div>
+		<hr color="#2e8fe3">
 		<div class="search">
 			<form action="${conPath }/lostDetailSearch.laf" method="post">
 				<table>

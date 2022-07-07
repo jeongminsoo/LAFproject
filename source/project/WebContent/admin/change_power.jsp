@@ -16,6 +16,12 @@
 </script>
 </head>
 <body>
+	<c:if test="${msg != null }">
+		<script>
+			alert('${msg}');
+			history.back();
+		</script>
+	</c:if>
 	<form action="${conPath }/changePower.laf" method="post">
 		<input type="hidden" name="mId" value='${param.mId}'>
 			<input type="hidden" name="mName" value='${param.mName}'>

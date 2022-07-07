@@ -9,11 +9,6 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/qna_content.css" rel="stylesheet">
-	<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-			$(document).ready(function(){
-			});
-	</script>
 </head>
 <body>
 	<jsp:include page="/main/header.jsp"/>
@@ -22,7 +17,9 @@
 			<ul>
 				<li>고객센터</li>
 				<li><a href="${conPath }/qnaList.laf?pageNum=1">Q&amp;A 목록</a></li>
-				<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				<c:if test="${member.pwCode eq \"PW00\" }">
+					<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
+				</c:if>
 				<li><a href="${conPath }/noticeList.laf?pageNum=1">공지사항</a></li>
 				<c:if test="${member.pwCode eq \"PW01\" || member.pwCode eq \"PW10\" }">
 					<li><a href="${conPath }/noticeWrite_view.laf?pageNum=${param.pageNum}">공지사항 등록</a></li>
@@ -40,6 +37,10 @@
 				<tr>
 					<th>제목</th>
 					<td>${qna.qTitle }</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>${qna.mName }</td>
 				</tr>
 				<tr>
 					<th>내용</th>

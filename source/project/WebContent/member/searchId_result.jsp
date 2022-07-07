@@ -6,15 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${conPath}/css/result.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="${conPath}/css/result.css" rel="stylesheet">
 </head>
 <body>
 	<c:if test="${searchIdResult != null }">
 		<script>
 			alert('${searchIdResult}');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${idMsg != null }">
+		<script>
+			alert('${idMsg}');
 			history.back();
 		</script>
 	</c:if>

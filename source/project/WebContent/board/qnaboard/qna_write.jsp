@@ -41,7 +41,7 @@
 			<div class="write">
 				<table>
 					<col style="width : 200px;">
-					<col style="width : 500px;">
+					<col style="width : 600px;">
 					<tr>
 						<th>제목</th>
 						<td><input type="text" name="qTitle" class="qTitle"></td>
@@ -53,7 +53,7 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="qContent" class="qContent" rows="10" cols="10"></textarea></td>
+						<td style="padding : 10px;"><textarea name="qContent" class="qContent" rows="10" cols="10"></textarea></td>
 					</tr>
 				</table>
 			</div>

@@ -21,8 +21,8 @@ a {
 
 #list_wrap .snb {
 	float : left;
-	margin-right : 50px;
-	height : 800px;
+	margin-right : 100px;
+	height : 500px;
 }
 
 #list_wrap .snb ul li {
@@ -128,8 +128,4 @@ a {
 	background : #d6e8f8;
 	height : 50px;
 	font-size : 1em;
-}
-
-.content_title {
-	text-align : left;
 }

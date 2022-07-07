@@ -21,6 +21,7 @@ import com.laf.service.GetNoticeService;
 import com.laf.service.GetQnaService;
 import com.laf.service.IdChkService;
 import com.laf.service.JoinService;
+import com.laf.service.LeaveMemberService;
 import com.laf.service.LoginService;
 import com.laf.service.LostCancelService;
 import com.laf.service.LostContentService;
@@ -385,13 +386,7 @@ public class LAFController extends HttpServlet {
 			service = new MemberListService();
 			service.execute(request, response);
 			viewPage = "admin/member_list.jsp";
-			
-		// 관리자리스트
-		} else if (com.equals("/adminList.laf")) {
-			service = new AdminListService();
-			service.execute(request, response);
-			viewPage = "admin/admin_list.jsp";
-			
+
 		// 관리자 추가 view
 		} else if (com.equals("/add_view.laf")) {
 			viewPage = "admin/add.jsp";
@@ -402,7 +397,7 @@ public class LAFController extends HttpServlet {
 				service.execute(request, response);
 				view = false;
 			}
-			viewPage = "/adminList.laf";
+			viewPage = "/myInfo.laf";
 			
 		// 습득물 상세 검색 결과 리스트
 		} else if (com.equals("/findDetailSearch.laf")) {
@@ -428,30 +423,36 @@ public class LAFController extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "board/lostboard/lost_detail.jsp";
 			
-			
+		// 회원 상세 검색	
 		} else if (com.equals("/memberDetailSearch.laf")) {
 			service = new MemberDetailSearchService();
 			service.execute(request, response);
 			viewPage = "admin/member_detail.jsp";
 			
-			
+		// 회원 권한 변경
 		} else if (com.equals("/changePower.laf")) {
 			service = new ChangePowerService();
 			service.execute(request, response);
 			viewPage = "/memberDetailSearch.laf";
 			
-			
+		// 회원 사용 중지
 		} else if (com.equals("/stopMember.laf")) {
 			service = new StopMemberService();
 			service.execute(request, response);
 			viewPage = "/memberDetailSearch.laf";
 			
-			
+		// 회원 권한 변경 화면
 		} else if (com.equals("/beforeChange.laf")) {
 			service = new BeforeChangeService();
 			service.execute(request, response);
 			viewPage = "admin/change_power.jsp";
+		} else if (com.equals("/leaveMember.laf")) {
+			service = new LeaveMemberService();
+			service.execute(request, response);
+			viewPage = "/main.laf";
 		}
+		
+		
 		
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
