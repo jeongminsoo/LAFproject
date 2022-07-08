@@ -38,6 +38,16 @@
 		<script>
 			alert('수정되었습니다.');
 		</script>
+		<c:if test="${msg eq \"mlc\" }">
+			<script>
+				location.href="${conPath }/myLostList.laf?pageNum=${pageNum }";
+			</script>
+		<c:if test="${msg eq \"mlu\" }">
+			<script>
+				location.href="${conPath }/myLostList.laf?pageNum=${pageNum }";
+			</script>
+		</c:if>
+	</c:if>
 	</c:if>
 	<c:if test="${lostCancelResult eq 0 }">
 		<script>
@@ -50,6 +60,8 @@
 			alert('등록이 취소되었습니다.');
 		</script>
 	</c:if>
+	
+	
 	<jsp:include page="/main/header.jsp" />
 	<div id="list_wrap">
 		<div class="snb">
@@ -176,7 +188,19 @@
 											src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
 									</c:if></td>
 								<td>${l.lLocation }</td>
-								<td>${l.mName }</td>
+								<td>
+									<c:if test="${l.pwCode eq \"PW10\" || l.pwCode eq \"PW01\" }">
+										관리자
+									</c:if>
+									<c:if test="${l.pwCode != \"PW10\" && l.pwCode != \"PW01\" }">
+										<c:if test="${l.mName.length() eq 3 }">
+											${l.mName.replace(l.mName.substring(1,2), "*") }
+										</c:if>
+										<c:if test="${l.mName.length() eq 4 }">
+											${l.mName.replace(l.mName.substring(1,3), "*") }
+										</c:if>
+									</c:if>
+								</td>
 								<td>${l.lTel }</td>
 								<td>${l.lDate }</td>
 								<td>

@@ -35,7 +35,7 @@
 	<c:if test="${member == null }">
 		<script>
 			alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');
-			location.href = '${conPath}/login_view.laf?msg=find';
+			location.href = '${conPath}/login_view.laf?msg=info';
 		</script>
 	</c:if>
 	<c:if test="${modifyResult eq 0 }">

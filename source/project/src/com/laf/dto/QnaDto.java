@@ -15,13 +15,14 @@ public class QnaDto {
 	private	int		qIndent;
 	private	String	qIp;
 	private String  mName;
+	private String 	pwCode;
 	
 	public QnaDto() {
 		
 	}
 
 	public QnaDto(int qNo, String qTitle, String qContent, String mId, Date qRdate, int qHit,
-			int qGroup, int qStep, int qIndent, String qIp, String mName) {
+			int qGroup, int qStep, int qIndent, String qIp, String mName, String pwCode) {
 		this.qNo = qNo;
 		this.qTitle = qTitle;
 		this.qContent = qContent;
@@ -33,6 +34,15 @@ public class QnaDto {
 		this.qIndent = qIndent;
 		this.qIp = qIp;
 		this.mName = mName;
+		this.pwCode = pwCode;
+	}
+
+	public String getPwCode() {
+		return pwCode;
+	}
+
+	public void setPwCode(String pwCode) {
+		this.pwCode = pwCode;
 	}
 
 	public int getqNo() {

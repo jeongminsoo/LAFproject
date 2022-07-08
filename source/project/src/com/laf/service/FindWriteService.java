@@ -23,7 +23,7 @@ public class FindWriteService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		String path = request.getRealPath("board/imgcopy");
+		String path = request.getRealPath("board/imgcopy/");
 		int maxSize = 1024*1024;
 		String img = "";
 		MultipartRequest mr = null;
@@ -56,7 +56,7 @@ public class FindWriteService implements Service {
 			String fIp = request.getRemoteAddr();
 			
 			FindDao dao = FindDao.getInstance();
-			FindDto find = new FindDto(null, fTitle, fContent, mId, null, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, 0, fTel, fIp, null, null, null);
+			FindDto find = new FindDto(null, fTitle, fContent, mId, null, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, 0, fTel, fIp, null, null, null, null);
 			int result = dao.writeFind(find);
 			request.setAttribute("findWriteResult", result);
 			
@@ -72,7 +72,7 @@ public class FindWriteService implements Service {
 			
 			try {
 				is = new FileInputStream(serverFile);
-				os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy" + img);
+				os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy/" + img);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while (true) {
 					int readCnt = is.read(bs);

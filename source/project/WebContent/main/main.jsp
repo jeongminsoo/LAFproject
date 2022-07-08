@@ -13,15 +13,9 @@
 	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$(document).ready(function() {
-		var result = '${loginResult}';
 		var msg = '${param.msg}';
-		var loginMsg = '${loginMsg}';
 		
-		if (lginMsg != null ) {
-			alert(lginMsg);
-			location.href = '${conPath}/login_view.laf';
-		}else if (msg == 'find') {
+		if (msg == 'find') {
 			location.href = '${conPath}/findWrite_view.laf';
 		} else if (msg == "lost") {
 			location.href = '${conPath}/lostWrite_view.laf';
@@ -29,14 +23,27 @@
 			location.href = '${conPath}/myInfo.laf';
 		} else if (msg == 'qna') {
 			location.href = '${conPath}/qnaWrite_view.laf';
-		} else if (msg == '' && result == '0') {
-			alert("아이디 또는 비밀번호를 잘못 입력했습니다.입력하신 내용을 다시 확인해주세요.");
-			location.href = '${conPath}/login_view.laf';
 		}
-	});
 </script>
 </head>
 <body>
+	<c:if test="${leaveResult != null }">
+		<script>
+			alert("${leaveResult}");
+		</script>
+	</c:if>
+	<c:if test="${loginResult eq \"해당 아이디는 사용이 중단된 아이디입니다.\" }">
+		<script>
+			alert("${loginResult}");
+			location.href = '${conPath}/login_view.laf';
+		</script>
+	</c:if>
+	<c:if test="${loginResult eq \"아이디 또는 비밀번호를 잘못 입력했습니다.입력하신 내용을 다시 확인해주세요.\" }">
+		<script>
+			alert("${loginResult}");
+			location.href = '${conPath}/login_view.laf';
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<div id="main_wrap">
 		<div class="search">

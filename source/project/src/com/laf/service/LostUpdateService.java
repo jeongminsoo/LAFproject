@@ -59,8 +59,14 @@ public class LostUpdateService implements Service {
 				LostDto bfLost = dao.getLost(lNo);
 				String lPhoto = (img == null) ? bfLost.getlPhoto() : img;
 			
-				LostDto lost = new LostDto(lNo, lTitle, lContent, mId, null, lOb, lLocal, lLocation, lDate, lPhoto, 0, lTel, lIp, null, null, null);
+				LostDto lost = new LostDto(lNo, lTitle, lContent, mId, null, lOb, lLocal, lLocation, lDate, lPhoto, 0, lTel, lIp, null, null, null, null);
 				int result = dao.updateLost(lost);
+				
+				String msg = mr.getParameter("msg");
+				String pageNum = mr.getParameter("pageNum");
+				
+				request.setAttribute("msg", msg);
+				request.setAttribute("pageNum", pageNum);
 				request.setAttribute("lostUpdateResult", result);
 				
 				
@@ -75,7 +81,7 @@ public class LostUpdateService implements Service {
 				
 				try {
 					is = new FileInputStream(serverFile);
-					os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy" + img);
+					os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy/" + img);
 					byte[] bs = new byte[(int)serverFile.length()];
 					while (true) {
 						int readCnt = is.read(bs);

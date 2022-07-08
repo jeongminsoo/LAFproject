@@ -592,7 +592,7 @@ public class MemberDao {
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		
-		String 				sql		 = "INSERT INTO LAF_MEMBER (MID, MPW, MNAME, MEMAIL, MEMAILDOMAIN, MADDRESS, MTEL1, MTEL2, MTEL3, MBIRTH, MQUIZ, MANSWER, PWCODE)" + 
+		String 				sql		 = "INSERT INTO LAF_MEMBER (MID, MPW, MNAME, MEMAILID, MEMAILDOMAIN, MADDRESS, MTEL1, MTEL2, MTEL3, MBIRTH, MQUIZ, MANSWER, PWCODE)" + 
 										" VALUES (?, ?, ?, ?, ?, '서울특별시', ?, ?, ?, ?, '관리자입니다', '관리자입니다','PW01')";
 		
 		try {

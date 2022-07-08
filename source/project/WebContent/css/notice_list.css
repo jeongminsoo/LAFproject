@@ -90,3 +90,8 @@ a {
 .paging a {
 	color : black;
 }
+
+.title:hover {
+	text-decoration : underline;
+	font-weight : bold;
+}

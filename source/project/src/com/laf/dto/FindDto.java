@@ -19,6 +19,7 @@ public class FindDto {
 	private String 	fTel;
 	private String 	fIp;
 	private String 	mName;
+	private String 	pwCode;
 	private String	fstCode;
 	private String	fcc;
 	
@@ -28,7 +29,7 @@ public class FindDto {
 
 	public FindDto(String fNo, String fTitle, String fContent, String mId, Date fRdate, String fOb, String fLocal,
 			String fLocation, Date fDate, String fStorage, String fPhoto, int fHit, String fTel, String fIp,
-			String mName, String fstCode, String fcc) {
+			String mName, String pwCode, String fstCode, String fcc) {
 		this.fNo = fNo;
 		this.fTitle = fTitle;
 		this.fContent = fContent;
@@ -44,6 +45,7 @@ public class FindDto {
 		this.fTel = fTel;
 		this.fIp = fIp;
 		this.mName = mName;
+		this.pwCode = pwCode;
 		this.fstCode = fstCode;
 		this.fcc = fcc;
 	}
@@ -182,6 +184,14 @@ public class FindDto {
 
 	public void setFcc(String fcc) {
 		this.fcc = fcc;
+	}
+
+	public String getPwCode() {
+		return pwCode;
+	}
+
+	public void setPwCode(String pwCode) {
+		this.pwCode = pwCode;
 	}
 	
 	

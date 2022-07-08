@@ -121,7 +121,7 @@ public class QnaDao {
 		
 		String 					sql 	= "SELECT *" + 
 											" FROM (SELECT ROWNUM RN, A.*" + 
-													" FROM (SELECT Q.*, MNAME FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID ORDER BY QGROUP DESC, QSTEP) A)" + 
+													" FROM (SELECT Q.*, MNAME, PWCODE FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID ORDER BY QGROUP DESC, QSTEP) A)" + 
 											" WHERE RN BETWEEN ? AND ?";
 		
 		try {
@@ -144,8 +144,9 @@ public class QnaDao {
 				int		qIndent		=	rs.getInt("qindent");
 				String 	qIp			=	rs.getString("qip");
 				String 	mName		=	rs.getString("mname");
+				String	pwCode		=	rs.getString("pwcode");
 			
-				dtos.add(new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName));
+				dtos.add(new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName, pwCode));
 			}
 			
 		} catch (SQLException e) {
@@ -286,7 +287,7 @@ public class QnaDao {
 		PreparedStatement 	pstmt 	= null;
 		ResultSet			rs		= null;
 		
-		String 				sql 	= "SELECT Q.*, MNAME FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID AND QNO = ?";
+		String 				sql 	= "SELECT Q.*, MNAME, PWCODE FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID AND QNO = ?";
 		
 		try {
 			
@@ -306,8 +307,9 @@ public class QnaDao {
 				int		qIndent		=	rs.getInt("qindent");
 				String 	qIp			=	rs.getString("qip");
 				String 	mName		=	rs.getString("mname");
+				String	pwCode		=	rs.getString("pwcode");
 				
-				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName);
+				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName, pwCode);
 			}
 			
 		} catch (SQLException e) {
@@ -368,7 +370,7 @@ public class QnaDao {
 		PreparedStatement 	pstmt 	= null;
 		ResultSet			rs		= null;
 		
-		String 				sql 	= "SELECT Q.*, MNAME FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID AND QNO = ?";
+		String 				sql 	= "SELECT Q.*, MNAME, PWCODE FROM QNA Q, LAF_MEMBER M WHERE Q.MID = M.MID AND QNO = ?";
 		
 		try {
 			
@@ -388,8 +390,9 @@ public class QnaDao {
 				int		qIndent		=	rs.getInt("qindent");
 				String 	qIp			=	rs.getString("qip");
 				String 	mName		=	rs.getString("mname");
+				String	pwCode		=	rs.getString("pwcode");
 				
-				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName);
+				dto = new QnaDto(qNo, qTitle, qContent, mId, qRdate, qHit, qGroup, qStep, qIndent, qIp, mName, pwCode);
 			}
 			
 		} catch (SQLException e) {

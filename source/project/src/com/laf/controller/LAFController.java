@@ -53,7 +53,6 @@ import com.laf.service.SearchPwService;
 import com.laf.service.Service;
 import com.laf.service.StopMemberService;
 import com.laf.service.AddService;
-import com.laf.service.AdminListService;
 import com.laf.service.BeforeChangeService;
 import com.laf.service.ChangePowerService;
 import com.laf.service.FindDetailSearchService;
@@ -446,11 +445,24 @@ public class LAFController extends HttpServlet {
 			service = new BeforeChangeService();
 			service.execute(request, response);
 			viewPage = "admin/change_power.jsp";
+			
+		// 회원 탈퇴
 		} else if (com.equals("/leaveMember.laf")) {
 			service = new LeaveMemberService();
 			service.execute(request, response);
 			viewPage = "/main.laf";
+			
+		} else if (com.equals("/myFindContent.laf")) {
+			service = new GetFindService();
+			service.execute(request, response);
+			viewPage = "board/findboard/my_find_content.jsp";
+			
+		} else if (com.equals("/myLostContent.laf")) {
+			service = new GetLostService();
+			service.execute(request, response);
+			viewPage = "board/lostboard/my_lost_content.jsp";
 		}
+		
 		
 		
 		

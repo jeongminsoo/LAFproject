@@ -20,6 +20,12 @@
 	</script>
 </head>
 <body>
+	<c:if test="${loginResult eq \"해당 아이디는 사용이 중단된 아이디입니다.\" }">
+		<script>
+			alert("${loginResult}");
+			history.back();
+		</script>
+	</c:if>
 	<jsp:include page="/main/header.jsp"/>
 	<div id="write_wrap">
 		<div class="snb">

@@ -23,6 +23,7 @@
 			<div id="sub_wrap">
 				<input type="hidden" name="pageNum" value="${param.pageNum }">
 				<input type="hidden" name="fNo" value="${param.fNo }">
+				<input type="hidden" name="msg" value="${param.msg }">
 				<div class="snb">
 					<ul>
 						<li>습득물</li>

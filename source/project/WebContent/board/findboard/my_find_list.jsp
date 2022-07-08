@@ -28,16 +28,21 @@
 				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
 			</ul>
 		</div>
+		<div class="content_title">
+			<h1>등록한 습득물 목록</h1>
+		</div>
+		<hr color="#2e8fe3">
 		<div id="sub_wrap">
 			<div class="content">
 				<table>
-					<col style="width: 160px;">
+					<col style="width: 130px;">
 					<col style="width: 100px;">
 					<col style="width: 100px;">
 					<col style="width: 200px;">
 					<col style="width: 150px;">
 					<col style="width: 120px;">
 					<col style="width: 90px;">
+					<col style="width: 80px;">
 					<col style="width: 50px;">
 					<tr>
 						<th>관리번호</th>
@@ -47,6 +52,7 @@
 						<th>습득장소(보관장소)</th>
 						<th>연락처</th>
 						<th>습득일</th>
+						<th>처리상태</th>
 						<th>조회수</th>
 					</tr>
 					<c:if test="${finds.size() eq 0 }">
@@ -56,23 +62,66 @@
 					</c:if>
 					<c:if test="${finds.size() != 0 }">
 						<c:forEach items="${finds}" var="f">
-							<tr>
-								<td>${f.fNo }</td>
-								<td>${f.fLocal }</td>
-								<td>${f.fOb }</td>
-								<td class="title"><a
-									href="${conPath }/findContent.laf?fNo=${f.fNo}&pageNum=${currentPage}">${f.fTitle }</a>
-									<c:if test="${f.fPhoto != null && f.fPhoto != \"noimg.gif\" }">
-										<img
-											src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
-									</c:if></td>
-								<td>${f.fLocation }(${f.fStorage })</td>
-								<td>${f.fTel }</td>
-								<td>${f.fDate }</td>
-								<td>
-									<fmt:formatNumber value="${f.fHit }" pattern="#,###"/>							
-								</td>
-							</tr>
+							<c:if test="${f.fstCode eq \"FST01\" }">
+								<tr style="color : blue;">
+									<td>${f.fNo }</td>
+									<td>${f.fLocal }</td>
+									<td>${f.fOb }</td>
+									<td class="title"><a
+										href="${conPath }/myFindContent.laf?fNo=${f.fNo}&pageNum=${currentPage}" style="color : blue;">${f.fTitle }</a>
+										<c:if test="${f.fPhoto != null && f.fPhoto != \"noimg.gif\" }">
+											<img
+												src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
+										</c:if></td>
+									<td>${f.fLocation }(${f.fStorage })</td>
+									<td>${f.fTel }</td>
+									<td>${f.fDate }</td>
+									<td>${f.fcc }</td>
+									<td>
+										<fmt:formatNumber value="${f.fHit }" pattern="#,###"/>							
+									</td>
+								</tr>
+							</c:if>
+							<c:if test="${f.fstCode eq \"FST02\" }">
+								<tr style="color : red;">
+									<td>${f.fNo }</td>
+									<td>${f.fLocal }</td>
+									<td>${f.fOb }</td>
+									<td class="title"><a
+										href="${conPath }/myFindContent.laf?fNo=${f.fNo}&pageNum=${currentPage}" style="color : red">${f.fTitle }</a>
+										<c:if test="${f.fPhoto != null && f.fPhoto != \"noimg.gif\" }">
+											<img
+												src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
+										</c:if></td>
+									<td>${f.fLocation }(${f.fStorage })</td>
+									<td>${f.fTel }</td>
+									<td>${f.fDate }</td>
+									<td>${f.fcc }</td>
+									<td>
+										<fmt:formatNumber value="${f.fHit }" pattern="#,###"/>							
+									</td>
+								</tr>
+							</c:if>
+							<c:if test="${f.fstCode eq \"FST00\" }">
+								<tr>
+									<td>${f.fNo }</td>
+									<td>${f.fLocal }</td>
+									<td>${f.fOb }</td>
+									<td class="title"><a
+										href="${conPath }/myFindContent.laf?fNo=${f.fNo}&pageNum=${currentPage}">${f.fTitle }</a>
+										<c:if test="${f.fPhoto != null && f.fPhoto != \"noimg.gif\" }">
+											<img
+												src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
+										</c:if></td>
+									<td>${f.fLocation }(${f.fStorage })</td>
+									<td>${f.fTel }</td>
+									<td>${f.fDate }</td>
+									<td>${f.fcc }</td>
+									<td>
+										<fmt:formatNumber value="${f.fHit }" pattern="#,###"/>							
+									</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</c:if>
 				</table>

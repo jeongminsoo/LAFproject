@@ -26,7 +26,7 @@ public class QnaUpdateService implements Service {
 		
 		QnaDao dao = QnaDao.getInstance();
 		
-		QnaDto qna = new QnaDto(qNo, qTitle, qContent, mId, null, 0, 0, 0, 0, qIp, mName);
+		QnaDto qna = new QnaDto(qNo, qTitle, qContent, mId, null, 0, 0, 0, 0, qIp, mName, null);
 
 		int result = dao.updateQna(qna);
 		request.setAttribute("qnaUpdateResult", result);

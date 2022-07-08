@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.laf.dao.FindDao;
+import com.laf.dao.MemberDao;
 import com.laf.dto.FindDto;
 
 public class FindListService implements Service {
@@ -26,6 +27,14 @@ public class FindListService implements Service {
 
 		FindDao dao = FindDao.getInstance();
 		ArrayList<FindDto> finds = dao.findList(start, end);
+	
+		ArrayList<String> pw = new ArrayList<String>();
+		MemberDao mDao = MemberDao.getInstance();
+		
+		for (FindDto f : finds) {
+			pw.add(mDao.getMember(f.getmId()).getPwCode());
+		}
+		request.setAttribute("pw", pw);
 		
 		int total = dao.countFind();
 		int pageCnt = (int)Math.ceil((double)total / PAGESIZE);

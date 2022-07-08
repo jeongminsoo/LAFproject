@@ -76,8 +76,8 @@
 		<hr color="#2e8fe3">
 		<div class="content">
 			<table>
-				<col style="width: 215px;">
-				<col style="width: 315px;">
+				<col style="width: 135px;">
+				<col style="width: 395px;">
 				<col style="width: 235px;">
 				<col style="width: 235px;">
 				<tr>

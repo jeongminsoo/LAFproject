@@ -13,6 +13,12 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 </head>
 <body>
+	<c:if test="${loginResult eq \"해당 아이디는 사용이 중단된 아이디입니다.\" }">
+		<script>
+			alert("${loginResult}");
+			history.back();
+		</script>
+	</c:if>
 	<c:if test="${member == null }">
 		<script>
 			alert('로그인이 필요한 페이지입니다. 로그인페이지로 이동합니다.');

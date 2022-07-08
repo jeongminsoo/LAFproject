@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath}/css/find_list.css" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -49,6 +50,12 @@
 		<script>
 			alert('등록이 취소되었습니다.');
 		</script>
+	</c:if>
+	<c:if test="${msg eq \"mfu\" }">
+		location.href="${conPath }/myFindList.laf?pageNum=${pageNum }";
+	</c:if>
+	<c:if test="${msg eq \"mfc\" }">
+		location.href="${conPath }/myFindList.laf?pageNum=${pageNum }";
 	</c:if>
 	<jsp:include page="/main/header.jsp" />
 	<div id="list_wrap">
@@ -176,7 +183,19 @@
 											src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
 									</c:if></td>
 								<td>${f.fLocation }(${f.fStorage })</td>
-								<td>${f.mName }</td>
+								<td>
+									<c:if test="${f.pwCode eq \"PW10\" || f.pwCode eq \"PW01\" }">
+										관리자
+									</c:if>
+									<c:if test="${f.pwCode != \"PW10\" && f.pwCode != \"PW01\" }">
+										<c:if test="${f.mName.length() eq 3 }">
+											${f.mName.replace(f.mName.substring(1,2), "*") }
+										</c:if>
+										<c:if test="${f.mName.length() eq 4 }">
+											${f.mName.replace(f.mName.substring(1,3), "*") }
+										</c:if>
+									</c:if>
+								</td>
 								<td>${f.fTel }</td>
 								<td>${f.fDate }</td>
 								<td><fmt:formatNumber value="${f.fHit }" pattern="#,###" />
@@ -185,22 +204,23 @@
 						</c:forEach>
 					</c:if>
 				</table>
-			</div>
-			<div class="paging">
-				<a
-					href="${conPath }/findList.laf?pageNum=${startPage - 1 eq 0 ? 1 : startPage-1}"><img
-					src="${conPath }/img/btn01.gif"></a>
-				<c:forEach var="j" begin="${startPage }" end="${endPage }">
-					<c:if test="${j eq currentPage }">
-						<b> ${j } </b>
-					</c:if>
-					<c:if test="${j != currentPage }">
-						<a href="${conPath }/findList.laf?pageNum=${j}"> ${j } </a>
-					</c:if>
-				</c:forEach>
-				<a
-					href="${conPath }/findList.laf?pageNum=${endPage == pageCnt ? endPage : endPage + 1 }"><img
-					src="${conPath }/img/btn0010.gif"></a>
+
+				<div class="paging">
+					<a
+						href="${conPath }/findList.laf?pageNum=${startPage - 1 eq 0 ? 1 : startPage-1}"><img
+						src="${conPath }/img/btn01.gif"></a>
+					<c:forEach var="j" begin="${startPage }" end="${endPage }">
+						<c:if test="${j eq currentPage }">
+							<b> ${j } </b>
+						</c:if>
+						<c:if test="${j != currentPage }">
+							<a href="${conPath }/findList.laf?pageNum=${j}"> ${j } </a>
+						</c:if>
+					</c:forEach>
+					<a
+						href="${conPath }/findList.laf?pageNum=${endPage == pageCnt ? endPage : endPage + 1 }"><img
+						src="${conPath }/img/btn0010.gif"></a>
+				</div>
 			</div>
 		</div>
 	</div>

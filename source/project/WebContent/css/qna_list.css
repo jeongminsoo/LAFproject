@@ -75,6 +75,11 @@ a {
 	text-align : left;
 }
 
+.title:hover {
+	text-decoration : underline;
+	font-weight : bold;
+}
+
 .title a {
 	color : black;
 }

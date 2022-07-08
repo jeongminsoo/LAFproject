@@ -20,13 +20,15 @@
 	<div id="content_wrap">
 		<div class="snb">
 			<ul>
-				<li>습득물</li>
-				<li><a href="${conPath }/findList.laf?pageNum=1">습득물 목록</a></li>
-				<li><a href="${conPath }/findWrite_view.laf">습득물 등록</a></li>
+				<li>마이페이지</li>
+				<li><a href="${conPath }/myInfo.laf">회원정보</a></li>
+				<li><a href="${conPath }/myFindList.laf">습득물 관리</a></li>
+				<li><a href="${conPath }/myLostList.laf">분실물 관리</a></li>
+				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
 			</ul>
 		</div>
 		<div class="content_title">
-			<h1>습득물 상세보기</h1>
+			<h1>등록한 습득물 상세보기</h1>
 		</div>
 		<hr color="#2e8fe3">
 		<div class="content">
@@ -83,14 +85,12 @@
 				</table>
 			</div>
 			<div class="btn_wrap">
-				<c:if test="${member != null && member.mId eq find.mId }">
-					<button
-					onclick="location.href='${conPath}/findUpdate_view.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">수정</button>
-					<button
-					onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">등록취소</button>
+				<c:if test="${find.fcc eq \"FST00\" }">
+					<button onclick="location.href='${conPath}/findUpdate_view.laf?fNo=${param.fNo }&pageNum=${param.pageNum}&msg=mfu'">수정</button>
+					<button onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}&msg=mfc'">등록취소</button>
 				</c:if>
 				<button
-					onclick="location.href='${conPath}/findList.laf?pageNum=${param.pageNum}'">목록</button>
+					onclick="location.href='${conPath}/myFindList.laf?pageNum=${param.pageNum}'">목록</button>
 			</div>
 		</div>
 

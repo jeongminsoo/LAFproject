@@ -18,6 +18,7 @@ public class LostDto {
 	private String 	lTel;
 	private String 	lIp;
 	private String 	mName;
+	private String 	pwCode;
 	private String 	lstCode;
 	private String 	lcc;
 	
@@ -28,7 +29,7 @@ public class LostDto {
 
 
 	public LostDto(String lNo, String lTitle, String lContent, String mId, Date lRdate, String lOb, String lLocal,
-			String lLocation, Date lDate, String lPhoto, int lHit, String lTel, String lIp, String mName,
+			String lLocation, Date lDate, String lPhoto, int lHit, String lTel, String lIp, String mName, String pwCode,
 			String lstCode, String lcc) {
 		this.lNo = lNo;
 		this.lTitle = lTitle;
@@ -44,6 +45,7 @@ public class LostDto {
 		this.lTel = lTel;
 		this.lIp = lIp;
 		this.mName = mName;
+		this.pwCode = pwCode;
 		this.lstCode = lstCode;
 		this.lcc = lcc;
 	}
@@ -206,6 +208,16 @@ public class LostDto {
 
 	public void setLcc(String lcc) {
 		this.lcc = lcc;
+	}
+
+
+	public String getPwCode() {
+		return pwCode;
+	}
+
+
+	public void setPwCode(String pwCode) {
+		this.pwCode = pwCode;
 	}
 	
 	

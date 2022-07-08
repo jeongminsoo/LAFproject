@@ -28,6 +28,10 @@
 				<li><a href="${conPath }/pw_change_view.laf">비밀번호 변경</a></li>
 			</ul>
 		</div>
+		<div class="content_title">
+			<h1>등록한 분실물 목록</h1>
+		</div>
+		<hr color="#2e8fe3">
 		<div id="sub_wrap">
 			<div class="content">
 				<table>
@@ -38,6 +42,7 @@
 					<col style="width: 150px;">
 					<col style="width: 120px;">
 					<col style="width: 90px;">
+					<col style="width: 80px;">
 					<col style="width: 50px;">
 					<tr>
 						<th>관리번호</th>
@@ -47,6 +52,7 @@
 						<th>분실장소</th>
 						<th>연락처</th>
 						<th>분실일</th>
+						<th>처리상태</th>
 						<th>조회수</th>
 					</tr>
 					<c:if test="${losts.size() eq 0 }">
@@ -56,23 +62,66 @@
 					</c:if>
 					<c:if test="${losts.size() != 0 }">
 						<c:forEach items="${losts}" var="l">
-							<tr>
-								<td>${l.lNo }</td>
-								<td>${l.lLocal }</td>
-								<td>${l.lOb }</td>
-								<td class="title"><a
-									href="${conPath }/lostContent.laf?lNo=${l.lNo}&pageNum=${currentPage}">${l.lTitle }</a>
-									<c:if test="${l.lPhoto != null && l.lPhoto != \"noimg.gif\" }">
-										<img
-											src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
-									</c:if></td>
-								<td>${l.lLocation }</td>
-								<td>${l.lTel }</td>
-								<td>${l.lDate }</td>
-								<td>
-									<fmt:formatNumber value="${l.lHit }" pattern="#,###"/>
-								</td>
-							</tr>
+							<c:if test="${l.lstCode eq \"LST00\" }">
+								<tr>
+									<td>${l.lNo }</td>
+									<td>${l.lLocal }</td>
+									<td>${l.lOb }</td>
+									<td class="title"><a
+										href="${conPath }/myLostContent.laf?lNo=${l.lNo}&pageNum=${currentPage}">${l.lTitle }</a>
+										<c:if test="${l.lPhoto != null && l.lPhoto != \"noimg.gif\" }">
+											<img
+												src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
+										</c:if></td>
+									<td>${l.lLocation }</td>
+									<td>${l.lTel }</td>
+									<td>${l.lDate }</td>
+									<td>${l.lcc }</td>
+									<td>
+										<fmt:formatNumber value="${l.lHit }" pattern="#,###"/>
+									</td>
+								</tr>
+							</c:if>
+							<c:if test="${l.lstCode eq \"LST01\" }">
+								<tr style="color : blue;">
+									<td>${l.lNo }</td>
+									<td>${l.lLocal }</td>
+									<td>${l.lOb }</td>
+									<td class="title"><a
+										href="${conPath }/myLostContent.laf?lNo=${l.lNo}&pageNum=${currentPage}" style="color : blue;">${l.lTitle }</a>
+										<c:if test="${l.lPhoto != null && l.lPhoto != \"noimg.gif\" }">
+											<img
+												src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
+										</c:if></td>
+									<td>${l.lLocation }</td>
+									<td>${l.lTel }</td>
+									<td>${l.lDate }</td>
+									<td>${l.lcc }</td>
+									<td>
+										<fmt:formatNumber value="${l.lHit }" pattern="#,###"/>
+									</td>
+								</tr>
+							</c:if>
+							<c:if test="${l.lstCode eq \"LST02\" }">
+								<tr style="color : red;">
+									<td>${l.lNo }</td>
+									<td>${l.lLocal }</td>
+									<td>${l.lOb }</td>
+									<td class="title"><a
+										href="${conPath }/myLostContent.laf?lNo=${l.lNo}&pageNum=${currentPage}" style="color : red;">${l.lTitle }</a>
+										<c:if test="${l.lPhoto != null && l.lPhoto != \"noimg.gif\" }">
+											<img
+												src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
+										</c:if></td>
+									<td>${l.lLocation }</td>
+									<td>${l.lTel }</td>
+									<td>${l.lDate }</td>
+									<td>${l.lcc }</td>
+									<td>
+										<fmt:formatNumber value="${l.lHit }" pattern="#,###"/>
+									</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</c:if>
 				</table>

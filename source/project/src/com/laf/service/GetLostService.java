@@ -11,9 +11,11 @@ public class GetLostService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String lNo = request.getParameter("lNo");
+		String msg = request.getParameter("msg");
 		LostDao dao = LostDao.getInstance();
 		LostDto lost = dao.getLost(lNo);
 		
+		request.setAttribute("msg", msg);
 		request.setAttribute("lost", lost);
 
 	}

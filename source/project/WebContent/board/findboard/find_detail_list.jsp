@@ -26,6 +26,10 @@
 				<li><a href="${conPath }/findWrite_view.laf">습득물 등록</a></li>
 			</ul>
 		</div>
+		<div class="content_title">
+			<h1>습득물 검색목록</h1>
+		</div>
+		<hr color="#2e8fe3">
 		<div class="search">
 			<form action="${conPath }/findDetailSearch.laf" method="post">
 				<table>
@@ -139,7 +143,14 @@
 											src="https://t1.daumcdn.net/cafe_image/cf_img4/skin/W01/16_add_photo.svg">
 									</c:if></td>
 								<td>${f.fLocation }(${f.fStorage })</td>
-								<td>${f.mName }</td>
+								<td>
+									<c:if test="${f.pwCode eq \"PW10\" || f.pwCode eq \"PW01\" }">
+										관리자
+									</c:if>
+									<c:if test="${f.pwCode != \"PW10\" && f.pwCode != \"PW01\" }">
+										${f.mName }
+									</c:if>
+								</td>
 								<td>${f.fTel }</td>
 								<td>${f.fDate }</td>
 								<td>

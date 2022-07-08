@@ -23,3 +23,5 @@ INSERT INTO LAF_MEMBER (MID, MPW, MNAME, MEMAILID, MEMAILDOMAIN, MADDRESS, MTEL1
     VALUES ('admin02', '111', '최고관리자', 'admin02', 'naver.com', '서울특별시',
                 '010', '1234', '5678', SYSDATE, '관리자입니다', '관리자입니다','PW10');
 COMMIT;
+
+-- 분실물 게시글 등록

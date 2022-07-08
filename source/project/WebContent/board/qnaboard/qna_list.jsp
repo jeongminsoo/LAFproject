@@ -84,11 +84,11 @@
 		<hr color="#2e8fe3">
 		<div class="content">
 			<table>
-					<col style="width : 190px;">
-					<col style="width : 290px;">
+					<col style="width : 100px;">
+					<col style="width : 470px;">
 					<col style="width : 210px;">
 					<col style="width : 210px;">
-					<col style="width : 190px;">
+					<col style="width : 100px;">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -117,7 +117,19 @@
 							<a
 								href="${conPath }/qnaContent.laf?qNo=${q.qNo}&pageNum=${currentPage}">${q.qTitle }</a>
 							</td>
-							<td>${q.mName }</td>
+							<td>
+								<c:if test="${q.pwCode eq \"PW10\" || q.pwCode eq \"PW01\" }">
+									관리자
+								</c:if>
+								<c:if test="${q.pwCode != \"PW10\" && q.pwCode != \"PW01\" }">
+									<c:if test="${q.mName.length() eq 3 }">
+										${q.mName.replace(q.mName.substring(1,2), "*") }
+									</c:if>
+									<c:if test="${q.mName.length() eq 4 }">
+										${q.mName.replace(q.mName.substring(1,3), "*") }
+									</c:if>
+								</c:if>
+							</td>
 							<td>${q.qRdate }</td>
 							<td>${q.qHit }</td>
 						</tr>

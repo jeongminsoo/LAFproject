@@ -17,7 +17,7 @@
 			<ul>
 				<li>고객센터</li>
 				<li><a href="${conPath }/qnaList.laf?pageNum=1">Q&amp;A 목록</a></li>
-				<c:if test="${member.pwCode eq \"PW00\" }">
+				<c:if test="${qna.pwCode eq \"PW00\" || qna eq null}">
 					<li><a href="${conPath }/qnaWrite_view.laf">문의하기</a></li>
 				</c:if>
 				<li><a href="${conPath }/noticeList.laf?pageNum=1">공지사항</a></li>
@@ -40,7 +40,19 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td>${qna.mName }</td>
+					<td>
+						<c:if test="${qna.pwCode eq \"PW10\" || qna.pwCode eq \"PW01\" }">
+							관리자
+						</c:if>
+						<c:if test="${qna.pwCode != \"PW10\" && qna.pwCode != \"PW01\" }">
+							<c:if test="${qna.mName.length() eq 3 }">
+								${qna.mName.replace(qna.mName.substring(1,2), "*") }
+							</c:if>
+							<c:if test="${qna.mName.length() eq 4 }">
+								${qna.mName.replace(qna.mName.substring(1,3), "*") }
+							</c:if>
+						</c:if>
+					</td>
 				</tr>
 				<tr>
 					<th>내용</th>

@@ -56,7 +56,7 @@ public class NoticeUpdateService implements Service {
 			
 			try {
 				is = new FileInputStream(serverFile);
-				os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy" + filename);
+				os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy/" + filename);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while (true) {
 					int readCnt = is.read(bs);

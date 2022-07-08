@@ -23,7 +23,7 @@ public class QnaWriteService implements Service {
 		String qIp = request.getRemoteAddr();
 		
 		QnaDao dao = QnaDao.getInstance();
-		QnaDto qna = new QnaDto(0, qTitle, qContent, mId, null, 0, 0, 0, 0, qIp, mName);
+		QnaDto qna = new QnaDto(0, qTitle, qContent, mId, null, 0, 0, 0, 0, qIp, mName, null);
 		
 		int result = dao.writeQna(qna);
 		request.setAttribute("qnaWriteResult", result);

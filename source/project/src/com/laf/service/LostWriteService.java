@@ -55,7 +55,7 @@ public class LostWriteService implements Service {
 			String lIp = request.getRemoteAddr();
 			
 			LostDao dao = LostDao.getInstance();
-			LostDto lost = new LostDto(null, lTitle, lContent, mId, null, lOb, lLocal, lLocation, lDate, lPhoto, 0, lTel, lIp, null, null, null);
+			LostDto lost = new LostDto(null, lTitle, lContent, mId, null, lOb, lLocal, lLocation, lDate, lPhoto, 0, lTel, lIp, null, null, null, null);
 			int result = dao.writeLost(lost);
 			request.setAttribute("lostWriteResult", result);
 			
@@ -71,7 +71,7 @@ public class LostWriteService implements Service {
 			
 			try {
 				is = new FileInputStream(serverFile);
-				os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy" + img);
+				os = new FileOutputStream("D:\\LAFproject\\source\\project\\WebContent\\board\\imgcopy/" + img);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while (true) {
 					int readCnt = is.read(bs);

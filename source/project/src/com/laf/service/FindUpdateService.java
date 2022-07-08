@@ -60,9 +60,16 @@ public class FindUpdateService implements Service {
 			FindDto bfFind = dao.getFind(fNo);
 			String fPhoto = (img == null) ? bfFind.getfPhoto() : img;
 		
-			FindDto find = new FindDto(fNo, fTitle, fContent, mId, null, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, 0, fTel, fIp, null, null, null);
+			FindDto find = new FindDto(fNo, fTitle, fContent, mId, null, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, 0, fTel, fIp, null, null, null, null);
 			int result = dao.updateFind(find);
 			request.setAttribute("findUpdateResult", result);
+			
+			String msg = mr.getParameter("msg");
+			String pageNum = mr.getParameter("pageNum");
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("pageNum", pageNum);
+			
 			
 			
 		} catch (IOException e) {

@@ -22,6 +22,10 @@ public class LeaveMemberService implements Service {
 		
 		int result = dao.leaveMember(mId, mPw);
 		
+		if (result == MemberDao.SUCCESS) {
+			session.removeAttribute("member");
+		}
+		
 		request.setAttribute("leaveResult", result);
 	}
 

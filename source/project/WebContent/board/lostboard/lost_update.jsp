@@ -36,6 +36,7 @@
 				<div class="write">
 					<input type="hidden" name="pageNum" value="${param.pageNum }">
 					<input type="hidden" name="lNo" value="${lost.lNo }">
+					<input type="hidden" name="msg" value="${param.msg }">
 					<table>
 						<col style="width : 200px;">
 						<col style="width : 600px;">

@@ -134,7 +134,7 @@ public class FindDao {
 			
 			String 					sql 	= "SELECT *" + 
 												" FROM (SELECT ROWNUM RN,  A.*" + 
-														" FROM (SELECT F.*, MNAME, CODENAME FCC FROM FIND F, LAF_MEMBER M, FST_CODE FC" + 
+														" FROM (SELECT F.*, MNAME, PWCODE, CODENAME FCC FROM FIND F, LAF_MEMBER M, FST_CODE FC" + 
 																" WHERE F.MID = M.MID AND F.FSTCODE = FC.FSTCODE AND F.FSTCODE = 'FST00' ORDER BY FRDATE DESC) A)" + 
 												" WHERE RN BETWEEN ? AND ?";
 			
@@ -162,10 +162,11 @@ public class FindDao {
 					String 	fTel		=	rs.getString("ftel");
 					String 	fIp			=	rs.getString("fip");
 					String	mName		=	rs.getString("mname");
+					String	pwCode		=	rs.getString("pwCode");
 					String 	fstCode		=	rs.getString("fstcode");
 					String 	fcc			=	rs.getString("fcc");
 				
-					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, fstCode, fcc));
+					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, pwCode, fstCode, fcc));
 				}
 				
 			} catch (SQLException e) {
@@ -329,7 +330,7 @@ public class FindDao {
 					String 	fstCode		=	rs.getString("fstcode");
 					String 	fcc			=	rs.getString("fcc");
 				
-					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, null, fstCode, fcc));
+					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, null, null, fstCode, fcc));
 				}
 				
 			} catch (SQLException e) {
@@ -392,7 +393,7 @@ public class FindDao {
 			PreparedStatement 	pstmt 	= null;
 			ResultSet			rs		= null;
 			
-			String 				sql 	= "SELECT F.*, MNAME, CODENAME FCC FROM FIND F, LAF_MEMBER M, FST_CODE FC WHERE F.MID = M.MID AND F.FSTCODE = FC.FSTCODE AND FNO = ?";
+			String 				sql 	= "SELECT F.*, MNAME, PWCODE, CODENAME FCC FROM FIND F, LAF_MEMBER M, FST_CODE FC WHERE F.MID = M.MID AND F.FSTCODE = FC.FSTCODE AND FNO = ?";
 			
 			try {
 				
@@ -416,10 +417,11 @@ public class FindDao {
 					String	fTel		=	rs.getString("ftel");
 					String	fIp			=	rs.getString("fip");
 					String 	mName		=	rs.getString("mname");
+					String	pwCode		=	rs.getString("pwcode");
 					String	fstCode		=	rs.getString("fstcode");
 					String	fcc			=	rs.getString("fcc");
 					
-					dto = new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, fstCode, fcc);
+					dto = new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, pwCode, fstCode, fcc);
 				}
 				
 			} catch (SQLException e) {
@@ -450,7 +452,7 @@ public class FindDao {
 			PreparedStatement 	pstmt 	= null;
 			ResultSet			rs		= null;
 			
-			String 				sql 	= "SELECT F.*, MNAME, CODENAME FCC FROM FIND F, LAF_MEMBER M, FST_CODE FC"
+			String 				sql 	= "SELECT F.*, MNAME, PWCODE, CODENAME FCC FROM FIND F, LAF_MEMBER M, FST_CODE FC"
 					+ 						" WHERE F.MID = M.MID AND F.FSTCODE = FC.FSTCODE AND FNO = ?";
 			
 			try {
@@ -475,10 +477,11 @@ public class FindDao {
 					String	fTel		=	rs.getString("ftel");
 					String	fIp			=	rs.getString("fip");
 					String 	mName		=	rs.getString("mname");
+					String	pwCode		=	rs.getString("pwcode");
 					String	fstCode		=	rs.getString("fstcode");
 					String	fcc			=	rs.getString("fcc");
 					
-					dto = new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, fstCode, fcc);
+					dto = new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, pwCode, fstCode, fcc);
 				}
 				
 			} catch (SQLException e) {
@@ -548,7 +551,7 @@ public class FindDao {
 			
 			String 					sql 	= "SELECT *" + 
 												" FROM (SELECT ROWNUM RN, A.*" + 
-														" FROM (SELECT F.*, MNAME, CODENAME FCC" + 
+														" FROM (SELECT F.*, MNAME, PWCODE, CODENAME FCC" + 
 																" FROM FIND F, LAF_MEMBER M, FST_CODE FC" + 
 																" WHERE F.FOB LIKE '%'||?||'%' AND F.FTITLE LIKE '%'||?||'%'" + 
 																	" AND F.FDATE BETWEEN ? AND ?" + 
@@ -584,11 +587,12 @@ public class FindDao {
 					int 	fHit		=	rs.getInt("fhit");
 					String 	fTel		=	rs.getString("ftel");
 					String 	fIp			=	rs.getString("fip");
-					String 	mName		=	rs.getNString("mname");
+					String 	mName		=	rs.getString("mname");
+					String	pwCode		=	rs.getString("pwcode");
 					String 	fstCode		=	rs.getString("fstcode");
 					String 	fcc			=	rs.getString("fcc");
 				
-					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, fstCode, fcc));
+					dtos.add(new FindDto(fNo, fTitle, fContent, mId, fRdate, fOb, fLocal, fLocation, fDate, fStorage, fPhoto, fHit, fTel, fIp, mName, pwCode, fstCode, fcc));
 				}
 				
 			} catch (SQLException e) {
