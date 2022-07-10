@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.laf.service.FindCancelService;
+import com.laf.service.FindCompleteService;
 import com.laf.service.FindContentService;
 import com.laf.service.FindListService;
 import com.laf.service.FindSearchResultService;
@@ -461,6 +462,10 @@ public class LAFController extends HttpServlet {
 			service = new GetLostService();
 			service.execute(request, response);
 			viewPage = "board/lostboard/my_lost_content.jsp";
+		} else if (com.equals("/findComplete.laf")) {
+			service = new FindCompleteService();
+			service.execute(request, response);
+			viewPage = "/findList.laf";
 		}
 		
 		

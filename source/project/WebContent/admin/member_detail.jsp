@@ -55,10 +55,14 @@
 </head>
 <body>
 	<c:if test="${resultCnt != null }">
-		alert('${resultCnt }명 사용 중지 처리가 완료되었습니다.');
+		<script>
+			alert('${resultCnt }명 사용 중지 처리가 완료되었습니다.');
+		</script>
 	</c:if>
 	<c:if test="${changeResult != null }">
-		alert('${changeResult }명 권한 변경이 완료되었습니다.');
+		<script>
+			alert('${changeResult }명 권한 변경이 완료되었습니다.');
+		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<div id="list_wrap">
@@ -180,7 +184,8 @@
 				</c:if>
 				<c:if test="${members.size() != 0 }">
 					<c:forEach items="${members}" var="m">
-						<tr>
+							<c:if test="${m.mstCode != \"MST10\" }">
+							<tr>
 							<td><input type="checkbox" name="memberCheck"
 								class="memberCheck" value="${m.mId }"></td>
 							<td>${m.mId }</td>
@@ -192,8 +197,23 @@
 							<td>${m.pcc }</td>
 							<td>${m.mcc }</td>
 							<td>${m.mRdate }</td>
-
-						</tr>
+							</tr>
+							</c:if>
+							<c:if test="${m.mstCode eq \"MST10\" }">
+							<tr style="color : red">
+							<td><input type="checkbox" name="memberCheck"
+								class="memberCheck" value="${m.mId }"></td>
+							<td>${m.mId }</td>
+							<td>${m.mName }</td>
+							<td>${m.mBirth }</td>
+							<td>${m.mTel1 }-${m.mTel2 }-${m.mTel3 }</td>
+							<td>${m.mEmailId }@${m.mEmailDomain }</td>
+							<td>${m.mAddress }</td>
+							<td>${m.pcc }</td>
+							<td>${m.mcc }</td>
+							<td>${m.mRdate }</td>
+							</tr>
+							</c:if>
 					</c:forEach>
 				</c:if>
 			</table>

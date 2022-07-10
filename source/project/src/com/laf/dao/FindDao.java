@@ -222,14 +222,14 @@ public class FindDao {
 			return result;
 		}
 		
-		// 분실물 처리완료
+		// 습득물 처리완료
 			public int complete(String fNo) {
 				int result = FAIL;
 				
 				Connection 			conn 	= null;
 				PreparedStatement 	pstmt 	= null;
 				
-				String 				sql 	= "UPDATE LOST SET LSTCODE = 'LST01' WHERE LNO = ?";
+				String 				sql 	= "UPDATE FIND SET FSTCODE = 'FST01' WHERE FNO = ?";
 				
 				try {
 					
@@ -301,7 +301,7 @@ public class FindDao {
 			String 					sql 	= "SELECT *" + 
 												" FROM (SELECT ROWNUM RN,  A.*" + 
 														" FROM (SELECT F.*, CODENAME FCC FROM FIND F, FST_CODE FC" + 
-																" WHERE F.FSTCODE = FC.FSTCODE AND MID = ? ORDER BY F.FSTCODE DESC, FRDATE DESC) A)" + 
+																" WHERE F.FSTCODE = FC.FSTCODE AND MID = ? ORDER BY F.FSTCODE, FRDATE DESC) A)" + 
 												" WHERE RN BETWEEN ? AND ?";
 			
 			try {

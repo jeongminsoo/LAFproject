@@ -21,7 +21,7 @@ public class LoginService implements Service {
 		
 		
 		String msg = null;
-		if (dto.getMstCode().equals("MST10")) {
+		if (dto != null && dto.getMstCode().equals("MST10")) {
 			msg = "해당 아이디는 사용이 중단된 아이디입니다.";
 			request.setAttribute("loginResult", msg);
 		} else {

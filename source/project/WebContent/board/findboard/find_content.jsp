@@ -89,6 +89,12 @@
 					<button
 					onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">등록취소</button>
 				</c:if>
+				<c:if test="${member.pwCode eq \"PW10\" || member.pwCode eq \"PW01\" }">
+				<button
+					onclick="location.href='${conPath}/findCancel.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">등록취소</button>
+				<button
+					onclick="location.href='${conPath}/findComplete.laf?fNo=${param.fNo }&pageNum=${param.pageNum}'">처리완료</button>
+				</c:if>
 				<button
 					onclick="location.href='${conPath}/findList.laf?pageNum=${param.pageNum}'">목록</button>
 			</div>

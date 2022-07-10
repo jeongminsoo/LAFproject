@@ -14,6 +14,7 @@ public class ChangePowerService implements Service {
 		String[] mIds = (String[]) session.getAttribute("memberCheck");
 		String pwCode = request.getParameter("pwCode");
 
+		System.out.println(mIds);
 		MemberDao dao = MemberDao.getInstance();
 		
 		int total = 0;

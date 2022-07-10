@@ -51,6 +51,17 @@
 			alert('등록이 취소되었습니다.');
 		</script>
 	</c:if>
+		<c:if test="${completeResult eq 0 }">
+		<script>
+			alert('수령완료 처리에 실패하였습니다. 이미 처리 완료되었거나 글이 삭제되었습니다.');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${completeResult eq 1 }">
+		<script>
+			alert('처리되었습니다.');
+		</script>
+	</c:if>
 	<c:if test="${msg eq \"mfu\" }">
 		location.href="${conPath }/myFindList.laf?pageNum=${pageNum }";
 	</c:if>
