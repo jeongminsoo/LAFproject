@@ -107,18 +107,18 @@
 		</div>
 		<div class="paging">
 			<a
-				href="${conPath }/qnaList.laf?pageNum=${startPage - 1 eq 0 ? 1 : startPage-1}"><img
+				href="${conPath }/noticeList.laf?pageNum=${startPage - 1 eq 0 ? 1 : startPage-1}"><img
 				src="${conPath }/img/btn01.gif"></a>
 			<c:forEach var="j" begin="${startPage }" end="${endPage }">
 				<c:if test="${j eq currentPage }">
 					<b> ${j } </b>
 				</c:if>
 				<c:if test="${j != currentPage }">
-					<a href="${conPath }/qnaList.laf?pageNum=${j}"> ${j } </a>
+					<a href="${conPath }/noticeList.laf?pageNum=${j}"> ${j } </a>
 				</c:if>
 			</c:forEach>
 			<a
-				href="${conPath }/qnaList.laf?pageNum=${endPage == pageCnt ? endPage : endPage + 1 }"><img
+				href="${conPath }/noticeList.laf?pageNum=${endPage == pageCnt ? endPage : endPage + 1 }"><img
 				src="${conPath }/img/btn0010.gif"></a>
 		</div>
 	</div>

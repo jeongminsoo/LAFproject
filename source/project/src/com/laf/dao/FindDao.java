@@ -87,23 +87,24 @@ public class FindDao {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			
-			String sql = "UPDATE FIND SET FTITLE = ?, FCONTENT = ?, FLOCAL = ?, FLOCATION = ?," + 
+			String sql = "UPDATE FIND SET FOB = ?, FTITLE = ?, FCONTENT = ?, FLOCAL = ?, FLOCATION = ?," + 
 							" FSTORAGE = ?, FDATE = ?, FPHOTO = ?, FTEL = ?, FIP = ? WHERE FNO = ?";
 			
 			try {
 				
 				conn 	= 	ds.getConnection();
 				pstmt 	= 	conn.prepareStatement(sql);
-				pstmt.setString(1, dto.getfTitle());
-				pstmt.setString(2, dto.getfContent());
-				pstmt.setString(3, dto.getfLocal());
-				pstmt.setString(4, dto.getfLocation());
-				pstmt.setString(5, dto.getfStorage());
-				pstmt.setDate(6, dto.getfDate());
-				pstmt.setString(7, dto.getfPhoto());
-				pstmt.setString(8, dto.getfTel());
-				pstmt.setString(9, dto.getfIp());
-				pstmt.setString(10, dto.getfNo());
+				pstmt.setString(1, dto.getfOb());
+				pstmt.setString(2, dto.getfTitle());
+				pstmt.setString(3, dto.getfContent());
+				pstmt.setString(4, dto.getfLocal());
+				pstmt.setString(5, dto.getfLocation());
+				pstmt.setString(6, dto.getfStorage());
+				pstmt.setDate(7, dto.getfDate());
+				pstmt.setString(8, dto.getfPhoto());
+				pstmt.setString(9, dto.getfTel());
+				pstmt.setString(10, dto.getfIp());
+				pstmt.setString(11, dto.getfNo());
 				
 				result 	= 	pstmt.executeUpdate();
 				

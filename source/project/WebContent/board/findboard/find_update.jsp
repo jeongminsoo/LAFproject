@@ -43,17 +43,17 @@
 							<th>물품구분</th>
 							<td><select name="fOb" class="fOb" size="1">
 									<option>분류</option>
-									<option ${find.fOb == "지갑" ? "selected=\"selected\"" : ""}>지갑</option>
-									<option ${find.fOb == "서류" ? "selected=\"selected\"" : ""}>서류</option>
-									<option ${find.fOb == "가방" ? "selected=\"selected\"" : ""}>가방</option>
-									<option ${find.fOb == "핸드폰" ? "selected=\"selected\"" : ""}>핸드폰</option>
-									<option ${find.fOb == "옷" ? "selected=\"selected\"" : ""}>옷</option>
-									<option ${find.fOb == "책" ? "selected=\"selected\"" : ""}>책</option>
-									<option ${find.fOb == "귀금속" ? "selected=\"selected\"" : ""}>귀금속</option>
-									<option ${find.fOb == "귀금속" ? "selected=\"selected\"" : ""}>쇼핑백</option>
-									<option ${find.fOb == "전자기기" ? "selected=\"selected\"" : ""}>전자기기</option>
-									<option ${find.fOb == "카드" ? "selected=\"selected\"" : ""}>카드</option>
-									<option ${find.fOb == "기타" ? "selected=\"selected\"" : ""}>기타</option>
+									<option ${find.fOb == "지갑" ? "selected=\"selected\"" : ""} value="지갑">지갑</option>
+									<option ${find.fOb == "서류" ? "selected=\"selected\"" : ""} value="서류">서류</option>
+									<option ${find.fOb == "가방" ? "selected=\"selected\"" : ""} value="가방">가방</option>
+									<option ${find.fOb == "핸드폰" ? "selected=\"selected\"" : ""} value="핸드폰">핸드폰</option>
+									<option ${find.fOb == "옷" ? "selected=\"selected\"" : ""} value="옷">옷</option>
+									<option ${find.fOb == "책" ? "selected=\"selected\"" : ""} value="책">책</option>
+									<option ${find.fOb == "귀금속" ? "selected=\"selected\"" : ""} value="귀금속">귀금속</option>
+									<option ${find.fOb == "귀금속" ? "selected=\"selected\"" : ""} value="쇼핑백">쇼핑백</option>
+									<option ${find.fOb == "전자기기" ? "selected=\"selected\"" : ""} value="전자기기">전자기기</option>
+									<option ${find.fOb == "카드" ? "selected=\"selected\"" : ""} value="카드">카드</option>
+									<option ${find.fOb == "기타" ? "selected=\"selected\"" : ""} value="기타">기타</option>
 							</select></td>
 						</tr>
 						<tr>
