@@ -8,7 +8,7 @@
 - DBMS : Oracle 11g Express Edition <br>
 - 언어 : Java SE 8 Platform, HTML5, CSS, CSS3, JavaScript <br>
 - 패턴 : MVC 패턴 <br>
-- 오픈 Library : <br>
+- 오픈 Library : jQuery v3.6.0, jQueryUI v1.13.1, cos-22.05<br>
 - 프로젝트 소개 : 분실물, 습득물 검색 및 등록 등 기능을 구현하였다. <br>
 ![슬라이드1](https://user-images.githubusercontent.com/100667520/184877638-1b97bba6-da9f-4a9e-b1e8-9b791730073f.PNG)
 ![슬라이드2](https://user-images.githubusercontent.com/100667520/184877690-9fe6a645-1f4f-4991-a7a8-f75eae4da32d.PNG)
